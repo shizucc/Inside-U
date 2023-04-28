@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             KepribadianSeeder::class,
             CiriCiriSeeder::class,
             DaftarPertanyaanSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            UserKepribadianSeeder::class
         ]);
     }
 }
