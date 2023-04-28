@@ -13,7 +13,7 @@ class DaftarPertanyaanSeeder extends Seeder
      */
     public function run(): void
     {
-        DaftarPertanyaan::create(
+        DaftarPertanyaan::insert([
             // Daftar Pertanyaan Sanguinis
             [
                 'pertanyaan' => 'Apakah Anda seseorang yang suka berbicara?',
@@ -149,6 +149,6 @@ class DaftarPertanyaanSeeder extends Seeder
                 'pertanyaan' => fake()->sentence(),
                 'ciri_id' => 32
             ],
-        );
+        ]);
     }
 }
