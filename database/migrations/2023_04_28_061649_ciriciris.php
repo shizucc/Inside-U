@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('ciri_ciris', function (Blueprint $table) {
             $table->id();
             $table->string('ciri');
-            $table->string('username');
             $table->foreignId('kepribadian_id')->constrained();
         });
     }
