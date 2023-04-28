@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('pertanyaan');
             $table->bigInteger('ciri_id')->unsigned();
-            $table->foreign('ciri_id')->references('id')->on('ciriciris');
+            $table->foreign('ciri_id')->references('id')->on('ciri_ciris');
         });
     }
 
