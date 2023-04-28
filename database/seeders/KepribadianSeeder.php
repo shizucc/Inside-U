@@ -13,7 +13,7 @@ class KepribadianSeeder extends Seeder
      */
     public function run(): void
     {
-        Kepribadian::create(
+        Kepribadian::insert([
             [
                 'jenis_kepribadian' => 'sanguinis',
                 'deskripsi' => fake()->paragraph(),
@@ -34,6 +34,6 @@ class KepribadianSeeder extends Seeder
                 'deskripsi' => fake()->paragraph(),
                 'ilustrasi' => fake()->word() . '.png'
             ],
-        );
+        ]);
     }
 }

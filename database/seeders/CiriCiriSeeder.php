@@ -13,7 +13,7 @@ class CiriCiriSeeder extends Seeder
      */
     public function run(): void
     {
-        CiriCiri::create(
+        CiriCiri::insert([
             // Ciri-ciri Sanguinis
             [
                 'ciri' => 'senang bicara',
@@ -149,6 +149,6 @@ class CiriCiriSeeder extends Seeder
                 'ciri' => 'tidak takut perubahan',
                 'kepribadian_id' => 4
             ],
-        );
+        ]);
     }
 }
