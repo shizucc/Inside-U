@@ -14,10 +14,26 @@ class KepribadianSeeder extends Seeder
     public function run(): void
     {
         Kepribadian::create(
-            ['jenis_kepribadian' => 'sanguinis'],
-            ['jenis_kepribadian' => 'melankolis'],
-            ['jenis_kepribadian' => 'koleris'],
-            ['jenis_kepribadian' => 'plegmatis'],
+            [
+                'jenis_kepribadian' => 'sanguinis',
+                'deskripsi' => fake()->paragraph(),
+                'ilustrasi' => fake()->word() . '.png'
+            ],
+            [
+                'jenis_kepribadian' => 'melankolis',
+                'deskripsi' => fake()->paragraph(),
+                'ilustrasi' => fake()->word() . '.png'
+            ],
+            [
+                'jenis_kepribadian' => 'koleris',
+                'deskripsi' => fake()->paragraph(),
+                'ilustrasi' => fake()->word() . '.png'
+            ],
+            [
+                'jenis_kepribadian' => 'plegmatis',
+                'deskripsi' => fake()->paragraph(),
+                'ilustrasi' => fake()->word() . '.png'
+            ],
         );
     }
 }
