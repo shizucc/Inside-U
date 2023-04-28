@@ -9,4 +9,8 @@ class CiriCiri extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function kepribadian_id(){
+        return $this->belongsTo(Kepribadian::class);
+    }
 }
