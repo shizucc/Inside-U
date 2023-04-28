@@ -13,17 +13,11 @@ class KepribadianSeeder extends Seeder
      */
     public function run(): void
     {
-        Kepribadian::create([
-            'jenis_kepribadian' => 'sanguinis'
-        ]);
-        Kepribadian::create([
-            'jenis_kepribadian' => 'melankolis'
-        ]);
-        Kepribadian::create([
-            'jenis_kepribadian' => 'koleris'
-        ]);
-        Kepribadian::create([
-            'jenis_kepribadian' => 'plegmatis'
-        ]);
+        Kepribadian::create(
+            ['jenis_kepribadian' => 'sanguinis'],
+            ['jenis_kepribadian' => 'melankolis'],
+            ['jenis_kepribadian' => 'koleris'],
+            ['jenis_kepribadian' => 'plegmatis'],
+        );
     }
 }
