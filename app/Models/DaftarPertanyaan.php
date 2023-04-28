@@ -9,4 +9,8 @@ class DaftarPertanyaan extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function ciriciri_id(){
+        return $this->belongsTo(CiriCiri::class);
+    }
 }
