@@ -11,5 +11,9 @@ class Kepribadian extends Model
     protected $guarded = ['id'];
     public  $timestamps = false;    
     protected $table = 'kepribadians';
+
+    public function ciri_ciri(){
+        return $this->hasMany(CiriCiri::class);
+    }
 }
 ?>
