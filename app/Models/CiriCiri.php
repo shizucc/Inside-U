@@ -10,7 +10,7 @@ class CiriCiri extends Model
     use HasFactory;
     protected $guarded = ['id'];
     public  $timestamps = false;
-    public function kepribadian_id(){
+    public function kepribadian(){
         return $this->belongsTo(Kepribadian::class);
     }
 }

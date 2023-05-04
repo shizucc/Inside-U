@@ -7,7 +7,7 @@ export default function ManajemenCiriCiri(props){
             return(
                 <div key={ciri_ciri.id}>
                     <h2>Ciri : {ciri_ciri.ciri}</h2>
-                    <p>Jenis kepribadian : {ciri_ciri.kepribadian_id.jenis_kepribadian}</p>
+                    <p>Jenis kepribadian : {ciri_ciri.kepribadian.jenis_kepribadian}</p>
                 </div>
             )
         }) : null

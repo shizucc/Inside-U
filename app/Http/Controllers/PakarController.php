@@ -16,7 +16,7 @@ class PakarController extends Controller
     }
     public function ciri_ciri(){
         $data = [
-            'ciri_ciris' => CiriCiri::all()
+            'ciri_ciris' => CiriCiri::with('kepribadian')->get()
         ];
         return Inertia::render('Pakar/ManajemenCiriCiri', $data);
     }
