@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\CiriCiri;
+use App\Models\DaftarPertanyaan;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
@@ -19,5 +20,11 @@ class PakarController extends Controller
             'ciri_ciris' => CiriCiri::with('kepribadian')->get()
         ];
         return Inertia::render('Pakar/ManajemenCiriCiri', $data);
+    }
+    public function pertanyaan(){
+        $data = [
+            'pertanyaans'=> DaftarPertanyaan::with('ciri')->get()
+        ];
+        return Inertia::render('Pakar/ManajemenPertanyaan', $data);
     }
 }

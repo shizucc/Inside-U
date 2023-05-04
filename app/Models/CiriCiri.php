@@ -13,4 +13,7 @@ class CiriCiri extends Model
     public function kepribadian(){
         return $this->belongsTo(Kepribadian::class);
     }
+    public function pertanyaan(){
+        return $this->hasOne(DaftarPertanyaan::class);
+    }
 }

@@ -26,7 +26,7 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/',[PakarController::class,'ciri_ciri'])->name('pakar.kepribadian');
+Route::get('/',[PakarController::class,'pertanyaan'])->name('pakar.pertanyaan');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
