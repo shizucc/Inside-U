@@ -41,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function kepribadians() {
+        return $this->belongsToMany(Kepribadian::class, 'user_kepribadian')->withPivot('diagnosa_id', 'persentase', 'waktu_diagnosa')->orderByPivot('diagnosa_id', 'asc');
+    }
 }
