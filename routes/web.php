@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PakarController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -31,6 +32,9 @@ Route::get('/sidebar', function (){return Inertia::render('Pakar/Partials/Sideba
 
 
 Route::get('/pakar', [PakarController::class, 'index']);
+
+Route::get('/admin', [AdminController::class, 'index']);
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

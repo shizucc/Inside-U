@@ -13,6 +13,7 @@ export default function HistoriDiagnosa(props){
                 let tmp = histori.kepribadians.slice(0+(i*4), 4+(i*4));
                 let max_kepribadian = tmp.reduce(
                     (prev, curr) => prev.pivot.persentase > curr.pivot.persentase ? prev : curr);
+                max_kepribadian["nama"] = histori.username;
                 kepribadians.push(max_kepribadian);
             }
             return(
@@ -21,7 +22,7 @@ export default function HistoriDiagnosa(props){
                     console.log(kepribadian);
                     return(
                         <>
-                            <h1>Nama: {histori.username}</h1>
+                            <h1>Nama: {kepribadian.nama}</h1>
                             <p>Waktu diagnosa: {kepribadian.pivot.waktu_diagnosa}</p>
                             <p>Hasil: {kepribadian.jenis_kepribadian}</p>
                         </>
