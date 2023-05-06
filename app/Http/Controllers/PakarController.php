@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\CiriCiri;
 use App\Models\DaftarPertanyaan;
+use App\Models\UserKepribadian;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
@@ -26,5 +27,12 @@ class PakarController extends Controller
             'pertanyaans'=> DaftarPertanyaan::with('ciri')->get()
         ];
         return Inertia::render('Pakar/ManajemenPertanyaan', $data);
+    }
+
+    public function histori(){
+        $data = [
+            'historis'=> UserKepribadian::all()
+        ];
+        return Inertia::render('Pakar/HistoriDiagnosa', $data);
     }
 }
