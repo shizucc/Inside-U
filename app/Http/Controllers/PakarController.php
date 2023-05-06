@@ -17,7 +17,7 @@ class PakarController extends Controller
             'pertanyaans'=> DaftarPertanyaan::with('ciri')->get(),
             'kepribadians' => Kepribadian::all()
         ];
-        return Inertia::render('Pakar/Index',$data);
+        return Inertia::render('Pakar/Index2',$data);
     }
     public function kepribadian(){
         $data = [
