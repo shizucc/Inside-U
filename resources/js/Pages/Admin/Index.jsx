@@ -1,31 +1,37 @@
 import * as React from 'react';
 import { Head } from '@inertiajs/react';
+import Judul from './Partials/Judul';
+import IndexGrid from './Partials/IndexGrid';
+import KotakSmall from './Partials/KotakSmall';
+import IconUser from './Partials/IconUser';
+import IconDiagnosa from './Partials/IconDiagnosa';
 
-export default function AdminIndex() {
+export default function AdminIndex(props) {
+    const users = props.users;
+    const banyakUser = users.length;
+    let banyakDiagnosa = 0;
+    users
+        .filter(user => user.kepribadians.length != 0)
+        .forEach(user =>
+        banyakDiagnosa += user.kepribadians.length/4
+    );
     return(
         <>
             <Head>
+                <title>Dashboard Admin</title>
                 <style>{'body { background-color: #F2EDEE; }'}</style>
             </Head>
 
-            <h1 className="font-semibold text-3xl m-20">Hai, selamat datang!</h1>
-            <div className="container px-10 grid gap-10 grid-cols-3 mx-auto my-10">
-                <div className="col-span-1 box-content w-full h-64 bg-blue-300 mx-auto rounded-3xl drop-shadow-2xl">
-                    1
-                </div>
-                <div className="col-span-2 box-content w-full bg-white mx-auto rounded-3xl drop-shadow-2xl">
-                    2
-                </div>
-                <div className="col-span-2 box-content w-full h-64 bg-white mx-auto rounded-3xl drop-shadow-2xl">
-                    3
-                </div>
-                <div className="col-span-1 box-content w-full bg-blue-300 mx-auto rounded-3xl drop-shadow-2xl">
-                    4
-                </div>
-                <div className="col-span-3 box-content w-full h-64 bg-white mx-auto rounded-3xl drop-shadow-2xl">
-                    5
-                </div>
-            </div>
+            <Judul>Hai, selamat datang!</Judul>
+
+            <IndexGrid
+                kotak1={<KotakSmall icon={<IconUser />} number={banyakUser} text="Total User" />}
+                kotak2="2"
+                kotak3="3"
+                kotak4={<KotakSmall icon={<IconDiagnosa />} number={banyakDiagnosa} text="Total Diagnosa" />}
+                kotak5="5"
+            />
+
         </>
     )
 }
