@@ -33,7 +33,7 @@ class PakarController extends Controller
 
     public function histori(){
         $data = [
-            'historis'=> User::with('kepribadians')->get()
+            'historis'=> User::with('kepribadians')->orderBy('id', 'asc')->get()
         ];
         return Inertia::render('Pakar/HistoriDiagnosa', $data);
     }

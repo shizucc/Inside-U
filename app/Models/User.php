@@ -43,6 +43,6 @@ class User extends Authenticatable
     ];
 
     public function kepribadians() {
-        return $this->belongsToMany(Kepribadian::class, 'user_kepribadian')->withPivot('diagnosa_id', 'persentase');
+        return $this->belongsToMany(Kepribadian::class, 'user_kepribadian')->withPivot('diagnosa_id', 'persentase')->orderByPivot('diagnosa_id', 'asc');
     }
 }
