@@ -8,6 +8,8 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
 use App\Models\Kepribadian;
+use App\Models\User;
+
 class PakarController extends Controller
 {
     public function kepribadian(){
@@ -31,7 +33,7 @@ class PakarController extends Controller
 
     public function histori(){
         $data = [
-            'historis'=> UserKepribadian::all()
+            'historis'=> User::with('kepribadians')->get()
         ];
         return Inertia::render('Pakar/HistoriDiagnosa', $data);
     }
