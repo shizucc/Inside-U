@@ -34,7 +34,7 @@ class UserKepribadianSeeder extends Seeder
             $jumlahDiagnosa = rand(0, 10);
             if ($jumlahDiagnosa == 0) continue;
 
-            $date = $maxDate->subDays(rand(30, 364))->addSeconds(rand(0, 86400));
+            $date = Carbon::now()->year(2023)->month(12)->day(31)->hour(23)->minute(59)->second(59)->subDays(rand(30, 364))->addSeconds(rand(0, 86400));
             $persentase = rand_persentase();
 
             for ($j = 0; $j < $jumlahDiagnosa; $j++) {
