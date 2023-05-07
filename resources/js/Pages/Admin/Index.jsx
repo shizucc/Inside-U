@@ -8,25 +8,6 @@ import IconUser from './Partials/IconUser';
 import IconDiagnosa from './Partials/IconDiagnosa';
 
 export default function AdminIndex(props) {
-    const users = props.users;
-    const banyakUser = users.length;
-    let banyakDiagnosa = 0;
-    let userBulanan = Array(12).fill(0);
-    let diagnosaBulanan = Array(12).fill(0);
-
-    users.forEach(user => {
-        let bulanDibuat = new Date(user.created_at).getMonth();
-        userBulanan[bulanDibuat]++;
-        if (user.kepribadians.length == 0) return;
-        let n = user.kepribadians.length/4;
-        for (let i = 0; i < n; i++) {
-            let bulanDiagnosa = new Date(user.kepribadians[0+(i*4)].pivot.waktu_diagnosa).getMonth();
-            console.log(bulanDiagnosa);
-            diagnosaBulanan[bulanDiagnosa]++;
-        }
-        banyakDiagnosa += n;
-    });
-
     return(
         <>
             <Head>
@@ -37,10 +18,10 @@ export default function AdminIndex(props) {
             <Judul>Hai, selamat datang!</Judul>
 
             <IndexGrid
-                kotak1={<KotakSmall icon={<IconUser />} number={banyakUser} text="Total User" />}
-                kotak2={<GrafikBulanan data={userBulanan} judul="Jumlah User Baru per Bulan (2023)" label="Jumlah User Baru" />}
-                kotak3={<GrafikBulanan data={diagnosaBulanan} judul="Jumlah Diagnosa per Bulan (2023)" label="Jumlah Diagnosa" />}
-                kotak4={<KotakSmall icon={<IconDiagnosa />} number={banyakDiagnosa} text="Total Diagnosa" />}
+                kotak1={<KotakSmall icon={<IconUser />} number={props.total_user} text="Total User" />}
+                kotak2={<GrafikBulanan data={props.userbaru_bulanan} judul="Jumlah User Baru per Bulan (2023)" label="Jumlah User Baru" />}
+                kotak3={<GrafikBulanan data={props.diagnosa_bulanan} judul="Jumlah Diagnosa per Bulan (2023)" label="Jumlah Diagnosa" />}
+                kotak4={<KotakSmall icon={<IconDiagnosa />} number={props.total_diagnosa} text="Total Diagnosa" />}
                 kotak5="5"
             />
 
