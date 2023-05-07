@@ -8,7 +8,7 @@ export default function IndexGrid(props) {
             <div className="flex justify-center col-span-2 box-content w-full h-72 bg-white mx-auto rounded-3xl drop-shadow-xl hover:drop-shadow-2xl">
                 {props.kotak2}
             </div>
-            <div className="col-span-2 box-content w-full h-72 bg-white mx-auto rounded-3xl drop-shadow-xl hover:drop-shadow-2xl">
+            <div className="flex justify-center col-span-2 box-content w-full h-72 bg-white mx-auto rounded-3xl drop-shadow-xl hover:drop-shadow-2xl">
                 {props.kotak3}
             </div>
             <div className="col-span-1 box-content w-full bg-blue-300 mx-auto rounded-3xl drop-shadow-xl hover:drop-shadow-2xl">
