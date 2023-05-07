@@ -16,22 +16,22 @@ class KepribadianSeeder extends Seeder
         Kepribadian::insert([
             [
                 'jenis_kepribadian' => 'sanguinis',
-                'deskripsi' => fake()->paragraph(),
+                'deskripsi' => fake()->paragraph(2),
                 'ilustrasi' => fake()->word() . '.png'
             ],
             [
                 'jenis_kepribadian' => 'melankolis',
-                'deskripsi' => fake()->paragraph(),
+                'deskripsi' => fake()->paragraph(2),
                 'ilustrasi' => fake()->word() . '.png'
             ],
             [
                 'jenis_kepribadian' => 'koleris',
-                'deskripsi' => fake()->paragraph(),
+                'deskripsi' => fake()->paragraph(2),
                 'ilustrasi' => fake()->word() . '.png'
             ],
             [
                 'jenis_kepribadian' => 'plegmatis',
-                'deskripsi' => fake()->paragraph(),
+                'deskripsi' => fake()->paragraph(2),
                 'ilustrasi' => fake()->word() . '.png'
             ],
         ]);
