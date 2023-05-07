@@ -28,7 +28,7 @@ use Inertia\Inertia;
 // });
 
 Route::get('/',[PakarController::class,'histori'])->name('pakar.histori');
-Route::get('/sidebar', function (){return Inertia::render('Pakar/Partials/Sidebar');});
+Route::get('/sidebar', function (){return Inertia::render('Admin/SidebarAdmin');});
 
 
 Route::get('/pakar', [PakarController::class, 'index']);
