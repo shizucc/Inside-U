@@ -20,11 +20,13 @@ ChartJS.register(
 );
 
 
-const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+const month_short = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+const month_long = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
 
 export default function GrafikBulanan(props) {
     const options = {
+        maintainAspectRatio: false,
         responsive: true,
         plugins: {
             legend: {
@@ -44,7 +46,7 @@ export default function GrafikBulanan(props) {
     };
 
     const data = {
-        labels,
+        labels: month_long,
         datasets: [{
             label: props.label,
             data: props.data,
@@ -65,6 +67,6 @@ export default function GrafikBulanan(props) {
         },],
     };
     return(
-        <Bar options={options} data={data} />
+        <Bar className="px-5" options={options} data={data} />
     );
 }
