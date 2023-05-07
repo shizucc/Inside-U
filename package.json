@@ -23,7 +23,9 @@
         "@emotion/styled": "^11.10.6",
         "@heroicons/react": "^2.0.17",
         "@mui/material": "^5.11.16",
+        "chart.js": "^4.3.0",
         "datatables.net-dt": "^1.13.4",
+        "react-chartjs-2": "^5.2.0",
         "react-table": "^7.8.0",
         "regenerator-runtime": "^0.13.11",
         "swiper": "^9.2.0"
