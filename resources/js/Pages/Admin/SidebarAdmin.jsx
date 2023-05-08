@@ -10,39 +10,99 @@ import IconManajemenPakar from '@/Components/IconManajemenPakar';
 import IconManajemenUser from '@/Components/IconManajemenUser';
 import IconHistoriDiagnosa from '@/Components/IconHistoriDiagnosa';
 import IconLogout from '@/Components/IconLogout';
+import MenuList from '@/Components/MenuList';
 import AdminIndex from './Index';
 
 export default function SidebarAdmin() {
   return (
-    <div className='container'>
+    <aside>
+      <div className='container'>
     <Tabs defaultValue={0}>
         <div className='grid grid-cols-4'>
             <div>
-            <StyledTabsList className='h-screen'>
+            <StyledTabsList className='h-screen w-100'>
             <div className='grid-rows-3'>
               <div className='top-0'><h1>Logo</h1></div>
               <div>
                 <h1 className='text-center font-bold text-black text-xl mb-10'>Username</h1>
-              <StyledTab value={0}><IconDashboard/></StyledTab>
-              <StyledTab value={1}><IconManajemenPakar/></StyledTab>
-              <StyledTab value={2}><IconManajemenUser/></StyledTab>
-              <StyledTab value={3}><IconHistoriDiagnosa/></StyledTab>
+              <StyledTab><MenuList icon={<IconDashboard/>} nama="Dashboard"/></StyledTab>
+              <StyledTab><MenuList icon={<IconManajemenPakar/>} nama="Manajemen Pakar"/></StyledTab>
+              <StyledTab><MenuList icon={<IconManajemenUser/>} nama="Manajemen User"/></StyledTab>
+              <StyledTab><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></StyledTab>
               <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-              <StyledTab value={4}><IconLogout/></StyledTab>
+              <StyledTab><MenuList icon={<IconLogout/>} nama="Logout"/></StyledTab>
               </div>
               <div><h1 className='bottom-0 end-0 inset-y-0 text-center text-black text-sm mt-20'>Copyright</h1></div>
             </div>
           </StyledTabsList>
             </div>
-        <div className='col-span-3 p-10'>
-        <StyledTabPanel value={0}></StyledTabPanel>
+        <div className='h-screen col-span-3 p-10 overflow'>
+        <StyledTabPanel value={0}><b>First</b> tab panelzxcxzzzzzzdzczzzzzzzzzzzdsdklzk dl zkvlkjzoid 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         zlkdkkkkklzkdkiic dklszkcklkxmmslzkxmlzkkxcmxmzmmzldkc zkkkcxmzxlckzcdolzkck zklk 
+         </StyledTabPanel>
           <StyledTabPanel value={1}>manajemen pakar</StyledTabPanel>
           <StyledTabPanel value={2}>manajemen user</StyledTabPanel>
+          <StyledTabPanel value={3}><AdminIndex/></StyledTabPanel>
         </div>
           
         </div>
     </Tabs>
     </div>
+    </aside>
+    
     
     
   );
@@ -121,13 +181,13 @@ const StyledTabPanel = styled(TabPanel)(
 
 const StyledTabsList = styled(TabsList)(
   ({ theme }) => `
-  width: 100%;
+  width: 24%;
   background-color: ${grey[100]};
   border-radius: 0px;
   margin-bottom: 0px;
   display: flex;
   padding:50px;
-
+  position:fixed;
   align-items: center;
   align-content: space-between;
   box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
