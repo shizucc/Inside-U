@@ -13,7 +13,7 @@ export default function AdminDashboard(props) {
         <>
             <Head>
                 <title>Dashboard Admin</title>
-                <style>{'body { background-color: #BEC8FA; }'}</style>
+                <style>{'body { background-color: #FEF8F8; }'}</style>
             </Head>
 
             <Judul>Hai, selamat datang!</Judul>

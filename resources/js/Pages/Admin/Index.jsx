@@ -128,14 +128,14 @@ const StyledTabPanel = styled(TabPanel)(
 const StyledTabsList = styled(TabsList)(
   ({ theme }) => `
   width: 24%;
-  background-color: ${grey[100]};
+  background-color: '#FEF8F8';
   border-radius: 0px;
+  border-right: 2px dashed #A9A9A9;
   margin-bottom: 0px;
   display: flex;
   padding:50px;
   position:fixed;
   align-items: center;
   align-content: space-between;
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
