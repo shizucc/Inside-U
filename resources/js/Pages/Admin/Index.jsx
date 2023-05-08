@@ -9,7 +9,6 @@ import IconUser from './Partials/IconUser';
 import IconDiagnosa from './Partials/IconDiagnosa';
 
 export default function AdminIndex(props) {
-    console.log(props.userbaru_bulanan);
     return(
         <>
             <Head>
