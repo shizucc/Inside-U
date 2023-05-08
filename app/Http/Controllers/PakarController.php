@@ -13,10 +13,17 @@ use App\Models\User;
 class PakarController extends Controller
 {
     public function index(){
+        $pertanyaans = DaftarPertanyaan::all();
         $data = [
-            'pertanyaans'=> DaftarPertanyaan::with('ciri')->get(),
-            'kepribadians' => Kepribadian::all()
-        ];
+            //'pertanyaans'=> DaftarPertanyaan::with('ciri')->get(),
+            'kepribadians' => Kepribadian::all(),
+            'pertanyaans' => [
+                'pertanyaans' => $pertanyaans->map(function($pertanyaan){
+                    return $pertanyaan->pertanyaan;
+                })->toArray(),
+
+            ]
+            ];
         return Inertia::render('Pakar/Index2',$data);
     }
     public function kepribadian(){
