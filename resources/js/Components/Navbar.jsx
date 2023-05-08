@@ -3,12 +3,14 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import Footer from '@/Components/Footer';
 import { Link } from '@inertiajs/react';
 
 export default function Navbar({ children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
+        <>
         <div className="min-h-screen bg-gray-100">
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-10 sm:px-20 lg:px-40">
@@ -20,7 +22,7 @@ export default function Navbar({ children }) {
                                 </Link>
                             </div>
 
-                            
+
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
@@ -116,5 +118,7 @@ export default function Navbar({ children }) {
 
             <main>{children}</main>
         </div>
+        <Footer />
+        </>
     );
 }
