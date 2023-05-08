@@ -17,6 +17,7 @@ class AdminController extends Controller
 
         // Mendapatkan data kepribadian dari DB
         // Dimasukkan ke dalam associative array untuk menghitung total setiap kepribadian yang didapatkan user setiap diagnosa
+        // Nama jenis kepribadian diubah menjadi kapital pada huruf pertama menggunakan ucfirst()
         $kepribadians = array();
         foreach(Kepribadian::orderBy('id')->get() as $kepribadian) {
             $kepribadians[ucfirst($kepribadian->jenis_kepribadian)] = 0;
@@ -50,15 +51,19 @@ class AdminController extends Controller
             $total_diagnosa += $jml_diagnosa;
         }
 
-        // Mengubah huruf pertama jenis kepribadian menjadi kapital
-
-        $data = [
+        // Mengumpulkan data untuk dikirim
+        $data_dashboard = [
             'total_user' => $total_user,
             'total_diagnosa' => $total_diagnosa,
             'userbaru_bulanan' => $userbaru_bulanan,
             'diagnosa_bulanan' => $diagnosa_bulanan,
             'kepribadians' => $kepribadians,
         ];
-        return Inertia::render('Admin/SidebarAdmin', $data);
+
+        $data_to_send = [
+            'data_dashboard' => $data_dashboard
+        ];
+
+        return Inertia::render('Admin/Index', $data_to_send);
     }
 }
