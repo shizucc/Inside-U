@@ -59,6 +59,6 @@ class AdminController extends Controller
             'diagnosa_bulanan' => $diagnosa_bulanan,
             'kepribadians' => $kepribadians,
         ];
-        return Inertia::render('Admin/Index', $data);
+        return Inertia::render('Admin/SidebarAdmin', $data);
     }
 }

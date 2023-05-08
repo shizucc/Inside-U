@@ -13,7 +13,7 @@ import IconLogout from '@/Components/IconLogout';
 import MenuList from '@/Components/MenuList';
 import AdminIndex from './Index';
 
-export default function SidebarAdmin() {
+export default function SidebarAdmin(props) {
   return (
     <aside>
       <div className='container'>
@@ -29,7 +29,7 @@ export default function SidebarAdmin() {
               <StyledTab><MenuList icon={<IconManajemenPakar/>} nama="Manajemen Pakar"/></StyledTab>
               <StyledTab><MenuList icon={<IconManajemenUser/>} nama="Manajemen User"/></StyledTab>
               <StyledTab><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></StyledTab>
-              <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+              <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
               <StyledTab><MenuList icon={<IconLogout/>} nama="Logout"/></StyledTab>
               </div>
               <div><h1 className='bottom-0 end-0 inset-y-0 text-center text-black text-sm mt-20'>Copyright</h1></div>
@@ -95,7 +95,7 @@ export default function SidebarAdmin() {
          </StyledTabPanel>
           <StyledTabPanel value={1}>manajemen pakar</StyledTabPanel>
           <StyledTabPanel value={2}>manajemen user</StyledTabPanel>
-          <StyledTabPanel value={3}><AdminIndex/></StyledTabPanel>
+          <StyledTabPanel value={3}><AdminIndex total_user={props.total_user} userbaru_bulanan={props.userbaru_bulanan} diagnosa_bulanan={props.diagnosa_bulanan} total_diagnosa={props.total_diagnosa} kepribadians={props.kepribadians} /></StyledTabPanel>
         </div>
           
         </div>
