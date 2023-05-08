@@ -4,14 +4,17 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import Footer from '@/Components/Footer';
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 export default function Navbar({ children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
         <>
-        <div className="min-h-screen bg-[#BEC8FA]/[.5]">
+        <Head>
+            <style>{'body { background-color: rgba(190,200,250,0.5); }'}</style>
+        </Head>
+        <div className="min-h-screen">
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-10 sm:px-20 lg:px-40">
                     <div className="flex justify-between h-16">

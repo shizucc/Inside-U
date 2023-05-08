@@ -27,9 +27,9 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function (){return Inertia::render('Home');});
+Route::get('/', function (){return Inertia::render('Home');})->name('home');
 
-Route::get('/diagnosa', function(){return Inertia::render('Diagnosa/Notice');});
+Route::get('/diagnosa', function(){return Inertia::render('Diagnosa/Notice');})->name('diagnosa.start');
 
 Route::get('/sidebar', function (){return Inertia::render('Admin/SidebarAdmin');});
 

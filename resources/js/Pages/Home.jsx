@@ -16,7 +16,7 @@ export default function Home(){
                                 Penasaran dengan tipe kepribadianmu? Lakukan tes di sini sekarang!
                             </h1>
                             <button className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px]">
-                                <a href="">Mulai Diagnosa <span><NavigateNextIcon/></span>
+                                <a href={route('diagnosa.start')}>Mulai Diagnosa <span><NavigateNextIcon/></span>
                                 </a>
                             </button>
                         </div>
