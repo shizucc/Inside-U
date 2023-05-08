@@ -12,94 +12,46 @@ class UserKepribadianSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
     public function run(): void
-    {   
-        UserKepribadian::insert([
-            [
-                'user_id' => 1,
-                'kepribadian_id' => 1,
-                'diagnosa_id' => 1,
-                'persentase' => 30,
-                'waktu_diagnosa'=> Carbon::now()
-                
-            ],
-            [
-                'user_id' => 1,
-                'kepribadian_id' => 2,
-                'diagnosa_id' => 1,
-                'persentase' => 20,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 1,
-                'kepribadian_id' => 3,
-                'diagnosa_id' => 1,
-                'persentase' => 10,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 1,
-                'kepribadian_id' => 4,
-                'diagnosa_id' => 1,
-                'persentase' => 25,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 1,
-                'kepribadian_id' => 1,
-                'diagnosa_id' => 2,
-                'persentase' => 10,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 1,
-                'kepribadian_id' => 2,
-                'diagnosa_id' => 2,
-                'persentase' => 15,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 1,
-                'kepribadian_id' => 3,
-                'diagnosa_id' => 2,
-                'persentase' => 20,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 1,
-                'kepribadian_id' => 4,
-                'diagnosa_id' => 2,
-                'persentase' => 35,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 2,
-                'kepribadian_id' => 1,
-                'diagnosa_id' => 1,
-                'persentase' => 5,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 2,
-                'kepribadian_id' => 2,
-                'diagnosa_id' => 1,
-                'persentase' => 15,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 2,
-                'kepribadian_id' => 3,
-                'diagnosa_id' => 1,
-                'persentase' => 25,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-            [
-                'user_id' => 2,
-                'kepribadian_id' => 4,
-                'diagnosa_id' => 1,
-                'persentase' => 35,
-                'waktu_diagnosa'=> Carbon::now()
-            ],
-        ]);
+    {
+        $jumlahUser = 100;
+        $jumlahKepribadian = 4;
+        $maxDate = Carbon::now()->year(2023)->month(12)->day(31)->hour(23)->minute(59)->second(59);
+
+        function rand_persentase() {
+            $persentase1 = rand(0, 35);
+            $persentase2 = rand(0, 35);
+            $persentase3 = rand(0, 30);
+            $persentase4 = 100 - ($persentase1+$persentase2+$persentase3);
+            $persentase = [$persentase1, $persentase2, $persentase3, $persentase4];
+            shuffle($persentase);
+
+            return $persentase;
+        }
+
+        for ($i = 0; $i < $jumlahUser; $i++) {
+            $jumlahDiagnosa = rand(0, 10);
+            if ($jumlahDiagnosa == 0) continue;
+
+            $date = Carbon::now()->year(2023)->month(12)->day(31)->hour(23)->minute(59)->second(59)->subDays(rand(30, 364))->addSeconds(rand(0, 86400));
+            $persentase = rand_persentase();
+
+            for ($j = 0; $j < $jumlahDiagnosa; $j++) {
+                if ($date->gt($maxDate)) break;
+                for ($k = 0; $k < $jumlahKepribadian; $k++) {
+                    UserKepribadian::insert([
+                        'user_id' => $i+1,
+                        'diagnosa_id' => $j+1,
+                        'kepribadian_id' => $k+1,
+                        'persentase' => $persentase[$k],
+                        'waktu_diagnosa' => $date
+                    ]);
+
+                }
+                $date = $date->addDays(rand(0, 30))->addSeconds(rand(0, 86400));
+                $persentase = rand_persentase();
+            }
+        }
     }
 }
