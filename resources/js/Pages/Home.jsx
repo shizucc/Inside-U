@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import Manfaat from "@/Components/Manfaat";
 import Navbar from "@/Components/Navbar";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -15,10 +16,9 @@ export default function Home(){
                             <h1 className="font-poppins py-[8px] w-[300px]">
                                 Penasaran dengan tipe kepribadianmu? Lakukan tes di sini sekarang!
                             </h1>
-                            <button className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px]">
-                                <a href={route('diagnosa.start')}>Mulai Diagnosa <span><NavigateNextIcon/></span>
-                                </a>
-                            </button>
+                            <Link href={route('diagnosa.start')} className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" as="button">
+                                Mulai Diagnosa <span><NavigateNextIcon/></span>
+                            </Link>
                         </div>
                         <div className="mr-0 ml-auto">
                             <img src="img/illustrasi_home.png" alt="illustrasi1" className="h-52 w-auto"/>
