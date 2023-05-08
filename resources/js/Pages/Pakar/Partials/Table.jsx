@@ -1,8 +1,48 @@
 import React from "react";
 import { useTable, useGlobalFilter, useAsyncDebounce, useSortBy, usePagination } from "react-table";
 import regeneratorRuntime from "regenerator-runtime";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import { ArrowForwardIos, LastPage } from "@mui/icons-material";
+//import Button from '@mui/material/Button';
+
 //import { BeakerIcon } from '@heroicons/react/solid';
 // Define a default UI for filtering
+
+export function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function Button({ children, className, ...rest }) {
+  return (
+    <button
+      type="button"
+      className={classNames(
+        "relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50",
+        className
+      )}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function PageButton({ children, className, ...rest }) {
+  return (
+    <button
+      type="button"
+      className={classNames(
+        "relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50",
+        className
+      )}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+}
+
 function GlobalFilter({
     preGlobalFilteredRows,
     globalFilter,
@@ -100,6 +140,12 @@ export default function Table({ columns, data }) {
                           </span>
                         </th>
                       ))}
+                      <th
+                      colSpan={2}
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                      </th>
                     </tr>
                   ))}
                 </thead>
@@ -110,6 +156,7 @@ export default function Table({ columns, data }) {
                   {page.map((row, i) => {  // new
                     prepareRow(row)
                     return (
+                      
                       <tr {...row.getRowProps()}>
                         {row.cells.map(cell => {
                           return (
@@ -121,7 +168,19 @@ export default function Table({ columns, data }) {
                             </td>
                           )
                         })}
+                            <td>
+                            <Button variant="outlined" color="warning">
+                              Edit
+                            </Button>
+                            </td>
+                            <td>
+                            <Button variant="outlined" color="error">
+                              Hapus
+                            </Button>
+                            </td>
                       </tr>
+                      
+                      
                     )
                   })}
                 </tbody>
@@ -131,37 +190,53 @@ export default function Table({ columns, data }) {
         </div>
       </div>
 
-    <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
-        <span>
-          Page{' '}
-          <strong>
-            {state.pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <select
-          value={state.pageSize}
-          onChange={e => {
-              setPageSize(Number(e.target.value))
-          }}
-        >
-          {[5, 10, 20].map(pageSize => (
-              <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+      <div className="py-3 flex items-center justify-between">
+        <div className="flex-1 flex justify-between sm:hidden">
+          <Button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</Button>
+          <Button onClick={() => nextPage()} disabled={!canNextPage}>Next</Button>
+        </div>
+        <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+          <div className="flex gap-x-2">
+            <span className="text-sm text-gray-700">
+              Halaman <span className="font-medium">{state.pageIndex + 1}</span> dari <span className="font-medium">{pageOptions.length}</span>
+            </span>
+          </div>
+          {/* Navigation */}
+          <div>
+            <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+              <PageButton
+                className="rounded-l-md"
+                onClick={() => gotoPage(0)}
+                disabled={!canPreviousPage}
+              >
+                <span className="sr-only">First</span>
+                <FirstPageIcon className="h-5 w-5" aria-hidden="true" />
+              </PageButton>
+              <PageButton
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                <span className="sr-only">Previous</span>
+                <ArrowBackIosIcon className="h-5 w-5" aria-hidden="true" />
+              </PageButton>
+              <PageButton
+                onClick={() => nextPage()}
+                disabled={!canNextPage
+                }>
+                <span className="sr-only">Next</span>
+                <ArrowForwardIos className="h-5 w-5" aria-hidden="true" />
+              </PageButton>
+              <PageButton
+                className="rounded-r-md"
+                onClick={() => gotoPage(pageCount - 1)}
+                disabled={!canNextPage}
+              >
+                <span className="sr-only">Last</span>
+                <LastPage className="h-5 w-5" aria-hidden="true" />
+              </PageButton>
+            </nav>
+          </div>
+        </div>
       </div>
     </>
   );
