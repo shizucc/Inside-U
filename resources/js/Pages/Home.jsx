@@ -1,3 +1,4 @@
+import Manfaat from "@/Components/Manfaat";
 import Navbar from "@/Components/Navbar";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
@@ -26,6 +27,11 @@ export default function Home(){
                 </div>
                 <div className="mx-auto w-3/4">
                     <h1 className="text-center font-poppins font-bold text-2xl text-[#263238]">Apa sih manfaat mengetahui kepribadian diri?</h1>
+                </div>
+                <div className="flex object-center gap-40 justify-center">
+                    <Manfaat gambar="img/ilustrasi_manfaat1.png" deskripsi="Dapat merencanakan masa depan dengan lebih baik"/>
+                    <Manfaat gambar="img/ilustrasi_manfaat2.png" deskripsi="Mengetahui kekuatan dan kelemahan diri"/>
+                    <Manfaat gambar="img/ilustrasi_manfaat3.png" deskripsi="Lebih mengenali diri sendiri"/>
                 </div>
             </Navbar>
         </>
