@@ -11,11 +11,12 @@ export default function Register() {
         username: '',
         email: '',
         password: '',
+        password_confirmation: '',
     });
 
     useEffect(() => {
         return () => {
-            reset('password');
+            reset('password', 'password_confirmation');
         };
     }, []);
 
@@ -47,7 +48,7 @@ export default function Register() {
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
-                <div className="mt-2">
+                <div className="mt-4">
                     <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
@@ -64,7 +65,7 @@ export default function Register() {
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-2">
+                <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
 
                     <TextInput
@@ -81,16 +82,34 @@ export default function Register() {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="flex items-center justify-end mt-8">
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Sign Up
-                    </PrimaryButton>
+                <div className="mt-4">
+                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
+
+                    <TextInput
+                        id="password_confirmation"
+                        type="password"
+                        name="password_confirmation"
+                        value={data.password_confirmation}
+                        className="mt-1 block w-full"
+                        autoComplete="new-password"
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                <div className="mt-8 text-center">
-                    <span>
-                        Sudah punya akun? <Link className="text-blue-500 hover:underline" href={route('login')}>Login</Link>
-                    </span>
+                <div className="flex items-center justify-end mt-4">
+                    <Link
+                        href={route('login')}
+                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Already registered?
+                    </Link>
+
+                    <PrimaryButton className="ml-4" disabled={processing}>
+                        Register
+                    </PrimaryButton>
                 </div>
             </form>
         </GuestLayout>
