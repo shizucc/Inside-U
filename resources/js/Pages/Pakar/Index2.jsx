@@ -15,10 +15,11 @@ export default function ManajemenCiriCiri(props){
       }) : null
   } */}
       <ManajemenLayout
-        fields = {['no','pertanyaan','ciri-ciri','kepribadian']}
+        fields = {['pertanyaan','ciri-ciri','kepribadian']}
         datas = {[
-          props.pertanyaans.pertanyaans
-          
+          props.columns.pertanyaans,
+          props.columns.ciri_ciris,
+          props.columns.kepribadians
         ]
         }
       />

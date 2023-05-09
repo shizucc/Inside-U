@@ -13,15 +13,19 @@ use App\Models\User;
 class PakarController extends Controller
 {
     public function index(){
-        $pertanyaans = DaftarPertanyaan::all();
+        $pertanyaans = DaftarPertanyaan::with('ciri')->get();
         $data = [
-            //'pertanyaans'=> DaftarPertanyaan::with('ciri')->get(),
-            'kepribadians' => Kepribadian::all(),
-            'pertanyaans' => [
+            'columns' => [
                 'pertanyaans' => $pertanyaans->map(function($pertanyaan){
                     return $pertanyaan->pertanyaan;
                 })->toArray(),
-
+                'ciri_ciris' => $pertanyaans->map(function($pertanyaan){
+                    return $pertanyaan->ciri->ciri;
+                }),
+                'kepribadians' => $pertanyaans->map(function($pertanyaan){
+                    $kepribadian = Kepribadian::where('id', $pertanyaan->ciri->kepribadian_id)->value('jenis_kepribadian');
+                    return $kepribadian;
+                })
             ]
             ];
         return Inertia::render('Pakar/Index2',$data);

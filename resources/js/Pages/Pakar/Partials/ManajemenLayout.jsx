@@ -1,6 +1,7 @@
 // src/App.js
 import React from "react";
 import Table from "./Table";
+import { DataArrayOutlined } from "@mui/icons-material";
 
 // const getData = () => [
 //   {
@@ -67,16 +68,25 @@ import Table from "./Table";
 export default function ManajemenLayout(props) {
     const fields = props.fields
     const datas = props.datas
-    function createData() {
-        return { nomor, pertanyaan,ciri, kepribadian};
+    function createData(data1,data2,data3) {
+        return {data1,data2,data3}
     }
-    console.log(datas)
+    //console.log(datas)
 
     let rows = []
     // let i = 1
-    // datas.pertanyaans.forEach(data => {
-    //     rows.push(createData(i++,pertanyaan.pertanyaan, pertanyaan.ciri.ciri, props.kepribadians[pertanyaan.ciri.kepribadian_id - 1].jenis_kepribadian))
+    // datas.forEach(data => {
+    //     rows.push(Object.assign({}, data.forEach(x=>{
+    //       return x
+    //     })));
     // });
+
+    console.log(datas.columns)
+    rows = [     
+        Object.assign({}, [datas]),// foreach 3 kali
+      ]
+
+    console.log(rows);
 
 
     const getData = () => {
