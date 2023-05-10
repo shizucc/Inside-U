@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-export default function Notice() {
+export default function Peringatan() {
     return(
         <>
         <Navbar>
@@ -27,7 +27,7 @@ export default function Notice() {
                         <li>Pembuat website tidak bertanggung jawab atas hasil diagnosa yang diperoleh</li>
                     </ol>
                     <div className="mx-auto w-1/2 mt-10">
-                        <Link href="#" className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[16px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" as="button">
+                        <Link href={route('diagnosa.pertanyaan')} className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[16px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" as="button">
                             Mulai Diagnosa <span><NavigateNextIcon/></span>
                         </Link>
                     </div>

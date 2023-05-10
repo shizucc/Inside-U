@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DiagnosaController;
 use App\Http\Controllers\PakarController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -29,7 +30,8 @@ use Inertia\Inertia;
 
 Route::get('/', function (){return Inertia::render('Home');})->name('home');
 
-Route::get('/diagnosa', function(){return Inertia::render('Diagnosa/Notice');})->name('diagnosa.start');
+Route::get('/diagnosa', [DiagnosaController::class, 'index'])->name('diagnosa.start');
+Route::get('/diagnosa/pertanyaan', [DiagnosaController::class, 'pertanyaan'])->name('diagnosa.pertanyaan');
 
 Route::get('/sidebar', function (){return Inertia::render('Admin/SidebarAdmin');});
 
