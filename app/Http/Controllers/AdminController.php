@@ -52,18 +52,13 @@ class AdminController extends Controller
         }
 
         // Mengumpulkan data untuk dikirim
-        $data_dashboard = [
+        $data = [
             'total_user' => $total_user,
             'total_diagnosa' => $total_diagnosa,
             'userbaru_bulanan' => $userbaru_bulanan,
             'diagnosa_bulanan' => $diagnosa_bulanan,
             'kepribadians' => $kepribadians,
         ];
-
-        $data_to_send = [
-            'data_dashboard' => $data_dashboard
-        ];
-
-        return Inertia::render('Admin/Index', $data_dashboard);
+        return Inertia::render('Admin/Index', $data);
     }
 }

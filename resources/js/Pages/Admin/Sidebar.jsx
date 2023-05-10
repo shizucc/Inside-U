@@ -17,14 +17,21 @@ import { Link } from '@inertiajs/react';
 
 
 export default function SidebarAdmin(props) {
-const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const tab_active = (() => {
+    switch(route().current()) {
+      case 'admin.index':
+        return 0;
+      case 'admin.manajemenpakar':
+        return 1;
+      case 'admin.manajemenuser':
+        return 2;
+      case 'admin.historidiagnosa':
+        return 3;
+    }
+  })();
   return (
       <div className='container'>
-    <Tabs value={value} onChange={handleChange}>
+    <Tabs value={tab_active}>
         <div className='grid grid-cols-4'>
             <div>
             <StyledTabsList className='h-screen w-100'>
@@ -34,8 +41,8 @@ const [value, setValue] = React.useState(0);
                 <h1 className='text-center font-bold text-black text-xl mb-10'>Username</h1>
               <StyledTab><Link href={route('admin.index')}><MenuList icon={<IconDashboard/>} nama="Dashboard"/></Link></StyledTab>
               <StyledTab><Link  href={route('admin.manajemenpakar')}><MenuList icon={<IconManajemenPakar/>} nama="Manajemen Pakar"/></Link></StyledTab>
-              <StyledTab href={route('admin.manajemenuser')}><MenuList icon={<IconManajemenUser/>} nama="Manajemen User"/></StyledTab>
-              <StyledTab href={route('admin.historidiagnosa')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></StyledTab>
+              <StyledTab><Link href={route('admin.manajemenuser')}><MenuList icon={<IconManajemenUser/>} nama="Manajemen User"/></Link></StyledTab>
+              <StyledTab><Link href={route('admin.historidiagnosa')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></Link></StyledTab>
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
               <StyledTab><MenuList icon={<IconLogout/>} nama="Logout"/></StyledTab>
               </div>
@@ -43,7 +50,7 @@ const [value, setValue] = React.useState(0);
             </div>
           </StyledTabsList>
             </div>
-        <div className='h-screen col-span-3 pl-10 overflow'>
+        <div className='h-screen col-span-3 pl-10 pt-10 overflow'>
           {props.children}
         </div>
 

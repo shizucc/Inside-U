@@ -13,9 +13,7 @@ export default function AdminDashboard(props) {
     return (
         <>
         <SidebarAdmin>
-            Hello world
-        </SidebarAdmin>
-            {/* <Head>
+            <Head>
                 <title>Dashboard Admin</title>
                 <style>{'body { background-color: #FEF8F8; }'}</style>
             </Head>
@@ -23,13 +21,13 @@ export default function AdminDashboard(props) {
             <Judul>Hai, selamat datang!</Judul>
 
             <IndexGrid
-                kotak1={<KotakSmall icon={<IconUser />} number={props.data.total_user} text="Total User" />}
-                kotak2={<GrafikBulanan data={props.data.userbaru_bulanan} judul="Jumlah User Baru per Bulan (2023)" label="Jumlah User Baru" />}
-                kotak3={<GrafikBulanan data={props.data.diagnosa_bulanan} judul="Jumlah Diagnosa per Bulan (2023)" label="Jumlah Diagnosa" />}
-                kotak4={<KotakSmall icon={<IconDiagnosa />} number={props.data.total_diagnosa} text="Total Diagnosa" />}
-                kotak5={<GrafikKepribadian data={props.data.kepribadians} judul="Rekaman Kepribadian Hasil Diagnosa" label="Jenis Kepribadian" />}
-            /> */}
-
+                kotak1={<KotakSmall icon={<IconUser />} number={props.total_user} text="Total User" />}
+                kotak2={<GrafikBulanan data={props.userbaru_bulanan} judul="Jumlah User Baru per Bulan (2023)" label="Jumlah User Baru" />}
+                kotak3={<GrafikBulanan data={props.diagnosa_bulanan} judul="Jumlah Diagnosa per Bulan (2023)" label="Jumlah Diagnosa" />}
+                kotak4={<KotakSmall icon={<IconDiagnosa />} number={props.total_diagnosa} text="Total Diagnosa" />}
+                kotak5={<GrafikKepribadian data={props.kepribadians} judul="Rekaman Kepribadian Hasil Diagnosa" label="Jenis Kepribadian" />}
+            />
+        </SidebarAdmin>
         </>
     );
 }

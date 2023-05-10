@@ -4,7 +4,7 @@ export default function ManajemenPakar(props){
     return (
         <>
             <SidebarAdmin>
-                Halo
+                Manajemen Pakar
             </SidebarAdmin>
         </>
     );
