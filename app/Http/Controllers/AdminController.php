@@ -64,6 +64,6 @@ class AdminController extends Controller
             'data_dashboard' => $data_dashboard
         ];
 
-        return Inertia::render('Admin/Index', $data_to_send);
+        return Inertia::render('Admin/Index', $data_dashboard);
     }
 }

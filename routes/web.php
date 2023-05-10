@@ -36,7 +36,10 @@ Route::get('/sidebar', function (){return Inertia::render('Admin/SidebarAdmin');
 
 Route::get('/pakar', [PakarController::class, 'index']);
 
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
+Route::get('/manajemenuser', function (){return Inertia::render('Admin/ManajemenUser');})->name('admin.manajemenuser');
+Route::get('/historidiagnosa', function (){return Inertia::render('Admin/HistoriDiagnosa');})->name('admin.historidiagnosa');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
