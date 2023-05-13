@@ -11,7 +11,7 @@ import ControlButtons from '@/Pages/Diagnosa/Partials/ControlButtons';
 export default function DaftarPertanyaan(props) {
     const pertanyaans = props.pertanyaans.map(pertanyaan => pertanyaan.pertanyaan);
     const max_pertanyaan_in_page = 4; {/* Batas jumlah pertanyaan dalam 1 page */}
-    const max_page_count = Math.ceil(pertanyaans.length / max_pertanyaan_in_page); {/* Beri batas 4 pertanyaan dalam 1 page */}
+    const max_page_count = Math.ceil(pertanyaans.length / max_pertanyaan_in_page); {/* Hitung jumlah halaman yang diperlukan */}
 
 
     {/* Set state page */}
@@ -46,8 +46,16 @@ export default function DaftarPertanyaan(props) {
         props.pertanyaans.map(pertanyaan => 0)
     );
 
+    {/* Fungsi yang akan dijalankan setiap user menekan radio buttons */}
     function jawab(e) {
-        let tmp = new String(e).slice(1);
+        {/* Parameter e adalah nilai radio button yang ditekan user, nilainya berupa
+            'p1-yes' untuk radio button Ya pertanyaan 1,
+            'p5-no' untuk radio button No pertanyaan 5, dst */}
+        
+        let tmp = new String(e).slice(1); (/* Buang huruf p */}
+    
+        {/* Dapatkan nomor pertanyaan (semua karakter sebelum tanda strip -)
+            dan jawaban (satu karakter setelah tanda strip -, 'y' apabila Ya atau 'n' apabila Tidak) */}
         let nomor = "";
         let jawaban = 0;
         let flag = false;
