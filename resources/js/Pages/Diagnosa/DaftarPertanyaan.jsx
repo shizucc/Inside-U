@@ -51,9 +51,9 @@ export default function DaftarPertanyaan(props) {
         {/* Parameter e adalah nilai radio button yang ditekan user, nilainya berupa
             'p1-yes' untuk radio button Ya pertanyaan 1,
             'p5-no' untuk radio button No pertanyaan 5, dst */}
-        
-        let tmp = new String(e).slice(1); (/* Buang huruf p */}
-    
+
+        let tmp = new String(e).slice(1); {/* Buang huruf p */}
+
         {/* Dapatkan nomor pertanyaan (semua karakter sebelum tanda strip -)
             dan jawaban (satu karakter setelah tanda strip -, 'y' apabila Ya atau 'n' apabila Tidak) */}
         let nomor = "";
@@ -82,10 +82,10 @@ export default function DaftarPertanyaan(props) {
         }
         +nomor--; {/* Ubah variabel nomor ke tipe number dan lakukan decrement */}
         let tmp_jawabans = jawabans;
+        if (tmp_jawabans[nomor] == 0) setProgress(progress + progress_increment); {/* Tingkatkan nilai progress bar hanya jika sebelumnya pertanyaan belum dijawab */}
         tmp_jawabans[nomor] = jawaban;
         setJawabans(tmp_jawabans);
         setPageTerjawab(isPageSemuaTerjawab(page.nomor_pertanyaan));
-        setProgress(progress + progress_increment);
     }
 
 
