@@ -116,7 +116,7 @@ export default function DaftarPertanyaan(props) {
 
     return(
         <>
-        <Navbar>
+        <Navbar user={props.auth.user}>
             <div className="my-20 mx-40 py-10 px-10 bg-[#FDFDFD] rounded-[28px] font-poppins bg-[url('/img/wave.svg')] bg-no-repeat">
                 <h1 className="text-center font-semibold my-3 text-3xl text-[#1A1919]">Tes Kepribadian</h1>
                 <h2 className="text-center">Pilih <b>Ya</b> atau <b>Tidak</b></h2>

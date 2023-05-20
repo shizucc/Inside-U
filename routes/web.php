@@ -28,15 +28,15 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function (){return Inertia::render('Home');})->name('home');
+Route::get('/', [DiagnosaController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 
-Route::get('/diagnosa', [DiagnosaController::class, 'index'])->name('diagnosa.start');
+Route::get('/diagnosa', [DiagnosaController::class, 'notice'])->name('diagnosa.start');
 Route::get('/diagnosa/pertanyaan', [DiagnosaController::class, 'pertanyaan'])->name('diagnosa.pertanyaan');
 
 Route::get('/sidebar', function (){return Inertia::render('Admin/SidebarAdmin');});
 
 
-Route::get('/pakar', [PakarController::class, 'index']);
+Route::get('/pakar', [PakarController::class, 'index'])->name('pakar.index');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
