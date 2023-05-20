@@ -12,7 +12,7 @@ import SidebarAdmin from './Sidebar';
 export default function AdminDashboard(props) {
     return (
         <>
-        <SidebarAdmin>
+        <SidebarAdmin username={props.auth.user.username}>
             <Head>
                 <title>Dashboard Admin</title>
                 <style>{'body { background-color: #FEF8F8; }'}</style>

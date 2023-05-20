@@ -3,10 +3,10 @@ import Manfaat from "@/Components/Manfaat";
 import Navbar from "@/Components/Navbar";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-export default function Home(){
+export default function Home(props){
     return (
         <>
-            <Navbar>
+            <Navbar user={props.auth.user}>
                 <div className="mt-10 mb-5 mx-40 py-10 px-10 bg-[#FDFDFD] rounded-[24px]">
                     <div className="grid-cols-2 grid">
                         <div className="pr-40">

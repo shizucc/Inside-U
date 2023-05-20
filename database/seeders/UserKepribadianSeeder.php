@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\UserKepribadian;
+use App\Models\User;
 
 class UserKepribadianSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class UserKepribadianSeeder extends Seeder
 
     public function run(): void
     {
-        $jumlahUser = 100;
+        $jumlahUser = User::all()->count();
         $jumlahKepribadian = 4;
         $maxDate = Carbon::now()->year(2023)->month(12)->day(31)->hour(23)->minute(59)->second(59);
 
@@ -31,6 +32,7 @@ class UserKepribadianSeeder extends Seeder
         }
 
         for ($i = 0; $i < $jumlahUser; $i++) {
+            if (User::find($i+1)->role != "user") continue;
             $jumlahDiagnosa = rand(0, 10);
             if ($jumlahDiagnosa == 0) continue;
 
