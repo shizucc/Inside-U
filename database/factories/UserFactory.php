@@ -20,7 +20,7 @@ class UserFactory extends Factory
     {
         $date = Carbon::now()->year(2023)->month(12)->day(31)->subDays(rand(0, 364))->addSeconds(rand(0, 86400));
         return [
-            'username' => fake()->name(),
+            'username' => fake()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

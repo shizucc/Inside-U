@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from '@inertiajs/react';
+import { useForm, Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Progressbar from '@/Pages/Diagnosa/Partials/Progressbar';
@@ -113,6 +113,16 @@ export default function DaftarPertanyaan(props) {
     {/* Ambil 4 pertanyaan */}
     const pertanyaans_sliced = pertanyaans.slice(page.nomor_pertanyaan, page.nomor_pertanyaan+max_pertanyaan_in_page);
 
+    {/* useForm setup */}
+    const { data, setData, post, processing, errors } = useForm({
+        jawaban: jawabans,
+    })
+
+    function submit(e) {
+        e.preventDefault();
+        post(route('diagnosa.perhitungan'));
+    }
+
 
     return(
         <>
@@ -151,6 +161,7 @@ export default function DaftarPertanyaan(props) {
                     can_submit={can_submit}
                     handleClickPrev={prevPage}
                     handleClickNext={nextPage}
+                    handleSubmit={submit}
                 />
 
             </div>
