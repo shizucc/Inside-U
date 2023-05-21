@@ -22,12 +22,14 @@ export default function SidebarPakar(props) {
     switch(route().current()) {
       case 'pakar.index':
         return 0;
-      case 'pakar.manajemenpakar':
+      case 'pakar.manajemenkepribadian':
         return 1;
-      case 'pakar.manajemenuser':
+      case 'pakar.manajemenciriciri':
         return 2;
-      case 'pakar.historidiagnosa':
+      case 'pakar.manajemenpertanyaan':
         return 3;
+      case 'pakar.historidiagnosa':
+        return 4;
     }
   })();
   return (
@@ -98,7 +100,7 @@ const StyledTab = styled(Tab)`
   font-size: 0.875rem;
   font-weight: 600;
   background-color: transparent;
-  width: 200px;
+  width: 222px;
   padding: 10px 12px;
   margin: 6px 6px;
   border: none;
@@ -127,7 +129,7 @@ const StyledTab = styled(Tab)`
 
 const StyledTabPanel = styled(TabPanel)(
   ({ theme }) => `
-  width: 100%;
+  width: 120%;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   padding: 20px 20px;

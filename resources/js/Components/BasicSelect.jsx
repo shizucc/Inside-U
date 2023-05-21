@@ -6,10 +6,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function BasicSelect() {
-  const [age, setAge] = React.useState('');
+  const [JenisAkun, setJenisAkun] = React.useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setJenisAkun(event.target.value);
   };
 
   return (
@@ -19,8 +19,8 @@ export default function BasicSelect() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Age"
+          value={JenisAkun}
+          label="Jenis Akun"
           onChange={handleChange}
         >
           <MenuItem value={10}>User</MenuItem>
