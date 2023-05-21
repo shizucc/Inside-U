@@ -16,7 +16,8 @@ export default function TambahUser (){
                             Tolong masukkan alamat email yang tepat
                         </p>
                         <input type="password" className="w-4/5 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 rounded-lg  mb-6" placeholder="Password"/>
-                        <BasicSelect/>
+                        <BasicSelect nama="Jenis Akun"></BasicSelect>
+
                         <button type="submit" className="h-[40px] w-4/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#5D6AAD] focus:bg-[#5D6AAD]"><AddRoundedIcon/><span>Buat Akun</span></button>
                     </form>
                 </div>

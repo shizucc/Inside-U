@@ -5,22 +5,22 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function BasicSelect() {
-  const [JenisAkun, setJenisAkun] = React.useState('');
+export default function BasicSelect(props) {
+  const [{children}, setSelect] = React.useState('');
 
   const handleChange = (event) => {
-    setJenisAkun(event.target.value);
+    setSelect(event.target.value);
   };
 
   return (
     <Box className="w-4/5 text-left m-auto h-[40px] mb-8">
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Jenis Akun</InputLabel>
+        <InputLabel id="demo-simple-select-label">{props.nama}</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={JenisAkun}
-          label="Jenis Akun"
+          value={children}
+          label="NamaSelect"
           onChange={handleChange}
         >
           <MenuItem value={10}>User</MenuItem>
