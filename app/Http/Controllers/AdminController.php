@@ -7,10 +7,20 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Kepribadian;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function index() {
+        // Redirect apabila role user tidak sesuai
+        $role = User::find(Auth::id())->role;
+
+        if ($role == "user") {
+            return redirect()->route("home");
+        } elseif ($role == "pakar") {
+            return redirect()->route("pakar.index");
+        }
+
         // Mendapatkan data user dari DB
         $users = User::all();
         $total_user = $users->count();
@@ -59,6 +69,7 @@ class AdminController extends Controller
             'diagnosa_bulanan' => $diagnosa_bulanan,
             'kepribadians' => $kepribadians,
         ];
+
         return Inertia::render('Admin/Index', $data);
     }
 }

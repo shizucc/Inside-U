@@ -9,10 +9,20 @@ use Inertia\Response;
 use Illuminate\Http\Request;
 use App\Models\Kepribadian;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PakarController extends Controller
 {
     public function index(){
+        // Redirect apabila role user tidak sesuai
+        $role = User::find(Auth::id())->role;
+
+        if ($role == "user") {
+            return redirect()->route("home");
+        } elseif ($role == "admin") {
+            return redirect()->route("admin.index");
+        }
+
         $pertanyaans = DaftarPertanyaan::with('ciri')->get();
         $data = [
             'columns' => [
@@ -31,18 +41,45 @@ class PakarController extends Controller
         return Inertia::render('Pakar/Index2',$data);
     }
     public function kepribadian(){
+        // Redirect apabila role user tidak sesuai
+        $role = User::find(Auth::id())->role;
+
+        if ($role == "user") {
+            return redirect()->route("home");
+        } elseif ($role == "admin") {
+            return redirect()->route("admin.index");
+        }
+
         $data = [
             'kepribadians' => Kepribadian::all()
         ];
         return Inertia::render('Pakar/ManajemenKepribadian', $data);
     }
     public function ciri_ciri(){
+        // Redirect apabila role user tidak sesuai
+        $role = User::find(Auth::id())->role;
+
+        if ($role == "user") {
+            return redirect()->route("home");
+        } elseif ($role == "admin") {
+            return redirect()->route("admin.index");
+        }
+
         $data = [
             'ciri_ciris' => CiriCiri::with('kepribadian')->get()
         ];
         return Inertia::render('Pakar/ManajemenCiriCiri', $data);
     }
     public function pertanyaan(){
+        // Redirect apabila role user tidak sesuai
+        $role = User::find(Auth::id())->role;
+
+        if ($role == "user") {
+            return redirect()->route("home");
+        } elseif ($role == "admin") {
+            return redirect()->route("admin.index");
+        }
+
         $data = [
             'pertanyaans'=> DaftarPertanyaan::with('ciri')->get()
         ];
@@ -50,6 +87,15 @@ class PakarController extends Controller
     }
 
     public function histori(){
+        // Redirect apabila role user tidak sesuai
+        $role = User::find(Auth::id())->role;
+
+        if ($role == "user") {
+            return redirect()->route("home");
+        } elseif ($role == "admin") {
+            return redirect()->route("admin.index");
+        }
+
         $data = [
             'historis'=> User::with('kepribadians')->orderBy('id', 'asc')->get()
         ];

@@ -28,33 +28,37 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', [DiagnosaController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [DiagnosaController::class, 'index'])->name('home');
+    // Halaman Diagnosa
+    Route::get('/diagnosa', [DiagnosaController::class, 'notice'])->name('diagnosa.start');
+    Route::get('/diagnosa/pertanyaan', [DiagnosaController::class, 'pertanyaan'])->name('diagnosa.pertanyaan');
+    // Admin
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
+    Route::get('/manajemenuser', function (){return Inertia::render('Admin/ManajemenUser');})->name('admin.manajemenuser');
+    Route::get('/historidiagnosa', function (){return Inertia::render('Admin/HistoriDiagnosa');})->name('admin.historidiagnosa');
+    //-- Form
+    Route::get('/tambahuser', function (){return Inertia::render('Admin/TambahUser');})->name('admin.manajemenuser');
+    // Pakar
+    Route::get('/pakar', [PakarController::class, 'index'])->name('pakar.index');
+    Route::get('/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
+    Route::get('/manajemenciriciri', function (){return Inertia::render('Pakar/ManajemenCiriCiri');})->name('pakar.manajemenciriciri');
+    Route::get('/manajemenpertanyaan', function (){return Inertia::render('Pakar/ManajemenPertanyaan');})->name('pakar.manajemenpertanyaan');
+    Route::get('/historidiagnosapkr', function (){return Inertia::render('Pakar/HistoriDiagnosa');})->name('pakar.historidiagnosa');
+    //-- Form
+    Route::get('/tambahkepribadian', function (){return Inertia::render('Pakar/TambahKepribadian');})->name('pakar.manajemenkepribadian');
+    Route::get('/tambahciriciri', function(){return Inertia::render('Pakar/TambahCiriCiri');})->name('pakar.manajemenciriciri');
+    Route::get('/tambahpertanyaan', function(){return Inertia::render('Pakar/TambahPertanyaan');})->name('pakar.manajemenpertanyaan');
+});
 
-Route::get('/diagnosa', [DiagnosaController::class, 'notice'])->name('diagnosa.start');
-Route::get('/diagnosa/pertanyaan', [DiagnosaController::class, 'pertanyaan'])->name('diagnosa.pertanyaan');
+
 
 Route::get('/sidebar', function (){return Inertia::render('Admin/SidebarAdmin');});
 
 
 Route::get('/pakar', [PakarController::class, 'index'])->name('pakar.index');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
-Route::get('/manajemenuser', function (){return Inertia::render('Admin/ManajemenUser');})->name('admin.manajemenuser');
-Route::get('/historidiagnosa', function (){return Inertia::render('Admin/HistoriDiagnosa');})->name('admin.historidiagnosa');
-
-//pakar
-Route::get('/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
-Route::get('/manajemenciriciri', function (){return Inertia::render('Pakar/ManajemenCiriCiri');})->name('pakar.manajemenciriciri');
-Route::get('/manajemenpertanyaan', function (){return Inertia::render('Pakar/ManajemenPertanyaan');})->name('pakar.manajemenpertanyaan');
-Route::get('/historidiagnosapkr', function (){return Inertia::render('Pakar/HistoriDiagnosa');})->name('pakar.historidiagnosa');
-
-
-//form
-Route::get('/tambahuser', function (){return Inertia::render('Admin/TambahUser');})->name('admin.manajemenuser');
-Route::get('/tambahkepribadian', function (){return Inertia::render('Pakar/TambahKepribadian');})->name('pakar.manajemenkepribadian');
-Route::get('/tambahciriciri', function(){return Inertia::render('Pakar/TambahCiriCiri');})->name('pakar.manajemenciriciri');
-Route::get('/tambahpertanyaan', function(){return Inertia::render('Pakar/TambahPertanyaan');})->name('pakar.manajemenpertanyaan');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
