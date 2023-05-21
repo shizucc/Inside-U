@@ -108,13 +108,14 @@ class DiagnosaController extends Controller
         }
 
         // Insert hasil diagnosa
+        $waktu = Carbon::now();
         foreach($persentase as $kepribadian_id => $nilai) {
             UserKepribadian::insert([
                 'user_id' => $user_id,
                 'diagnosa_id' => $diagnosa_id,
                 'kepribadian_id' => $kepribadian_id,
                 'persentase' => $nilai,
-                'waktu_diagnosa' => Carbon::now(),
+                'waktu_diagnosa' => $waktu,
             ]);
         }
 
