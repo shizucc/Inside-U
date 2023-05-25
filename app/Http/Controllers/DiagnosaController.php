@@ -136,7 +136,8 @@ class DiagnosaController extends Controller
             return redirect()->route("home");
         }
 
-        $diagnosa = UserKepribadian::where('user_id', $user_id)
+        $diagnosa = UserKepribadian::join('kepribadians', 'user_kepribadian.kepribadian_id', '=', 'kepribadians.id')
+                    ->where('user_id', $user_id)
                     ->where('diagnosa_id', $diagnosa_id)
                     ->get();
 
