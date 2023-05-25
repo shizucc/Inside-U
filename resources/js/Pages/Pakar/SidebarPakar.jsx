@@ -48,7 +48,7 @@ export default function SidebarPakar(props) {
               <StyledTab><Link href={route('pakar.manajemenpertanyaan')}><MenuList icon={<IconManajemenPertanyaan/>} nama="Manajemen Pertanyaan"/></Link></StyledTab>
               <StyledTab><Link href={route('pakar.historidiagnosa')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></Link></StyledTab>
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-              <StyledTab><MenuList icon={<IconLogout/>} nama="Logout"/></StyledTab>
+              <StyledTab><Link href={route('logout')} method="post" as="button"><MenuList icon={<IconLogout/>} nama="Logout"/></Link></StyledTab>
               </div>
               <div><h1 className='bottom-0 end-0 inset-y-0 text-center text-black text-sm mt-20'>Copyright © Endour Studio</h1></div>
             </div>
