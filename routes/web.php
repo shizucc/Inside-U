@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/diagnosa', [DiagnosaController::class, 'notice'])->name('diagnosa.start');
     Route::get('/diagnosa/pertanyaan', [DiagnosaController::class, 'pertanyaan'])->name('diagnosa.pertanyaan');
     Route::post('/diagnosa/pertanyaan', [DiagnosaController::class, 'perhitungan'])->name('diagnosa.perhitungan');
-    Route::get('/diagnosa/hasil-{user_id}{diagnosa_id}', [DiagnosaController::class, 'hasil'])->name('diagnosa.hasil');
+    Route::get('/diagnosa/hasil-{user_id}-{diagnosa_id}', [DiagnosaController::class, 'hasil'])->name('diagnosa.hasil');
     // Admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
