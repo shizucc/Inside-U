@@ -131,6 +131,8 @@ class DiagnosaController extends Controller
                     'waktu_diagnosa' => $waktu,
                 ]);
             }
+            // Redirect menuju halaman hasil diagnosa
+            return redirect()->route('diagnosa.hasil', ['user_id' => $user_id, 'diagnosa_id' => $diagnosa_id]);
         }
 
         $data_diagnosa = Kepribadian::all();
@@ -146,10 +148,6 @@ class DiagnosaController extends Controller
 
         // Tampilkan halaman hasil
         return Inertia::render('Diagnosa/HasilDiagnosa', $data);
-
-        // Redirect menuju halaman hasil diagnosa
-        //return redirect()->route('diagnosa.hasil', ['user_id' => $user_id, 'diagnosa_id' => $diagnosa_id]);
-
     }
 
     public function hasil($user_id, $diagnosa_id) {
