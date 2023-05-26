@@ -143,6 +143,7 @@ class DiagnosaController extends Controller
 
         $data = [
             'data_diagnosa' => $diagnosa,
+            'data_diagnosa_ordered' => $diagnosa->sortByDesc('persentase')->values()->all()
         ];
         return Inertia::render('Diagnosa/HasilDiagnosa', $data);
     }

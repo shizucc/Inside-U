@@ -11,9 +11,7 @@ export default function GrafikHasil(props) {
     let colors = Array();
     let list_items = Array();
     for (let i = 0; i < data_count; i++) {
-        let tmp = props.data_diagnosa[i].jenis_kepribadian;
-        let jenis_kepribadian = tmp.charAt(0).toUpperCase() + tmp.slice(1); // Kapital huruf pertama
-        labels.push(jenis_kepribadian);
+        labels.push(props.data_diagnosa[i].jenis_kepribadian);
         persentase.push(props.data_diagnosa[i].persentase);
         colors.push(RandomColor({luminosity: 'bright', hue: 'random', format: 'rgba', alpha: 0.7, seed: i*1000}));
     }

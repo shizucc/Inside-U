@@ -19,8 +19,51 @@ function NotFound() {
     );
 }
 
-function Found(props) {
+function IlustrasiLeft(props) {
     return(
+        <>
+        <div className="col-span-1">
+            <img src={props.ilustrasi} />
+        </div>
+        <div className="col-span-2 mt-10">
+            <h2 className="text-black text-3xl font-semibold mb-4">{props.jenis_kepribadian}</h2>
+            <p className="text-[rgba(0,0,0,0.6)] text-justify pr-20">{props.deskripsi}</p>
+        </div>
+        </>
+    );
+}
+
+function IlustrasiRight(props) {
+    return(
+        <>
+        <div className="col-span-2 mt-10">
+            <h2 className="text-black text-3xl font-semibold mb-4">{props.jenis_kepribadian}</h2>
+            <p className="text-[rgba(0,0,0,0.6)] text-justify pr-20">{props.deskripsi}</p>
+        </div>
+        <div className="col-span-1">
+            <img src={props.ilustrasi} />
+        </div>
+        </>
+    );
+}
+
+function Found(props) {
+    let list_deskripsi = Array();
+    for (let i = 0; i < props.data_diagnosa.length; i++) {
+        let jenis_kepribadian = props.data_diagnosa_ordered[i].jenis_kepribadian;
+        let deskripsi = props.data_diagnosa_ordered[i].deskripsi;
+        let ilustrasi = props.data_diagnosa_ordered[i].ilustrasi;
+
+        // Apabila i genap, ilustrasi berada di kiri, else kanan
+        if (i % 2 == 0) {
+            list_deskripsi.push(<IlustrasiLeft jenis_kepribadian={jenis_kepribadian} deskripsi={deskripsi} ilustrasi={ilustrasi} />);
+        } else {
+            list_deskripsi.push(<IlustrasiRight jenis_kepribadian={jenis_kepribadian} deskripsi={deskripsi} ilustrasi={ilustrasi} />);
+        }
+    }
+
+    return(
+        <>
         <div className="my-20 mx-40 py-10 px-10 bg-[#FDFDFD] rounded-[24px] font-poppins">
             <Link href={route('home')} as="button">
                 <span className="inline-flex">
@@ -35,6 +78,12 @@ function Found(props) {
                 <GrafikHasil data_diagnosa={props.data_diagnosa} />
             </div>
         </div>
+        <div className="w-full h-fit bg-white p-20 font-poppins">
+            <div className="grid grid-cols-3 gap-4">
+                {list_deskripsi}
+            </div>
+        </div>
+        </>
     );
 }
 
@@ -48,7 +97,7 @@ export default function Hasil(props) {
                 <NotFound />
                 ) : (
                 // Data ditemukan
-                <Found data_diagnosa={props.data_diagnosa} />
+                <Found data_diagnosa={props.data_diagnosa} data_diagnosa_ordered={props.data_diagnosa_ordered} />
                 )
             }
         </Navbar>
