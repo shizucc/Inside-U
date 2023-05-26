@@ -2,32 +2,16 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DiagnosaController;
-use App\Http\Controllers\PakarController;
+use App\Http\Controllers\Pakar\KepribadianController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
-
+use App\Http\Controllers\Pakar\PakarController as PakarController;
+use App\Http\Controllers\Pakar\CiriController as PakarCiriController;
+use App\Http\Controllers\Pakar\KepribadianController as PakarKepribadianController;
+use App\Http\Controllers\Pakar\PertanyaanController as PakarPertanyaanController;
+use App\Http\Controllers\Pakar\HistoriController as PakarHistoriController;
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [DiagnosaController::class, 'index'])->name('home');
     // Halaman Diagnosa
@@ -44,8 +28,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/tambahuser', function (){return Inertia::render('Admin/TambahUser');})->name('admin.manajemenuser');
     // Pakar
     Route::get('/pakar', [PakarController::class, 'index'])->name('pakar.index');
-    Route::get('/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
-    Route::get('/manajemenciriciri', [PakarController::class,'ciri_ciri'])->name('pakar.manajemenciriciri');
+    Route::resources([
+        'pakar/kepribadian' => PakarKepribadianController::class,
+        'pakar/ciri' => PakarCiriController::class,
+        'pakar/pertanyaan' => PakarPertanyaanController::class
+    ]);
+
+    
+    Route::resource('/pakar/histori', PakarHistoriController::class)->only('index','show');
+    Route::get('/pakar/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
+    //Route::get('/pakar/manajemenciriciri', [PakarController::class,'ciri_ciri'])->name('pakar.manajemenciriciri');
     Route::get('/manajemenpertanyaan', function (){return Inertia::render('Pakar/ManajemenPertanyaan');})->name('pakar.manajemenpertanyaan');
     Route::get('/historidiagnosapkr', function (){return Inertia::render('Pakar/HistoriDiagnosa');})->name('pakar.historidiagnosa');
     //-- Form

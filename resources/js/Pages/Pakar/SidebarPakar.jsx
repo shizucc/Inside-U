@@ -44,7 +44,7 @@ export default function SidebarPakar(props) {
                 <h1 className='text-center font-bold text-black text-xl mb-10'>Username</h1>
               <StyledTab><Link href={route('pakar.index')}><MenuList icon={<IconDashboard/>} nama="Dashboard"/></Link></StyledTab>
               <StyledTab><Link  href={route('pakar.manajemenkepribadian')}><MenuList icon={<IconManajemenKepribadian/>} nama="Manajemen Kepribadian"/></Link></StyledTab>
-              <StyledTab><Link href={route('pakar.manajemenciriciri')}><MenuList icon={<IconManajemenCiriCiri/>} nama="Manajemen Ciri-Ciri"/></Link></StyledTab>
+              <StyledTab><Link href={route('ciri.index')}><MenuList icon={<IconManajemenCiriCiri/>} nama="Manajemen Ciri-Ciri"/></Link></StyledTab>
               <StyledTab><Link href={route('pakar.manajemenpertanyaan')}><MenuList icon={<IconManajemenPertanyaan/>} nama="Manajemen Pertanyaan"/></Link></StyledTab>
               <StyledTab><Link href={route('pakar.historidiagnosa')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></Link></StyledTab>
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>

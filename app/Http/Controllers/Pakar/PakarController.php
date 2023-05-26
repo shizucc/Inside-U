@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pakar;
+use App\Http\Controllers\Controller;
 use App\Models\CiriCiri;
 use App\Models\DaftarPertanyaan;
 use App\Models\UserKepribadian;
