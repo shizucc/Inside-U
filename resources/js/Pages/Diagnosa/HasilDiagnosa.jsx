@@ -1,11 +1,7 @@
 import { Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
-import RandomColor from 'randomcolor';
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+import GrafikHasil from '@/Pages/Diagnosa/Partials/GrafikHasil.jsx';
 
 function NotFound() {
     return(
@@ -24,46 +20,6 @@ function NotFound() {
 }
 
 function Found(props) {
-    let data_count = props.data_diagnosa.length;
-    let labels = Array();
-    let persentase = Array();
-    let colors = Array();
-    let list_items = Array();
-    for (let i = 0; i < data_count; i++) {
-        let tmp = props.data_diagnosa[i].jenis_kepribadian;
-        let jenis_kepribadian = tmp.charAt(0).toUpperCase() + tmp.slice(1); // Kapital huruf pertama
-        labels.push(jenis_kepribadian);
-        persentase.push(props.data_diagnosa[i].persentase);
-        colors.push(RandomColor({luminosity: 'bright', hue: 'random', format: 'rgba', alpha: 0.7, seed: i*1000}));
-    }
-
-    const options = {
-        maintainAspectRatio: false,
-        responsive: true,
-        plugins: {
-            legend: {
-                display: true,
-                position: 'bottom',
-                labels: {
-                    font: {
-                        size: 20,
-                    },
-                },
-            },
-        },
-    };
-
-    const data = {
-    labels: labels,
-    datasets: [
-        {
-        label: 'Persentase',
-        data: persentase,
-        backgroundColor: colors,
-        },
-    ],
-    };
-
     return(
         <div className="my-20 mx-40 py-10 px-10 bg-[#FDFDFD] rounded-[24px] font-poppins">
             <Link href={route('home')} as="button">
@@ -76,7 +32,7 @@ function Found(props) {
             </Link>
             <h1 className="text-center font-bold my-3 text-3xl text-[#1A1919]">Hasil Diagnosa</h1>
             <div className="mx-auto w-50 h-96 p-10">
-                <Pie data={data} options={options} />
+                <GrafikHasil data_diagnosa={props.data_diagnosa} />
             </div>
         </div>
     );
