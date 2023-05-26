@@ -14,39 +14,48 @@ use Illuminate\Http\Request;
 class DiagnosaController extends Controller
 {
     public function index() {
-        // Redirect apabila role user tidak sesuai
-        $role = User::find(Auth::id())->role;
+        $is_logged_in = (Auth::user() == null) ? false : true;
+        if ($is_logged_in) {
+            // Redirect apabila role user tidak sesuai
+            $role = User::find(Auth::id())->role;
 
-        if ($role == "admin") {
-            return redirect()->route("admin.index");
-        } elseif ($role == "pakar") {
-            return redirect()->route("pakar.index");
+            if ($role == "admin") {
+                return redirect()->route("admin.index");
+            } elseif ($role == "pakar") {
+                return redirect()->route("pakar.index");
+            }
         }
 
         return Inertia::render('Home');
     }
 
     public function notice() {
-        // Redirect apabila role user tidak sesuai
-        $role = User::find(Auth::id())->role;
+        $is_logged_in = (Auth::user() == null) ? false : true;
+        if ($is_logged_in) {
+            // Redirect apabila role user tidak sesuai
+            $role = User::find(Auth::id())->role;
 
-        if ($role == "admin") {
-            return redirect()->route("admin.index");
-        } elseif ($role == "pakar") {
-            return redirect()->route("pakar.index");
+            if ($role == "admin") {
+                return redirect()->route("admin.index");
+            } elseif ($role == "pakar") {
+                return redirect()->route("pakar.index");
+            }
         }
 
         return Inertia::render('Diagnosa/Peringatan');
     }
 
     public function pertanyaan() {
-        // Redirect apabila role user tidak sesuai
-        $role = User::find(Auth::id())->role;
+        $is_logged_in = (Auth::user() == null) ? false : true;
+        if ($is_logged_in) {
+            // Redirect apabila role user tidak sesuai
+            $role = User::find(Auth::id())->role;
 
-        if ($role == "admin") {
-            return redirect()->route("admin.index");
-        } elseif ($role == "pakar") {
-            return redirect()->route("pakar.index");
+            if ($role == "admin") {
+                return redirect()->route("admin.index");
+            } elseif ($role == "pakar") {
+                return redirect()->route("pakar.index");
+            }
         }
 
         $data = [
@@ -57,23 +66,19 @@ class DiagnosaController extends Controller
     }
 
     public function perhitungan(Request $request) {
-        // Redirect apabila role user tidak sesuai
-        $role = User::find(Auth::id())->role;
+        $is_logged_in = (Auth::user() == null) ? false : true;
+        if ($is_logged_in) {
+            // Redirect apabila role user tidak sesuai
+            $role = User::find(Auth::id())->role;
 
-        if ($role == "admin") {
-            return redirect()->route("admin.index");
-        } elseif ($role == "pakar") {
-            return redirect()->route("pakar.index");
+            if ($role == "admin") {
+                return redirect()->route("admin.index");
+            } elseif ($role == "pakar") {
+                return redirect()->route("pakar.index");
+            }
         }
 
 
-        $user_id = Auth::id();
-
-        // Dapatkan id diagnosa terakhir, dan atur id diagnosa baru
-        $diagnosa_id_latest = UserKepribadian::where('user_id', $user_id)
-                        ->orderByDesc('diagnosa_id')
-                        ->first();
-        $diagnosa_id = ($diagnosa_id_latest == null) ? 1 : $diagnosa_id_latest->diagnosa_id + 1;
 
         $kepribadians = Kepribadian::all();
         $persentase = array(); // Untuk menyimpan persentase tiap kepribadian
@@ -107,43 +112,71 @@ class DiagnosaController extends Controller
             $persentase[$id] = $persentase[$id] / $sum_persentase * 100;
         }
 
-        // Insert hasil diagnosa
-        $waktu = Carbon::now();
-        foreach($persentase as $kepribadian_id => $nilai) {
-            UserKepribadian::insert([
-                'user_id' => $user_id,
-                'diagnosa_id' => $diagnosa_id,
-                'kepribadian_id' => $kepribadian_id,
-                'persentase' => $nilai,
-                'waktu_diagnosa' => $waktu,
-            ]);
+        // Insert hasil diagnosa apabila login
+        if ($is_logged_in) {
+            $user_id = Auth::id();
+
+            // Dapatkan id diagnosa terakhir, dan atur id diagnosa baru
+            $diagnosa_id_latest = UserKepribadian::where('user_id', $user_id)
+                            ->orderByDesc('diagnosa_id')
+                            ->first();
+            $diagnosa_id = ($diagnosa_id_latest == null) ? 1 : $diagnosa_id_latest->diagnosa_id + 1;
+            $waktu = Carbon::now();
+            foreach($persentase as $kepribadian_id => $nilai) {
+                UserKepribadian::insert([
+                    'user_id' => $user_id,
+                    'diagnosa_id' => $diagnosa_id,
+                    'kepribadian_id' => $kepribadian_id,
+                    'persentase' => $nilai,
+                    'waktu_diagnosa' => $waktu,
+                ]);
+            }
         }
 
+        $data_diagnosa = Kepribadian::all();
+        foreach ($data_diagnosa as $data) {
+            $id = $data->id;
+            $data['persentase'] = $persentase[$id];
+        }
+
+        $data = [
+            'data_diagnosa' => $data_diagnosa,
+            'data_diagnosa_ordered' => $data_diagnosa->sortByDesc('persentase')->values()->all()
+        ];
+
+        // Tampilkan halaman hasil
+        return Inertia::render('Diagnosa/HasilDiagnosa', $data);
+
         // Redirect menuju halaman hasil diagnosa
-        return redirect()->route('diagnosa.hasil', ['user_id' => $user_id, 'diagnosa_id' => $diagnosa_id]);
+        //return redirect()->route('diagnosa.hasil', ['user_id' => $user_id, 'diagnosa_id' => $diagnosa_id]);
 
     }
 
     public function hasil($user_id, $diagnosa_id) {
-        // Redirect apabila role user tidak sesuai atau user id tidak valid
-        $role = User::find(Auth::id())->role;
+        $is_logged_in = (Auth::user() == null) ? false : true;
+        if ($is_logged_in) {
+            // Redirect apabila role user tidak sesuai
+            $role = User::find(Auth::id())->role;
 
-        if ($role == "admin") {
-            return redirect()->route("admin.index");
-        } elseif ($role == "pakar") {
-            return redirect()->route("pakar.index");
-        } elseif (Auth::id() != $user_id) {
+            if ($role == "admin") {
+                return redirect()->route("admin.index");
+            } elseif ($role == "pakar") {
+                return redirect()->route("pakar.index");
+            } elseif (Auth::id() != $user_id) {
+                return redirect()->route("home");
+            }
+        } else {
             return redirect()->route("home");
         }
 
-        $diagnosa = UserKepribadian::join('kepribadians', 'user_kepribadian.kepribadian_id', '=', 'kepribadians.id')
+        $data_diagnosa = UserKepribadian::join('kepribadians', 'user_kepribadian.kepribadian_id', '=', 'kepribadians.id')
                     ->where('user_id', $user_id)
                     ->where('diagnosa_id', $diagnosa_id)
                     ->get();
 
         $data = [
-            'data_diagnosa' => $diagnosa,
-            'data_diagnosa_ordered' => $diagnosa->sortByDesc('persentase')->values()->all()
+            'data_diagnosa' => $data_diagnosa,
+            'data_diagnosa_ordered' => $data_diagnosa->sortByDesc('persentase')->values()->all()
         ];
         return Inertia::render('Diagnosa/HasilDiagnosa', $data);
     }

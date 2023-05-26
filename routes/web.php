@@ -12,13 +12,16 @@ use App\Http\Controllers\Pakar\CiriController as PakarCiriController;
 use App\Http\Controllers\Pakar\KepribadianController as PakarKepribadianController;
 use App\Http\Controllers\Pakar\PertanyaanController as PakarPertanyaanController;
 use App\Http\Controllers\Pakar\HistoriController as PakarHistoriController;
+
+Route::get('/', [DiagnosaController::class, 'index'])->name('home');
+
+// Halaman Diagnosa
+Route::get('/diagnosa', [DiagnosaController::class, 'notice'])->name('diagnosa.start');
+Route::get('/diagnosa/pertanyaan', [DiagnosaController::class, 'pertanyaan'])->name('diagnosa.pertanyaan');
+Route::post('/diagnosa/hasil', [DiagnosaController::class, 'perhitungan'])->name('diagnosa.perhitungan');
+Route::get('/diagnosa/hasil-{user_id}-{diagnosa_id}', [DiagnosaController::class, 'hasil'])->name('diagnosa.hasil');
+
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [DiagnosaController::class, 'index'])->name('home');
-    // Halaman Diagnosa
-    Route::get('/diagnosa', [DiagnosaController::class, 'notice'])->name('diagnosa.start');
-    Route::get('/diagnosa/pertanyaan', [DiagnosaController::class, 'pertanyaan'])->name('diagnosa.pertanyaan');
-    Route::post('/diagnosa/pertanyaan', [DiagnosaController::class, 'perhitungan'])->name('diagnosa.perhitungan');
-    Route::get('/diagnosa/hasil-{user_id}-{diagnosa_id}', [DiagnosaController::class, 'hasil'])->name('diagnosa.hasil');
     // Admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
@@ -34,7 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'pakar/pertanyaan' => PakarPertanyaanController::class
     ]);
 
-    
+
     Route::resource('/pakar/histori', PakarHistoriController::class)->only('index','show');
     Route::get('/pakar/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
     //Route::get('/pakar/manajemenciriciri', [PakarController::class,'ciri_ciri'])->name('pakar.manajemenciriciri');
