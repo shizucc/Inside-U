@@ -49,6 +49,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::get('/tambahpertanyaan', function(){return Inertia::render('Pakar/TambahPertanyaan');})->name('pakar.manajemenpertanyaan');
 });
 
+//Login
+Route::get('/login', function (){return Inertia::render('Auth/Login');})->name('login');
 
 
 Route::get('/sidebar', function (){return Inertia::render('Admin/SidebarAdmin');});
