@@ -31,17 +31,17 @@ class PakarController extends Controller
             'columns' => [
                 'pertanyaans' => $pertanyaans->map(function($pertanyaan){
                     return $pertanyaan->pertanyaan;
-                })->toArray(),
+                }),
                 'ciri_ciris' => $pertanyaans->map(function($pertanyaan){
                     return $pertanyaan->ciri->ciri;
                 }),
                 'kepribadians' => $pertanyaans->map(function($pertanyaan){
                     $kepribadian = Kepribadian::where('id', $pertanyaan->ciri->kepribadian_id)->value('jenis_kepribadian');
                     return $kepribadian;
-                })
+                })      
             ]
             ];
-        return Inertia::render('Pakar/Index3',$data);
+        return Inertia::render('Pakar/Index',$data);
     }
     public function kepribadian(){
         // Redirect apabila role user tidak sesuai
