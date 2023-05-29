@@ -113,7 +113,7 @@ export default function Table({ columns, data }) {
         globalFilter={state.globalFilter}
         setGlobalFilter={setGlobalFilter}
       />
-    <div className="mt-2 flex flex-col">
+    <div className="mt-8 ml-2 mr-12 flex flex-col">
         <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -159,13 +159,15 @@ export default function Table({ columns, data }) {
                       
                       <tr {...row.getRowProps()}>
                         {row.cells.map(cell => {
-                          return (
+                          return (<>                        
                             <td
                               {...cell.getCellProps()}
                               className="px-6 py-4 whitespace-nowrap"
                             >
                               {cell.render('Cell')}
                             </td>
+                          </>
+                            
                           )
                         })}
                             <td>

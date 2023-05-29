@@ -1,25 +1,45 @@
-import React from "react"
-import Table from './Table'
+import React from "react";
+import Table from "./Table";
 
-export default function TableCiriCiri(props){
-    
-    const getData = () => props.datas
-    const fields = props.fields
+function App(props) {
+    console.log(props.datas)
+    let datas = []
+    let i = 1
+    props.datas.forEach(ciri => {
+        datas.push({
+            'ciriciri' : (ciri.ciri).charAt(0).toUpperCase() + ciri.ciri.slice(1),
+            'kepribadian' : ciri.kepribadian.jenis_kepribadian
+        })
+        i+=1
+    });
 
-    let headers = []
-    Array.from(fields).forEach(field => {
-        headers.push(
-            {
-                Header: field.charAt(0).toUpperCase() + field.slice(1),
-                accessor: field
-            }
-        )
-    })
-    const data = React.useMemo(()=>getData(), [])
-    console.log(data)
-    return(
-        <>
-            <Table columns={headers} data={data}></Table>
-        </>
-    )
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "No",
+        accessor: "no",
+      },
+      {
+        Header: "Ciri-Ciri",
+        accessor: "ciriciri",
+      },
+      {
+        Header: "Kepribadian Terkait",
+        accessor: "kepribadian",
+      },
+    ],
+    []
+  );
+
+  const data = React.useMemo(() => datas, []);
+
+  return (
+    <>
+      <div>
+        <Table columns={columns} data={data} />
+      </div>
+    </>
+  );
 }
+
+export default App;

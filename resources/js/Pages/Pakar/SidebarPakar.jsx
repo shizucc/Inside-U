@@ -43,10 +43,10 @@ export default function SidebarPakar(props) {
               <div>
                 <h1 className='text-center font-bold text-black text-xl mb-10'>Username</h1>
               <StyledTab><Link href={route('pakar.index')}><MenuList icon={<IconDashboard/>} nama="Dashboard"/></Link></StyledTab>
-              <StyledTab><Link  href={route('pakar.manajemenkepribadian')}><MenuList icon={<IconManajemenKepribadian/>} nama="Manajemen Kepribadian"/></Link></StyledTab>
-              <StyledTab><Link href={route('ciri.index')}><MenuList icon={<IconManajemenCiriCiri/>} nama="Manajemen Ciri-Ciri"/></Link></StyledTab>
-              <StyledTab><Link href={route('pakar.manajemenpertanyaan')}><MenuList icon={<IconManajemenPertanyaan/>} nama="Manajemen Pertanyaan"/></Link></StyledTab>
-              <StyledTab><Link href={route('pakar.historidiagnosa')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></Link></StyledTab>
+              <StyledTab><Link  href={route('pakar.kepribadian.index')}><MenuList icon={<IconManajemenKepribadian/>} nama="Manajemen Kepribadian"/></Link></StyledTab>
+              <StyledTab><Link href={route('pakar.ciri.index')}><MenuList icon={<IconManajemenCiriCiri/>} nama="Manajemen Ciri-Ciri"/></Link></StyledTab>
+              <StyledTab><Link href={route('pakar.pertanyaan.index')}><MenuList icon={<IconManajemenPertanyaan/>} nama="Manajemen Pertanyaan"/></Link></StyledTab>
+              <StyledTab><Link href={route('pakar.histori.index')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></Link></StyledTab>
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
               <StyledTab><Link href={route('logout')} method="post" as="button"><MenuList icon={<IconLogout/>} nama="Logout"/></Link></StyledTab>
               </div>
