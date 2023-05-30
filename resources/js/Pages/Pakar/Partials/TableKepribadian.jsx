@@ -2,7 +2,6 @@ import React from "react";
 import Table from "./Table";
 
 function App(props) {
-    console.log(props.datas)
     let datas = []
     let i = 1
     props.datas.forEach(kepribadian => {

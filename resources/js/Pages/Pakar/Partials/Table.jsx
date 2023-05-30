@@ -4,6 +4,11 @@ import regeneratorRuntime from "regenerator-runtime";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import { ArrowForwardIos, LastPage } from "@mui/icons-material";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //import Button from '@mui/material/Button';
 
 //import { BeakerIcon } from '@heroicons/react/solid';
@@ -53,7 +58,7 @@ function GlobalFilter({
     const onChange = useAsyncDebounce(value => {
       setGlobalFilter(value || undefined)
     }, 200)
-  
+
     return (
         <label className="flex gap-x-2 items-baseline">
           <span className="text-gray-700">Search: </span>
@@ -73,7 +78,7 @@ function GlobalFilter({
 
 export default function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
-  const { 
+  const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
@@ -156,10 +161,39 @@ export default function Table({ columns, data }) {
                   {page.map((row, i) => {  // new
                     prepareRow(row)
                     return (
-                      
+
                       <tr {...row.getRowProps()}>
                         {row.cells.map(cell => {
-                          return (<>                        
+                          if (typeof cell.value === "string") {
+                              if (cell.value.length > 50) {
+                                let data = cell.value.slice(0, 75);
+                                data += "..."
+                                return (<>
+                                    <td
+                                    {...cell.getCellProps()}
+                                    className="px-6 py-4 "
+                                    >
+                                    <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>{data}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+                                    {cell.value}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+                                    </td>
+                                </>
+
+                                )
+                              }
+                          }
+                          return (<>
                             <td
                               {...cell.getCellProps()}
                               className="px-6 py-4 "
@@ -167,7 +201,7 @@ export default function Table({ columns, data }) {
                               {cell.render('Cell')}
                             </td>
                           </>
-                            
+
                           )
                         })}
                             <td>
@@ -181,8 +215,8 @@ export default function Table({ columns, data }) {
                             </Button>
                             </td>
                       </tr>
-                      
-                      
+
+
                     )
                   })}
                 </tbody>
