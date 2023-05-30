@@ -57,7 +57,8 @@ class PakarController extends Controller
         $this->authPakar();
 
         $data = [
-            'ciri_ciris' => CiriCiri::with('kepribadian')->get()
+            'ciri_ciris' => CiriCiri::with('kepribadian')->get(),
+            
         ];
         return Inertia::render('Pakar/ManajemenCiriCiri', $data);
     }

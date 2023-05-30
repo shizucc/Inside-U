@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Pakar;
 
 use App\Http\Controllers\Controller;
 use App\Models\CiriCiri;
+use App\Models\Kepribadian;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+
 class CiriController extends Controller
 {
     public function authPakar(){
@@ -35,6 +37,11 @@ class CiriController extends Controller
     public function create()
     {
         //
+        $this->authPakar();
+        $data = [
+            'kepribadians' => Kepribadian::all()
+        ];
+        return Inertia::render('Pakar/TambahCiriCiri',$data);
     }
 
     /**
