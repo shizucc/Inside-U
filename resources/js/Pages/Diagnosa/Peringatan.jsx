@@ -21,13 +21,13 @@ export default function Peringatan(props) {
                     src="img/ilustrasi_notice_diagnosa.png" alt="Gambar peringatan sebelum melakukan diagnosa"
                 />
                 <div className="container mx-auto pl-20 w-2/3">
-                    <ol className="list-decimal font-medium text-lg">
+                    <ol className="list-decimal font-medium text-md">
                         <li>Diagnosa ini tidak ditujukan untuk medis</li>
                         <li>Hasil diagnosa dapat beragam sesuai dengan jawaban pertanyaan yang anda pilih</li>
                         <li>Pembuat website tidak bertanggung jawab atas hasil diagnosa yang diperoleh</li>
                     </ol>
                     <div className="mx-auto w-1/2 mt-10">
-                        <Link href={route('diagnosa.pertanyaan')} className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[16px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" as="button">
+                        <Link href={route('diagnosa.pertanyaan')} className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-3 px-6 rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" as="button">
                             Mulai Diagnosa <span><NavigateNextIcon/></span>
                         </Link>
                     </div>

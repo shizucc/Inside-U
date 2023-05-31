@@ -14,6 +14,7 @@ use App\Http\Controllers\Pakar\PertanyaanController as PakarPertanyaanController
 use App\Http\Controllers\Pakar\HistoriController as PakarHistoriController;
 
 Route::get('/', [DiagnosaController::class, 'index'])->name('home');
+Route::get('/tentang_kami', function (){return Inertia::render('Tentang_kami');})->name('tentang_kami');
 
 // Halaman Diagnosa
 Route::get('/diagnosa', [DiagnosaController::class, 'notice'])->name('diagnosa.start');
@@ -75,6 +76,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::get('/tambahkepribadian', function (){return Inertia::render('Pakar/TambahKepribadian');})->name('pakar.manajemenkepribadian');
     // Route::get('/tambahciriciri', function(){return Inertia::render('Pakar/TambahCiriCiri');})->name('pakar.manajemenciriciri');
     // Route::get('/tambahpertanyaan', function(){return Inertia::render('Pakar/TambahPertanyaan');})->name('pakar.manajemenpertanyaan');
+    //Tentang Kami
+    
 });
 
 
