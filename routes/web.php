@@ -47,21 +47,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'index' => 'pakar.ciri.index',
         'create' => 'pakar.ciri.create',
         'store' => 'pakar.ciri.store',
-        'show' => 'pakar.ciri.show',
         'edit' => 'pakar.ciri.edit',
         'update' => 'pakar.ciri.update',
         'destroy' => 'pakar.ciri.destroy',
-    ]);
+    ])->except('show');
 
     Route::resource('pakar/pertanyaan', PakarPertanyaanController::class)->names([
         'index' => 'pakar.pertanyaan.index',
         'create' => 'pakar.pertanyaan.create',
         'store' => 'pakar.pertanyaan.store',
-        'show' => 'pakar.pertanyaan.show',
         'edit' => 'pakar.pertanyaan.edit',
         'update' => 'pakar.pertanyaan.update',
         'destroy' => 'pakar.pertanyaan.destroy',
-    ]);
+    ])->except('show');
     
 
     Route::resource('/pakar/histori', PakarHistoriController::class)->only('index', 'show')->names([

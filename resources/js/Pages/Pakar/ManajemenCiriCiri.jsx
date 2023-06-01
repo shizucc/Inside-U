@@ -9,7 +9,10 @@ export default function ManajemenCiriCiri(props){
     <>
     <SidebarPakar username={props.auth.user.username}>
         <Button variant='contained' color='secondary' href={route('pakar.ciri.create')} >Tambah Ciri-Ciri</Button>
-        <TableCiriCiri datas={props.ciri_ciris}/>
+        <TableCiriCiri 
+            datas={props.ciri_ciris}
+            //route_for_edit={route('pakar.ciri.edit',props.id)}
+        />
     </SidebarPakar>
     </>
     )

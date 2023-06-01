@@ -9,12 +9,14 @@ import {
 import regeneratorRuntime from "regenerator-runtime";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
-import { ArrowForwardIos, LastPage } from "@mui/icons-material";
+import { ArrowForwardIos, LastPage, Router } from "@mui/icons-material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {Outlet, Route, useNavigate } from 'react-router-dom';
+import { Link } from "@mui/material";
 
 //import Button from '@mui/material/Button';
 
@@ -83,7 +85,7 @@ function GlobalFilter({
     );
 }
 
-export default function Table({ columns, data }) {
+export default function Table({ columns, data, route_for_edit }) {
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -242,20 +244,23 @@ export default function Table({ columns, data }) {
                                                     );
                                                 })}
                                                 <td>
-                                                    <Button
-                                                        variant="outlined"
-                                                        color="warning"
+                                                    <div>
+                                                    <Link
+                                                        className = "px-4 py-2 text-sm text-white rounded"
+                                                        href = {route('pakar.ciri.edit',row.id)}
                                                     >
                                                         Edit
-                                                    </Button>
+                                                    </Link>
+                                                    
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <Button
-                                                        variant="outlined"
-                                                        color="error"
+                                                    <Link
+                                                        className = "px-4 py-2 text-sm text-white rounded"
+                                                        href = {route('pakar.ciri.destroy',row.id)}
                                                     >
                                                         Hapus
-                                                    </Button>
+                                                    </Link>
                                                 </td>
                                             </tr>
                                         );

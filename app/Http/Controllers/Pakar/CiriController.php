@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pakar;
 use App\Http\Controllers\Controller;
 use App\Models\CiriCiri;
 use App\Models\Kepribadian;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -47,17 +48,16 @@ class CiriController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
-        //
-    }
+        $ciri_ciri = new CiriCiri;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(CiriCiri $ciriCiri)
-    {
-        //
+        $ciri_ciri->ciri = strtolower($request->ciri);
+        $ciri_ciri->kepribadian_id = $request->kepribadian_id;
+
+        $ciri_ciri->save();
+
+        return redirect(route('pakar.ciri.index'));
     }
 
     /**
@@ -65,7 +65,7 @@ class CiriController extends Controller
      */
     public function edit(CiriCiri $ciriCiri)
     {
-        //
+        dd($ciriCiri);
     }
 
     /**
