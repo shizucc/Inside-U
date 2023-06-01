@@ -15,9 +15,9 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {Outlet, Route, useNavigate } from 'react-router-dom';
 import { Link } from "@mui/material";
-
+import { useForm } from "@inertiajs/react";
+import { router } from '@inertiajs/react'
 //import Button from '@mui/material/Button';
 
 //import { BeakerIcon } from '@heroicons/react/solid';
@@ -85,7 +85,7 @@ function GlobalFilter({
     );
 }
 
-export default function Table({ columns, data, route_for_edit }) {
+export default function Table({ columns, data, route_for_edit, route_for_delete}) {
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -117,8 +117,10 @@ export default function Table({ columns, data, route_for_edit }) {
         useSortBy,
         usePagination
     );
-
     // Render the UI for your table
+    const handleDelete = (id) => {
+        router.delete(route(route_for_delete,id))
+    }
     return (
         <>
             <GlobalFilter
@@ -247,7 +249,7 @@ export default function Table({ columns, data, route_for_edit }) {
                                                     <div>
                                                     <Link
                                                         className = "px-4 py-2 text-sm text-white rounded"
-                                                        href = {route('pakar.ciri.edit',row.id)}
+                                                        href = {route(route_for_edit, parseInt(row.id) + 1 )}
                                                     >
                                                         Edit
                                                     </Link>
@@ -257,7 +259,7 @@ export default function Table({ columns, data, route_for_edit }) {
                                                 <td>
                                                     <Link
                                                         className = "px-4 py-2 text-sm text-white rounded"
-                                                        href = {route('pakar.ciri.destroy',row.id)}
+                                                        //onClick={handleDelete(parseInt(row.id))}
                                                     >
                                                         Hapus
                                                     </Link>

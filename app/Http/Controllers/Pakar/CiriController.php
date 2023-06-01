@@ -27,7 +27,7 @@ class CiriController extends Controller
         $this->authPakar();
 
         $data = [
-            'ciri_ciris' => CiriCiri::with('kepribadian')->get()
+            'ciri_ciris' => CiriCiri::with('kepribadian')->orderBy('id')->get()
         ];
         return Inertia::render('Pakar/ManajemenCiriCiri', $data);
     }
@@ -63,24 +63,38 @@ class CiriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CiriCiri $ciriCiri)
+    public function edit($id)
     {
-        dd($ciriCiri);
+        $this->authPakar();
+        $data = [
+            'id' => $id,
+            'ciri_ciri' => CiriCiri::find($id), 
+            'kepribadians' => Kepribadian::all()
+        ];
+        return Inertia::render('Pakar/TambahCiriCiri',$data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CiriCiri $ciriCiri)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        $ciriCiri = CiriCiri::find($id);
+        $ciriCiri->ciri = $request['ciri'];
+        $ciriCiri->kepribadian_id = $request['kepribadian_id'];
+
+        $ciriCiri->save();
+        return redirect(route('pakar.ciri.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CiriCiri $ciriCiri)
+    public function destroy($id)
     {
-        //
+        $ciriCiri = CiriCiri::find($id);
+        //$ciriCiri->delete();
+        return redirect(route('pakar.ciri.index'));
+
     }
 }

@@ -10,15 +10,24 @@ import { useForm } from '@inertiajs/react';
 
 
 export default function TambahCiriCiri(props) {
-    const [kepribadian,setKepribadian] = React.useState(1)
-    const {data, setData,post} = useForm({
-        ciri : '',
+    const [kepribadian,setKepribadian] = React.useState(props.id ? props.ciri_ciri.kepribadian_id : 1)
+    const [ciri_ciri,setCiri] = React.useState(props.id? props.ciri_ciri.ciri : '')
+    const {data, setData,post,put} = useForm({
+        ciri : ciri_ciri,
         kepribadian_id : kepribadian
     })
 
     React.useEffect(() => {
         setData('kepribadian_id', kepribadian);
       }, [kepribadian]);
+    
+    React.useEffect(()=>{
+        setData('ciri',ciri_ciri)
+    },[ciri_ciri])
+
+    const handleCiri = (event) => {
+        setCiri(event.target.value)
+    }
 
     const handleKepribadian = (event) => {
         setKepribadian(event.target.value)
@@ -26,7 +35,10 @@ export default function TambahCiriCiri(props) {
 
     const submit = (event) => {
         event.preventDefault()
-        post(route('pakar.ciri.store'))
+        if(props.id){
+            put(route('pakar.ciri.update',props.id ))
+        }else 
+            post(route('pakar.ciri.store'))
     }
 
     return (
@@ -47,8 +59,8 @@ export default function TambahCiriCiri(props) {
                             id="outlined-basic" 
                             label="Ciri-Ciri" 
                             variant="outlined" 
-                            value={data.ciri}
-                            onChange={(e) => setData('ciri', e.target.value)}
+                            value={ciri_ciri}
+                            onChange={handleCiri}
                         />
                         <InputLabel id="demo-simple-select-label">Kepribadian</InputLabel>
                         <Select
@@ -71,7 +83,9 @@ export default function TambahCiriCiri(props) {
                             className="h-[40px] w-4/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#5D6AAD] focus:bg-[#5D6AAD]"
                             >
                             <AddRoundedIcon />
-                            <span>Buat Ciri Ciri</span>
+                            <span>
+                                {props.id? 'Update Ciri-Ciri' : 'Tambah Ciri-Ciri'}
+                                </span>
                         </button>
                         </Box>
                     </form>

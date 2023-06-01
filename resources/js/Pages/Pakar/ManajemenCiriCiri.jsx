@@ -11,7 +11,9 @@ export default function ManajemenCiriCiri(props){
         <Button variant='contained' color='secondary' href={route('pakar.ciri.create')} >Tambah Ciri-Ciri</Button>
         <TableCiriCiri 
             datas={props.ciri_ciris}
-            //route_for_edit={route('pakar.ciri.edit',props.id)}
+            route_for_edit={'pakar.ciri.edit'}
+            route_for_update={'pakar.ciri.update'}
+            route_for_delete={'pakar.ciri.destroy'}
         />
     </SidebarPakar>
     </>
