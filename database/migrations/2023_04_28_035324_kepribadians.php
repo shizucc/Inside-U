@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kepribadians', function (Blueprint $table) {
             $table->id();
             $table->string('jenis_kepribadian');
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->string('ilustrasi');
         });
     }

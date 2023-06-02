@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { Head } from '@inertiajs/react';
-import Judul from './Partials/Judul';
-import IndexGrid from './Partials/IndexGrid';
-import KotakSmall from './Partials/KotakSmall';
-import GrafikBulanan from './Partials/GrafikBulanan';
-import GrafikKepribadian from './Partials/GrafikKepribadian';
-import IconUser from './Partials/IconUser';
-import IconDiagnosa from './Partials/IconDiagnosa';
+import Judul from '@/Pages/Admin/Partials/Judul';
+import IndexGrid from '@/Pages/Admin/Partials/IndexGrid';
+import KotakSmall from '@/Pages/Admin/Partials/KotakSmall';
+import GrafikBulanan from '@/Pages/Admin/Partials/GrafikBulanan';
+import GrafikKepribadian from '@/Pages/Admin/Partials/GrafikKepribadian';
+import IconUser from '@/Pages/Admin/Partials/IconUser';
+import IconDiagnosa from '@/Pages/Admin/Partials/IconDiagnosa';
+import SidebarAdmin from './Sidebar';
 
-export default function AdminIndex(props) {
-    return(
+export default function AdminDashboard(props) {
+    return (
         <>
+        <SidebarAdmin username={props.auth.user.username}>
             <Head>
                 <title>Dashboard Admin</title>
-                <style>{'body { background-color: #F2EDEE; }'}</style>
+                <style>{'body { background-color: #FEF8F8; }'}</style>
             </Head>
 
             <Judul>Hai, selamat datang!</Judul>
@@ -25,7 +27,7 @@ export default function AdminIndex(props) {
                 kotak4={<KotakSmall icon={<IconDiagnosa />} number={props.total_diagnosa} text="Total Diagnosa" />}
                 kotak5={<GrafikKepribadian data={props.kepribadians} judul="Rekaman Kepribadian Hasil Diagnosa" label="Jenis Kepribadian" />}
             />
-
+        </SidebarAdmin>
         </>
-    )
+    );
 }

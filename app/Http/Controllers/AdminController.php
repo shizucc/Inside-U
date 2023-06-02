@@ -7,16 +7,27 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Kepribadian;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function index() {
+        // Redirect apabila role user tidak sesuai
+        $role = User::find(Auth::id())->role;
+
+        if ($role == "user") {
+            return redirect()->route("home");
+        } elseif ($role == "pakar") {
+            return redirect()->route("pakar.index");
+        }
+
         // Mendapatkan data user dari DB
         $users = User::all();
         $total_user = $users->count();
 
         // Mendapatkan data kepribadian dari DB
         // Dimasukkan ke dalam associative array untuk menghitung total setiap kepribadian yang didapatkan user setiap diagnosa
+        // Nama jenis kepribadian diubah menjadi kapital pada huruf pertama menggunakan ucfirst()
         $kepribadians = array();
         foreach(Kepribadian::orderBy('id')->get() as $kepribadian) {
             $kepribadians[ucfirst($kepribadian->jenis_kepribadian)] = 0;
@@ -50,8 +61,7 @@ class AdminController extends Controller
             $total_diagnosa += $jml_diagnosa;
         }
 
-        // Mengubah huruf pertama jenis kepribadian menjadi kapital
-
+        // Mengumpulkan data untuk dikirim
         $data = [
             'total_user' => $total_user,
             'total_diagnosa' => $total_diagnosa,
@@ -59,6 +69,7 @@ class AdminController extends Controller
             'diagnosa_bulanan' => $diagnosa_bulanan,
             'kepribadians' => $kepribadians,
         ];
-        return Inertia::render('Admin/SidebarAdmin', $data);
+
+        return Inertia::render('Admin/Index', $data);
     }
 }

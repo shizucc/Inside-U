@@ -1,17 +1,21 @@
+import TableCiriCiri from "./Partials/TableCiriCiri";
+import SidebarPakar from "./SidebarPakar";
+import Button from '@mui/material/Button';
+import { blue } from '@mui/material/colors';
+
 export default function ManajemenCiriCiri(props){
-    console.log(props)
+    
     return(
-        <>
-        <h1>Hello World</h1>
-        {props.ciri_ciris ? props.ciri_ciris.map(ciri_ciri => {
-            return(
-                <div key={ciri_ciri.id}>
-                    <h2>Ciri : {ciri_ciri.ciri}</h2>
-                    <p>Jenis kepribadian : {ciri_ciri.kepribadian.jenis_kepribadian}</p>
-                </div>
-            )
-        }) : null
-    }
-        </>
+    <>
+    <SidebarPakar username={props.auth.user.username}>
+        <Button variant='contained' color='secondary' href={route('pakar.ciri.create')} >Tambah Ciri-Ciri</Button>
+        <TableCiriCiri 
+            datas={props.ciri_ciris}
+            route_for_edit={'pakar.ciri.edit'}
+            route_for_update={'pakar.ciri.update'}
+            route_for_delete={'pakar.ciri.destroy'}
+        />
+    </SidebarPakar>
+    </>
     )
 }

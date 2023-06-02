@@ -25,9 +25,12 @@
         "@mui/icons-material": "^5.11.16",
         "@mui/joy": "^5.0.0-alpha.78",
         "@mui/material": "^5.12.3",
+        "@ramonak/react-progress-bar": "^5.0.3",
         "chart.js": "^4.3.0",
         "datatables.net-dt": "^1.13.4",
+        "randomcolor": "^0.6.2",
         "react-chartjs-2": "^5.2.0",
+        "react-router-dom": "^6.11.2",
         "react-table": "^7.8.0",
         "regenerator-runtime": "^0.13.11",
         "swiper": "^9.2.0"
