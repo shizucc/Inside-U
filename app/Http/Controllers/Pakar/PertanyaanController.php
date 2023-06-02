@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pakar;
 
 use App\Http\Controllers\Controller;
+use App\Models\CiriCiri;
 use App\Models\DaftarPertanyaan;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -24,7 +25,7 @@ class PertanyaanController extends Controller
         $this->authPakar();
 
         $data = [
-            'pertanyaans'=> DaftarPertanyaan::with('ciri')->get()
+            'pertanyaans'=> DaftarPertanyaan::with('ciri')->orderBy('id')->get()
         ];
         return Inertia::render('Pakar/ManajemenPertanyaan', $data);
     }
@@ -34,7 +35,11 @@ class PertanyaanController extends Controller
      */
     public function create()
     {
-        //
+        $this->authPakar();
+        $data = [
+            'ciri_ciris' => CiriCiri::all()
+        ];
+        return Inertia::render('Pakar/TambahPertanyaan', $data);
     }
 
     /**
@@ -42,31 +47,39 @@ class PertanyaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authPakar();
+        $pertanyaan = new DaftarPertanyaan;
+        $pertanyaan->pertanyaan =  $request->pertanyaan;
+        $pertanyaan->ciri_id = $request->ciri_id;
+
+        $pertanyaan->save();
+        return redirect(route('pakar.pertanyaan.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(DaftarPertanyaan $daftarPertanyaan)
+    public function edit($id)
     {
-        //
-    }
+        $this->authPakar();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DaftarPertanyaan $daftarPertanyaan)
-    {
-        //
+        $data = [
+            'id' => $id,
+            'pertanyaan' => DaftarPertanyaan::find($id),
+            'ciri_ciris' => CiriCiri::all()
+        ];
+        return Inertia::render('Pakar/TambahPertanyaan',$data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DaftarPertanyaan $daftarPertanyaan)
+    public function update(Request $request, $id)
     {
-        //
+        $this->authPakar();
+        $pertanyaan = DaftarPertanyaan::find($id);
+        $pertanyaan->pertanyaan = $request->pertanyaan;
+        $pertanyaan->ciri_id = $request->ciri_id;
+        $pertanyaan->save();
+        return redirect(route('pakar.pertanyaan.index'));
+
     }
 
     /**
@@ -74,6 +87,6 @@ class PertanyaanController extends Controller
      */
     public function destroy(DaftarPertanyaan $daftarPertanyaan)
     {
-        //
+        $this->authPakar();
     }
 }

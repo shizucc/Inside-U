@@ -79,6 +79,7 @@ class CiriController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        $this->authPakar();
         $ciriCiri = CiriCiri::find($id);
         $ciriCiri->ciri = $request['ciri'];
         $ciriCiri->kepribadian_id = $request['kepribadian_id'];
@@ -92,6 +93,7 @@ class CiriController extends Controller
      */
     public function destroy($id)
     {
+        $this->authPakar();
         $ciriCiri = CiriCiri::find($id);
         //$ciriCiri->delete();
         return redirect(route('pakar.ciri.index'));

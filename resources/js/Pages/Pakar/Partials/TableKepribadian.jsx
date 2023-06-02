@@ -35,7 +35,7 @@ function App(props) {
   return (
     <>
       <div>
-        <Table columns={columns} data={data} />
+        <Table columns={columns} data={data} route_for_edit={props.route_for_edit} route_for_delete={props.route_for_delete}/>
       </div>
     </>
   );

@@ -34,7 +34,9 @@ class KepribadianController extends Controller
      */
     public function create()
     {
-        //
+        $this->authPakar();
+        
+        return Inertia::render('Pakar/TambahKepribadian');
     }
 
     /**

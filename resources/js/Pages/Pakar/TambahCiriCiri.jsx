@@ -1,7 +1,7 @@
 import React from 'react';
 import SidebarPakar from "./SidebarPakar";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import Select from '@mui/material/Select';
+import BasicSelect from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
@@ -62,8 +62,8 @@ export default function TambahCiriCiri(props) {
                             value={ciri_ciri}
                             onChange={handleCiri}
                         />
-                        <InputLabel id="demo-simple-select-label">Kepribadian</InputLabel>
-                        <Select
+                        
+                        <BasicSelect
                             required
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -76,7 +76,7 @@ export default function TambahCiriCiri(props) {
                                 <MenuItem value={kepribadian.id}>{kepribadian.jenis_kepribadian}</MenuItem>
                                 )
                             })}
-                        </Select>
+                        </BasicSelect>
                         <br />
                         <button
                             type="submit"

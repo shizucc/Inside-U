@@ -2,7 +2,6 @@ import React from "react";
 import Table from "./Table";
 
 function App(props) {
-    console.log(props.datas)
     let datas = []
     let i = 1
     props.datas.forEach(pertanyaan => {
@@ -36,7 +35,7 @@ function App(props) {
   return (
     <>
       <div>
-        <Table columns={columns} data={data} />
+        <Table columns={columns} data={data} route_for_edit={props.route_for_edit} route_for_delete={props.route_for_delete} />
       </div>
     </>
   );
