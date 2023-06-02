@@ -7,6 +7,7 @@ use App\Models\Kepribadian;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 class KepribadianController extends Controller
 {
@@ -43,8 +44,16 @@ class KepribadianController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
+        $this->authPakar();
+        $kepribadian = new Kepribadian;
+        $kepribadian->jenis_kepribadian = $request->jenis_kepribadian;
+        $kepribadian->deskripsi = $request->deskripsi;
+        $kepribadian->ilustrasi = $path;
+        $kepribadian->save();
+
+        return redirect(route('pakar.kepribadian.index'));
     }
 
     /**
