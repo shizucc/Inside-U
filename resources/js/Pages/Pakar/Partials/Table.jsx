@@ -17,8 +17,11 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "@mui/material";
 import { useForm } from "@inertiajs/react";
-import { router } from '@inertiajs/react'
-//import Button from '@mui/material/Button';
+import { router } from "@inertiajs/react";
+import { useState } from "react";
+import Modal from '@mui/material/Modal';
+import { Box } from "@mui/material";
+// import Button from '@mui/material/Button';
 
 //import { BeakerIcon } from '@heroicons/react/solid';
 // Define a default UI for filtering
@@ -85,7 +88,58 @@ function GlobalFilter({
     );
 }
 
-export default function Table({ columns, data, route_for_edit, route_for_delete}) {
+export function deletePertanyaan({ id }) {
+    return <></>;
+}
+
+export function ModalDelete({id,openOption, handleClose}) {
+    // const [closeModalDelete,setCloseModalDelete] = useState(false)
+    // const handleCloseModalDelete = () => setCloseModalDelete(true);
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
+    console.log("Hello")
+    return (
+            <Modal
+                open={openOption}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                <Typography>{id}</Typography>
+                <Button onClick={handleClose} >Tutup</Button>
+                    <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                    >
+                        Text in a modal
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Duis mollis, est non commodo luctus, nisi erat porttitor
+                        ligula.
+                    </Typography>
+                </Box>
+            </Modal>
+    );
+}
+
+export default function Table({
+    signature,
+    columns,
+    data,
+    route_for_edit,
+    route_for_delete,
+}) {
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -117,10 +171,23 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
         useSortBy,
         usePagination
     );
+    const deletePertanyaan = (id) => {};
     // Render the UI for your table
-    const handleDelete = (id) => {
-        router.delete(route(route_for_delete,id))
-    }
+    const [openModalDelete, setOpenModalDelete] = useState(false)
+    const handleDelete = (id) =>{
+        setOpenModalDelete(prevState => ({
+            ...prevState,
+            [id] : true
+        }))
+    } 
+
+    const handleCloseModalDelete = (id) =>{
+        setOpenModalDelete(prevState => ({
+            ...prevState,
+            [id] : false
+        }));
+
+    } 
     return (
         <>
             <GlobalFilter
@@ -181,6 +248,7 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                 >
                                     {page.map((row, i) => {
                                         // new
+                                        // <div key={row.id}>
                                         prepareRow(row);
                                         return (
                                             <tr {...row.getRowProps()}>
@@ -247,26 +315,45 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                                 })}
                                                 <td>
                                                     <div>
-                                                    <Link
-                                                        className = "px-4 py-2 text-sm text-white rounded"
-                                                        href = {route(route_for_edit, parseInt(row.id) + 1 )}
-                                                    >
-                                                        Edit
-                                                    </Link>
-                                                    
+                                                        <Link
+                                                            className="px-4 py-2 text-sm text-white rounded"
+                                                            href={route(
+                                                                route_for_edit,
+                                                                parseInt(
+                                                                    row.id
+                                                                ) + 1
+                                                            )}
+                                                        >
+                                                            Edit
+                                                        </Link>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <Link
-                                                        className = "px-4 py-2 text-sm text-white rounded"
-                                                        //onClick={handleDelete(parseInt(row.id))}
+                                                    <Button
+                                                        variant="outlined"
+                                                        onClick={() =>
+                                                            handleDelete(
+                                                                parseInt(
+                                                                    row.id
+                                                                ) + 1
+                                                            )
+                                                        }
                                                     >
                                                         Hapus
-                                                    </Link>
+                                                    </Button>
+                                                    {openModalDelete && (
+                                                        <ModalDelete
+                                                            id={`modal-${parseInt(row.id)+1}`}
+                                                            openOption={true}
+                                                            handleClose={handleCloseModalDelete}
+                                                        />
+                                                    )}
                                                 </td>
                                             </tr>
                                         );
-                                    })}
+                                        {/* </div> */}
+                                    })
+                                    }
                                 </tbody>
                             </table>
                         </div>

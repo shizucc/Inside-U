@@ -4,12 +4,13 @@ import BasicSelect from '@mui/material/Select';
 import { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "@inertiajs/react";
-import { MenuItem } from "@mui/material";
+import { Autocomplete,TextField } from "@mui/material";
 
 export default function TambahPertanyaan (props){
-    console.log(props)
     const [pertanyaan,setPertanyaan] = useState(props.id ? props.pertanyaan.pertanyaan : '')
-    const [ciri,setCiri] = useState(props.id ? props.pertanyaan.ciri_id: 1)
+    const [ciri,setCiri] = useState(
+        (props.id? props.ciri_ciris.find((ciri)=> ciri.id==props.pertanyaan.ciri_id) : null)
+    )
     const {data,setData,post,put} = useForm({
         pertanyaan : pertanyaan,
         ciri_id : ciri
@@ -26,8 +27,8 @@ export default function TambahPertanyaan (props){
     const handlePertanyaan = (event) => {
         setPertanyaan(event.target.value)
     }
-    const handleCiri = (event) => {
-        setCiri(event.target.value)
+    const handleCiri = (event,value) => {
+        setCiri(value)
     }
 
     const submit = (event) => {
@@ -37,6 +38,9 @@ export default function TambahPertanyaan (props){
         }else 
             post(route('pakar.pertanyaan.store'))
     }
+
+    
+
     return (
         <SidebarPakar>
             <h1 className="text-3xl font-medium mb-16">Formulir Data Pertanyaan</h1>
@@ -52,19 +56,19 @@ export default function TambahPertanyaan (props){
                             value={pertanyaan}
                             onChange={handlePertanyaan}
                         />
-                        <BasicSelect 
-                            required 
-                            nama="Ciri-Ciri"
+
+                        <Autocomplete
+                            required
+                            disablePortal
+                            id='combo-box-demo'
+                            options={props.ciri_ciris}
+                            getOptionLabel={(option)=>(option.ciri.charAt(0).toUpperCase()+(option.ciri).slice(1))}
+                            sx={{width :300}}
                             value={ciri}
                             onChange={handleCiri}
-                            >
-                            {(props.ciri_ciris).map(ciri=>{
-                                return(
-                                    <MenuItem value={ciri.id}>{(ciri.ciri).charAt(0).toUpperCase()+(ciri.ciri).slice(1)}</MenuItem>
-                                    // <MenuItem value={ciri.id}>{ciri.ciri}</MenuItem>
-                                )
-                            })}
-                        </BasicSelect>
+                            renderInput={(params)=> <TextField {...params} label='Ciri' />}
+                        >
+                        </Autocomplete>
 
                         <button type="submit" className="h-[40px] w-4/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#5D6AAD] focus:bg-[#5D6AAD]"><AddRoundedIcon/>
                         <span>

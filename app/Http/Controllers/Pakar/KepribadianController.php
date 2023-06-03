@@ -57,19 +57,16 @@ class KepribadianController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Kepribadian $kepribadian)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kepribadian $kepribadian)
-    {
-        //
+    public function edit($id)
+    {   
+        $this->authPakar();
+        $data = [
+            'id' => $id,
+            'kepribadian' => Kepribadian::find($id)
+        ];
+        return Inertia::render('Pakar/TambahKepribadian', $data);
     }
 
     /**

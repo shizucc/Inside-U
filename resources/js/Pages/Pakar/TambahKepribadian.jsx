@@ -5,8 +5,9 @@ import { useForm } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 
 export default function TambahKepribadian(props){
-    const [kepribadian,setKepribadian] =  useState(props.id? props.jenis_kepribadian : '')
-    const [deskripsi,setDeskripsi] = useState(props.id? props.deskripsi : '')
+    console.log(props)
+    const [kepribadian,setKepribadian] =  useState(props.id? props.kepribadian.jenis_kepribadian : '')
+    const [deskripsi,setDeskripsi] = useState(props.id? props.kepribadian.deskripsi : '')
     // const [ilustrasi,setIlustrasi] = useState(props.id? props.ilustrasi : '')
     const {data,setData,post,put,progress} = useForm({
         jenis_kepribadian : kepribadian,

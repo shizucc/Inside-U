@@ -50,7 +50,7 @@ class PertanyaanController extends Controller
         $this->authPakar();
         $pertanyaan = new DaftarPertanyaan;
         $pertanyaan->pertanyaan =  $request->pertanyaan;
-        $pertanyaan->ciri_id = $request->ciri_id;
+        $pertanyaan->ciri_id = $request->ciri_id['id'];
 
         $pertanyaan->save();
         return redirect(route('pakar.pertanyaan.index'));
@@ -76,7 +76,7 @@ class PertanyaanController extends Controller
         $this->authPakar();
         $pertanyaan = DaftarPertanyaan::find($id);
         $pertanyaan->pertanyaan = $request->pertanyaan;
-        $pertanyaan->ciri_id = $request->ciri_id;
+        $pertanyaan->ciri_id = $request->ciri_id['id'];
         $pertanyaan->save();
         return redirect(route('pakar.pertanyaan.index'));
 
