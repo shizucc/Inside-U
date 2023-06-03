@@ -31,7 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //-- Form
     Route::get('/tambahuser', function (){return Inertia::render('Admin/TambahUser');})->name('admin.manajemenuser');
     // Pakar
-    Route::get('/pakar', [PakarController::class, 'index'])->name('pakar.index');
+    Route::get('/pakar', function(){return redirect(route('pakar.ciri.index'));})->name('pakar.index');
 
     Route::resource('pakar/kepribadian', PakarKepribadianController::class)->names([
         'index' => 'pakar.kepribadian.index',
