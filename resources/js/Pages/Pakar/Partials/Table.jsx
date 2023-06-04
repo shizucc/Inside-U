@@ -253,12 +253,15 @@ export default function Table({
                                     className="bg-white divide-y divide-gray-200"
                                 >
                                     {page.map((row, i) => {
-                                        console.log(row)
+
+                                        console.log(i)
                                         // new
                                         // <div key={row.id}>
                                         prepareRow(row);
                                         return (
                                             <tr {...row.getRowProps()}>
+                                                
+                                                
                                                 {row.cells.map((cell) => {
                                                     if (
                                                         typeof cell.value ===
@@ -276,6 +279,7 @@ export default function Table({
                                                             data += "...";
                                                             return (
                                                                 <>
+                                                                    
                                                                     <td
                                                                         {...cell.getCellProps()}
                                                                         className="px-6 py-4 "
@@ -307,6 +311,7 @@ export default function Table({
                                                             );
                                                         }
                                                     }
+                                                    
                                                     return (
                                                         <>
                                                             <td
@@ -317,6 +322,7 @@ export default function Table({
                                                                     "Cell"
                                                                 )}
                                                             </td>
+
                                                         </>
                                                     );
                                                 })}
