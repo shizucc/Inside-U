@@ -6,7 +6,6 @@ import TabPanel from '@mui/base/TabPanel';
 import { buttonClasses } from '@mui/base/Button';
 import Tab, { tabClasses } from '@mui/base/Tab';
 import IconDashboard from '@/Components/IconDashboard';
-import IconManajemenKepribadian from '@/Components/IconManajemenKepribadian';
 import IconHistoriDiagnosa from '@/Components/IconHistoriDiagnosa';
 import IconLogout from '@/Components/IconLogout';
 import MenuList from '@/Components/MenuList';
@@ -14,6 +13,9 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
 import IconManajemenCiriCiri from '@/Components/IconManajemenCiriCiri';
 import IconManajemenPertanyaan from '@/Components/IconManajemenPertanyaan';
+import TheaterComedyOutlinedIcon from '@mui/icons-material/TheaterComedyOutlined';
+import BoyOutlinedIcon from '@mui/icons-material/BoyOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 
 
@@ -39,18 +41,18 @@ export default function SidebarPakar(props) {
             <div>
             <StyledTabsList className='h-screen w-100'>
             <div className='grid-rows-3'>
-              <div className='top-0 mb-10'><ApplicationLogo /></div>
+              <div className='my-10'><ApplicationLogo /></div>
               <div>
-                <h1 className='text-center font-bold text-black text-xl mb-10'>Username</h1>
+                <h1 className='text-center font-bold text-black text-xl mb-8'>Username</h1>
               <StyledTab><Link href={route('pakar.index')}><MenuList icon={<IconDashboard/>} nama="Dashboard"/></Link></StyledTab>
-              <StyledTab><Link  href={route('pakar.kepribadian.index')}><MenuList icon={<IconManajemenKepribadian/>} nama="Manajemen Kepribadian"/></Link></StyledTab>
-              <StyledTab><Link href={route('pakar.ciri.index')}><MenuList icon={<IconManajemenCiriCiri/>} nama="Manajemen Ciri-Ciri"/></Link></StyledTab>
-              <StyledTab><Link href={route('pakar.pertanyaan.index')}><MenuList icon={<IconManajemenPertanyaan/>} nama="Manajemen Pertanyaan"/></Link></StyledTab>
+              <StyledTab><Link  href={route('pakar.kepribadian.index')}><MenuList icon={<TheaterComedyOutlinedIcon/>} nama="Manajemen Kepribadian"/></Link></StyledTab>
+              <StyledTab><Link href={route('pakar.ciri.index')}><MenuList icon={<BoyOutlinedIcon/>} nama="Manajemen Ciri-Ciri"/></Link></StyledTab>
+              <StyledTab><Link href={route('pakar.pertanyaan.index')}><MenuList icon={<HelpOutlineOutlinedIcon/>} nama="Manajemen Pertanyaan"/></Link></StyledTab>
               <StyledTab><Link href={route('pakar.histori.index')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></Link></StyledTab>
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
               <StyledTab><Link href={route('logout')} method="post" as="button"><MenuList icon={<IconLogout/>} nama="Logout"/></Link></StyledTab>
               </div>
-              <div><h1 className='bottom-0 end-0 inset-y-0 text-center text-black text-sm mt-20'>Copyright © Endour Studio</h1></div>
+              <div><h1 className='text-center text-black text-sm mt-10'>Copyright © Endour Studio</h1></div>
             </div>
           </StyledTabsList>
             </div>
@@ -101,7 +103,7 @@ const StyledTab = styled(Tab)`
   font-weight: 600;
   background-color: transparent;
   width: 222px;
-  padding: 10px 12px;
+  padding: 10px 10px;
   margin: 6px 6px;
   border: none;
   border-radius: 7px;

@@ -411,6 +411,7 @@ export default function Table({
                                 <span className="sr-only">Previous</span>
                                 <ArrowBackIosIcon
                                     className="h-5 w-5"
+                                    fontSize="small"
                                     aria-hidden="true"
                                 />
                             </PageButton>
@@ -421,6 +422,7 @@ export default function Table({
                                 <span className="sr-only">Next</span>
                                 <ArrowForwardIos
                                     className="h-5 w-5"
+                                    fontSize="small"
                                     aria-hidden="true"
                                 />
                             </PageButton>
