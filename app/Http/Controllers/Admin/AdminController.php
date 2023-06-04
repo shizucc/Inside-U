@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
@@ -11,16 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function index() {
-        // Redirect apabila role user tidak sesuai
-        $role = User::find(Auth::id())->role;
+    public function authAdmin(){
 
+        $role = User::find(Auth::id())->role;
+    
         if ($role == "user") {
             return redirect()->route("home");
         } elseif ($role == "pakar") {
             return redirect()->route("pakar.index");
         }
-
+    }
+    public function index() {
+        // Redirect apabila role user tidak sesuai
+        $this->authAdmin();
         // Mendapatkan data user dari DB
         $users = User::all();
         $total_user = $users->count();

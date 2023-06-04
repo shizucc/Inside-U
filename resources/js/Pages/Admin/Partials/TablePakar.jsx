@@ -5,11 +5,12 @@ import Table from "./Table";
 function App(props) {
     let datas = []
     let i = 1
-    props.datas.forEach(ciri => {
+    props.datas.forEach(pakar => {
         datas.push({
-            'id' : ciri.id,
-            'ciriciri' : (ciri.ciri).charAt(0).toUpperCase() + ciri.ciri.slice(1),
-            'kepribadian' : ciri.kepribadian.jenis_kepribadian
+            'id' : pakar.id,
+            'username' : (pakar.username).charAt(0).toUpperCase() + pakar.username.slice(1),
+            'email' : pakar.email,
+            'waktu_dibuat' : pakar.created_at
         })
         i+=1
     });
@@ -17,12 +18,16 @@ function App(props) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Ciri-Ciri",
-        accessor: "ciriciri",
+        Header: "Username",
+        accessor: "username",
       },
       {
-        Header: "Kepribadian Terkait",
-        accessor: "kepribadian",
+        Header: "Email",
+        accessor: "email",
+      },
+      {
+        Header: "Waktu Dibuat",
+        accessor: "waktu_dibuat",
       },
     ],
     []
