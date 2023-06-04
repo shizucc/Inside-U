@@ -25,6 +25,7 @@ class PakarController extends Controller
     }
     public function index(){
         // Redirect apabila role user tidak sesuai
+
         $this->authPakar();
         $pertanyaans = DaftarPertanyaan::with('ciri')->get();
         $data = [
@@ -42,34 +43,6 @@ class PakarController extends Controller
             ]
             ];
         return Inertia::render('Pakar/Index',$data);
-    }
-    public function kepribadian(){
-        // Redirect apabila role user tidak sesuai
-        $this->authPakar();
-
-        $data = [
-            'kepribadians' => Kepribadian::all()
-        ];
-        return Inertia::render('Pakar/ManajemenKepribadian', $data);
-    }
-    public function ciri_ciri(){
-        // Redirect apabila role user tidak sesuai
-        $this->authPakar();
-
-        $data = [
-            'ciri_ciris' => CiriCiri::with('kepribadian')->get(),
-            
-        ];
-        return Inertia::render('Pakar/ManajemenCiriCiri', $data);
-    }
-    public function pertanyaan(){
-        // Redirect apabila role user tidak sesuai
-        $this->authPakar();
-
-        $data = [
-            'pertanyaans'=> DaftarPertanyaan::with('ciri')->get()
-        ];
-        return Inertia::render('Pakar/ManajemenPertanyaan', $data);
     }
 
     public function histori(){

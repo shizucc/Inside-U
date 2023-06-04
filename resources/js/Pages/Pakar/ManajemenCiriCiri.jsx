@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 export default function ManajemenCiriCiri(props){
-    
+    console.log(props)
     return(
     <>
     <SidebarPakar username={props.auth.user.username}>

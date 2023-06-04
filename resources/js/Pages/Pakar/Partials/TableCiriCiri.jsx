@@ -16,10 +16,6 @@ function App(props) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "No",
-        accessor: "no",
-      },
-      {
         Header: "Ciri-Ciri",
         accessor: "ciriciri",
       },

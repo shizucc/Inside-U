@@ -244,7 +244,7 @@ export default function Table({
                                                 colSpan={2}
                                                 scope="col"
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                            ></th>
+                                            >Aksi</th>
                                         </tr>
                                     ))}
                                 </thead>
@@ -253,8 +253,9 @@ export default function Table({
                                     className="bg-white divide-y divide-gray-200"
                                 >
                                     {page.map((row, i) => {
-
-                                        console.log(i)
+                                        
+                                        
+                                        
                                         // new
                                         // <div key={row.id}>
                                         prepareRow(row);
