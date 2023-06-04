@@ -1,9 +1,16 @@
+import SidebarPakar from "./SidebarPakar"
+import TableHistori from "./Partials/TableHistori"
+
+
+
 export default function HistoriDiagnosa(props){
     let historis = props.historis;
     historis = historis.filter(histori => histori.kepribadians.length != 0);
-    function hello() {
-        <h2>Cek</h2>
-    }
+    console.log(historis)
+
+
+
+
     return(
         <>
         {historis ? historis.map(histori => {

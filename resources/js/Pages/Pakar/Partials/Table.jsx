@@ -240,11 +240,15 @@ export default function Table({
                                                     </th>
                                                 )
                                             )}
-                                            <th
-                                                colSpan={2}
-                                                scope="col"
-                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                            >Aksi</th>
+                                            {signature!="index"? (<>
+                                            
+                                                <th
+                                                    colSpan={2}
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >Aksi</th>
+                                            
+                                            </>) : ""}
                                         </tr>
                                     ))}
                                 </thead>
@@ -327,47 +331,48 @@ export default function Table({
                                                         </>
                                                     );
                                                 })}
-                                                <td>
-                                                    <div>
-                                                        <Link
+                                                {
+                                                    signature!="index"? (
+                                                    <>
+                                                        <td>
+                                                            <div>
+                                                                <Link
+                                                                    
+                                                                    className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg"
+                                                                    href={route(
+                                                                        route_for_edit,
+                                                                        parseInt(
+                                                                            row.original.id
+                                                                        ) 
+                                                                    )}
+                                                                >
+                                                                    Edit
+                                                                </Link>
+                                                            </div>
+                                                        </td>
+                                                        <td className="px-5">
                                                             
-                                                            className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg"
-                                                            href={route(
-                                                                route_for_edit,
-                                                                parseInt(
-                                                                    row.original.id
-                                                                ) 
-                                                            )}
-                                                        >
-                                                            Edit
-                                                        </Link>
-                                                    </div>
-                                                </td>
-                                                <td className="px-5">
+                                                            <Link
+                                                                method="delete"
+                                                                className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
+                                                                href={route(
+                                                                    route_for_delete,
+                                                                        parseInt(
+                                                                            row.original.id
+                                                                        )
+                                                                )}
+                                                            >
+                                                                Hapus
+                                                            </Link>
+                                                            
+                                                        </td>
                                                     
-                                                    <Link
-                                                        method="delete"
-                                                        className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
-                                                        href={route(
-                                                            route_for_delete,
-                                                                parseInt(
-                                                                    row.original.id
-                                                                )
-                                                        )}
-                                                    >
-                                                        Hapus
-                                                    </Link>
-                                                    {/* {openModalDelete && (
-                                                        <ModalDelete
-                                                            id={`modal-${parseInt(row.id)+1}`}
-                                                            openOption={true}
-                                                            handleClose={handleCloseModalDelete}
-                                                        />
-                                                    )} */}
-                                                </td>
+                                                    
+                                                    </>):""
+                                                }
                                             </tr>
                                         );
-                                        {/* </div> */}
+                                        
                                     })
                                     }
                                 </tbody>
