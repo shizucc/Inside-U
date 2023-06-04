@@ -143,10 +143,10 @@ const StyledTabsList = styled(TabsList)(
   width: 24%;
   background-color: '#FEF8F8';
   border-radius: 0px;
-  border-right: 2px dashed #A9A9A9;
+  border-right: 2px solid #A9A9A9;
   margin-bottom: 0px;
   display: flex;
-  padding:50px;
+  padding:40px;
   position:fixed;
   align-items: center;
   align-content: space-between;

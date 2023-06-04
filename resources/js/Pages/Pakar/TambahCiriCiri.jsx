@@ -55,7 +55,7 @@ export default function TambahCiriCiri(props) {
                         <Box className="w-4/5 text-left m-auto h-[160px] mb-8">
                         <TextField 
                             required
-                            className="mb-8" 
+                            className="w-full" 
                             id="outlined-basic" 
                             label="Ciri-Ciri" 
                             variant="outlined" 
@@ -65,10 +65,10 @@ export default function TambahCiriCiri(props) {
                         
                         <BasicSelect
                             required
+                            className="my-5 w-full"
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={kepribadian}
-                            label="kepribadian"
                             onChange={handleKepribadian}
                         >
                             {(props.kepribadians).map(kepribadian => {
@@ -80,7 +80,7 @@ export default function TambahCiriCiri(props) {
                         <br />
                         <button
                             type="submit"
-                            className="h-[40px] w-4/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#5D6AAD] focus:bg-[#5D6AAD]"
+                            className="h-[40px] w-full bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out"
                             >
                             <AddRoundedIcon />
                             <span>

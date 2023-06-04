@@ -79,7 +79,7 @@ export default function TambahKepribadian(props){
                             )}
                             <br />
 
-                        <button type="submit" className="h-[40px] w-2/5 bg-[#98A8F8] text-white rounded-lg font-medium"><AddRoundedIcon/><span>Tambah Kepribadian</span></button>
+                        <button type="submit" className="h-[40px] w-2/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out"><AddRoundedIcon/><span>Tambah Kepribadian</span></button>
                     </form>
                 </div>
                 <div id="bg" className="w-2/5 p-4 bg-[#88CCE1] rounded-r-lg">

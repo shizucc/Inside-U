@@ -72,7 +72,7 @@ function GlobalFilter({
     }, 200);
 
     return (
-        <label className="flex gap-x-2 items-baseline">
+        <label className="my-5 flex gap-x-2 items-baseline">
             <span className="text-gray-700">Search: </span>
             <input
                 type="text"
@@ -194,6 +194,7 @@ export default function Table({
                 preGlobalFilteredRows={preGlobalFilteredRows}
                 globalFilter={state.globalFilter}
                 setGlobalFilter={setGlobalFilter}
+                className="my-5"
             />
             <div className="mt-8 ml-2 mr-12 flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
@@ -328,7 +329,7 @@ export default function Table({
                                                         </Link>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td className="px-5">
                                                     <Button
                                                         variant="outlined"
                                                         onClick={() =>
