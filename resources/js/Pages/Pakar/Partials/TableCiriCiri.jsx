@@ -6,6 +6,7 @@ function App(props) {
     let i = 1
     props.datas.forEach(ciri => {
         datas.push({
+            'id' : ciri.id,
             'ciriciri' : (ciri.ciri).charAt(0).toUpperCase() + ciri.ciri.slice(1),
             'kepribadian' : ciri.kepribadian.jenis_kepribadian
         })
@@ -30,7 +31,7 @@ function App(props) {
     []
   );
 
-  const data = React.useMemo(() => datas, []);
+  const data = datas
 
   return (
     <>

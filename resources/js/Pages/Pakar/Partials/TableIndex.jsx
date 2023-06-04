@@ -33,7 +33,7 @@ function App(props) {
             'ciriciri' : ciriciri
         })
     })
-    console.log(datas)
+    
     
 
   const columns = React.useMemo(
@@ -58,7 +58,7 @@ function App(props) {
     []
   );
 
-  const data = React.useMemo(() => datas, []);
+  const data = datas
 
   return (
     <>

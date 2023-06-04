@@ -4,7 +4,7 @@ import { Button } from "@mui/material"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 export default function ManajemenKepribadian(props){
-    console.log(props)
+    
     return(<>
         <SidebarPakar username={props.auth.user.username}>
             <h1 className="mb-5 font-poppins font-medium text-4xl">Manajemen Kepribadian</h1>

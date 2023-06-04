@@ -80,8 +80,11 @@ class KepribadianController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kepribadian $kepribadian)
+    public function destroy($id)
     {
-        //
+        $this->authPakar();
+        $kepribadian = Kepribadian::find($id);
+        $kepribadian->delete();
+        return redirect(route('pakar.kepribadian.index', $kepribadian));
     }
 }

@@ -95,7 +95,7 @@ class CiriController extends Controller
     {
         $this->authPakar();
         $ciriCiri = CiriCiri::find($id);
-        //$ciriCiri->delete();
+        $ciriCiri->delete();
         return redirect(route('pakar.ciri.index'));
 
     }

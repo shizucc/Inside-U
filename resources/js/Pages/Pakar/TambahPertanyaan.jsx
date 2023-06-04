@@ -7,6 +7,7 @@ import { useForm } from "@inertiajs/react";
 import { Autocomplete,TextField } from "@mui/material";
 
 export default function TambahPertanyaan (props){
+    
     const [pertanyaan,setPertanyaan] = useState(props.id ? props.pertanyaan.pertanyaan : '')
     const [ciri,setCiri] = useState(
         (props.id? props.ciri_ciris.find((ciri)=> ciri.id==props.pertanyaan.ciri_id) : null)

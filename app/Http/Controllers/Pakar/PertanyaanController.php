@@ -27,6 +27,7 @@ class PertanyaanController extends Controller
         $data = [
             'pertanyaans'=> DaftarPertanyaan::with('ciri')->orderBy('id')->get()
         ];
+        
         return Inertia::render('Pakar/ManajemenPertanyaan', $data);
     }
 
@@ -85,8 +86,12 @@ class PertanyaanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DaftarPertanyaan $daftarPertanyaan)
+    public function destroy($id)
     {
         $this->authPakar();
+        $pertanyaan = DaftarPertanyaan::find($id);
+        $pertanyaan->delete();
+        return redirect(route('pakar.pertanyaan.index'));
+
     }
 }

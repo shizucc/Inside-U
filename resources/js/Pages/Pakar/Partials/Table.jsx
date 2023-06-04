@@ -15,12 +15,14 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Link } from "@mui/material";
+// import { Link } from "@mui/material";
+import {Link} from "@inertiajs/react"
 import { useForm } from "@inertiajs/react";
 import { router } from "@inertiajs/react";
 import { useState } from "react";
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/material";
+
 // import Button from '@mui/material/Button';
 
 //import { BeakerIcon } from '@heroicons/react/solid';
@@ -70,6 +72,8 @@ function GlobalFilter({
     const onChange = useAsyncDebounce((value) => {
         setGlobalFilter(value || undefined);
     }, 200);
+
+
 
     return (
         <label className="my-5 flex gap-x-2 items-baseline">
@@ -173,7 +177,6 @@ export default function Table({
     );
     const deletePertanyaan = (id) => {};
     // Render the UI for your table
-    const [openModalDelete, setOpenModalDelete] = useState(false)
     const handleDelete = (id) =>{
         setOpenModalDelete(prevState => ({
             ...prevState,
@@ -188,6 +191,8 @@ export default function Table({
         }));
 
     } 
+
+
     return (
         <>
             <GlobalFilter
@@ -248,6 +253,7 @@ export default function Table({
                                     className="bg-white divide-y divide-gray-200"
                                 >
                                     {page.map((row, i) => {
+                                        console.log(row)
                                         // new
                                         // <div key={row.id}>
                                         prepareRow(row);
@@ -317,12 +323,13 @@ export default function Table({
                                                 <td>
                                                     <div>
                                                         <Link
-                                                            className="px-4 py-2 text-sm text-white rounded"
+                                                            
+                                                            className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg"
                                                             href={route(
                                                                 route_for_edit,
                                                                 parseInt(
-                                                                    row.id
-                                                                ) + 1
+                                                                    row.original.id
+                                                                ) 
                                                             )}
                                                         >
                                                             Edit
@@ -330,12 +337,19 @@ export default function Table({
                                                     </div>
                                                 </td>
                                                 <td className="px-5">
-                                                    <Button
-                                                        variant="outlined"
-                                                        onClick={()=> {Window.loaction.href = route(route_for_delete, parseInt(row.id)+1)}}
+                                                    
+                                                    <Link
+                                                        method="delete"
+                                                        className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
+                                                        href={route(
+                                                            route_for_delete,
+                                                                parseInt(
+                                                                    row.original.id
+                                                                )
+                                                        )}
                                                     >
                                                         Hapus
-                                                    </Button>
+                                                    </Link>
                                                     {/* {openModalDelete && (
                                                         <ModalDelete
                                                             id={`modal-${parseInt(row.id)+1}`}

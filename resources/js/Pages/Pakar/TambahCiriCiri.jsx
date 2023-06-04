@@ -10,6 +10,7 @@ import { useForm } from '@inertiajs/react';
 
 
 export default function TambahCiriCiri(props) {
+    console.log(props)
     const [kepribadian,setKepribadian] = React.useState(props.id ? props.ciri_ciri.kepribadian_id : 1)
     const [ciri_ciri,setCiri] = React.useState(props.id? props.ciri_ciri.ciri : '')
     const {data, setData,post,put} = useForm({
