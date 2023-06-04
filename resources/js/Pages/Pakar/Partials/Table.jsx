@@ -332,23 +332,17 @@ export default function Table({
                                                 <td className="px-5">
                                                     <Button
                                                         variant="outlined"
-                                                        onClick={() =>
-                                                            handleDelete(
-                                                                parseInt(
-                                                                    row.id
-                                                                ) + 1
-                                                            )
-                                                        }
+                                                        onClick={()=> {Window.loaction.href = route(route_for_delete, parseInt(row.id)+1)}}
                                                     >
                                                         Hapus
                                                     </Button>
-                                                    {openModalDelete && (
+                                                    {/* {openModalDelete && (
                                                         <ModalDelete
                                                             id={`modal-${parseInt(row.id)+1}`}
                                                             openOption={true}
                                                             handleClose={handleCloseModalDelete}
                                                         />
-                                                    )}
+                                                    )} */}
                                                 </td>
                                             </tr>
                                         );
