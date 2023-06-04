@@ -156,11 +156,7 @@ class DiagnosaController extends Controller
             // Redirect apabila role user tidak sesuai
             $role = User::find(Auth::id())->role;
 
-            if ($role == "admin") {
-                return redirect()->route("admin.index");
-            } elseif ($role == "pakar") {
-                return redirect()->route("pakar.index");
-            } elseif (Auth::id() != $user_id) {
+            if (Auth::id() != $user_id) {
                 return redirect()->route("home");
             }
         } else {

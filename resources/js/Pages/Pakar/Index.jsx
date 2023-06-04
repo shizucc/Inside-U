@@ -21,6 +21,7 @@ export default function Index(props){
     <SidebarPakar username = {props.auth.user.username} >
       <TableIndex 
           datas={col}
+          route_for_show={''}
           route_for_edit={'pakar.kepribadian.edit'}
           route_for_update={'pakar.kepribadian.update'}
           route_for_delete={'pakar.kepribadian.destroy'}

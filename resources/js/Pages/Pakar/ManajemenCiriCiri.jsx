@@ -12,6 +12,7 @@ export default function ManajemenCiriCiri(props){
         <Button variant='contained' className="my-24 bg-[#98A8F8]" href={route('pakar.ciri.create')} ><AddRoundedIcon/><span className="font-poppins font-medium"> Tambah Ciri Ciri</span></Button>
         <TableCiriCiri 
             datas={props.ciri_ciris}
+            route_for_show={''}
             route_for_edit={'pakar.ciri.edit'}
             route_for_update={'pakar.ciri.update'}
             route_for_delete={'pakar.ciri.destroy'}

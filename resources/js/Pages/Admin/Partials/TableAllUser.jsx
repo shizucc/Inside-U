@@ -1,6 +1,7 @@
 import React from "react";
 import Table from "./Table";
 
+
 function App(props) {
     let datas = []
     let i = 1

@@ -11,6 +11,7 @@ export default function ManajemenPertanyaan(props){
         <Button variant='contained' className="my-24 bg-[#98A8F8]" href={route('pakar.pertanyaan.create')} ><AddRoundedIcon/><span className="font-poppins font-medium"> Tambah Pertanyaan</span></Button>
         <TablePertanyaan 
             datas={props.pertanyaans}
+            route_for_show={''}
             route_for_edit={'pakar.pertanyaan.edit'}
             route_for_update={'pakar.pertanyaan.update'}
             route_for_delete={'pakar.pertanyaan.destroy'}

@@ -11,9 +11,10 @@ function App(props) {
 
   props.datas.forEach(col => {
     datas.push({
-      'pertanyaan': (col.pertanyaan).charAt(0).toUpperCase() + col.pertanyaan.slice(1),
-      'ciriciri': (col.ciri_ciri).charAt(0).toUpperCase() + col.ciri_ciri.slice(1),
-      'kepribadian': (col.kepribadian).charAt(0).toUpperCase() + col.kepribadian.slice(1),
+      'user_id' : col.user_id,
+      'username': (col.nama).charAt(0).toUpperCase() + col.nama.slice(1),
+      'waktu_diagnosa': col.waktu_diagnosa,
+      'hasil': (col.hasil).charAt(0).toUpperCase() + col.hasil.slice(1),
     })
   });
 
@@ -23,16 +24,16 @@ function App(props) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Pertanyaan",
-        accessor: "pertanyaan",
+        Header: "Username",
+        accessor: "username",
       },
       {
-        Header: "Ciri-Ciri",
-        accessor: "ciriciri",
+        Header: "waktu_diagnosa",
+        accessor: "waktu_diagnosa",
       },
       {
-        Header: "Kepribadian",
-        accessor: "kepribadian",
+        Header: "hasil",
+        accessor: "hasil",
       },
     ],
     []
@@ -44,7 +45,7 @@ function App(props) {
     <>
       <div>
         <Table 
-        signature={'index'}
+        signature={'history'}
         columns={columns} 
         data={data} 
         route_for_edit={"pakar.index"}

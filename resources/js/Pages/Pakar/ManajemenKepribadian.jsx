@@ -11,6 +11,7 @@ export default function ManajemenKepribadian(props){
             <Button variant='contained' className="my-24 bg-[#98A8F8]" href={route('pakar.kepribadian.create')} ><AddRoundedIcon/><span className="font-poppins font-medium"> Tambah Kepribadian</span></Button>
             <TableKepribadian
             datas={props.kepribadians} 
+            route_for_show={''}
             route_for_edit={'pakar.kepribadian.edit'}
             route_for_update={'pakar.kepribadian.update'}
             route_for_delete={'pakar.kepribadian.destroy'}
