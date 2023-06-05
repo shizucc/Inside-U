@@ -1,11 +1,15 @@
 import { Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Head } from '@inertiajs/react';
 
 export default function Peringatan(props) {
     return(
         <>
         <Navbar user={props.auth.user}>
+            <Head>
+                <title>Peringatan Diagnosa</title>
+            </Head>
             <div className="my-20 mx-40 py-10 px-10 bg-[#FDFDFD] rounded-[24px] font-poppins">
                     <Link href={route('home')} as="button">
                         <span className="inline-flex">

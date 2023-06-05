@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import React from 'react';
 import GrafikHasil from '@/Pages/Diagnosa/Partials/GrafikHasil.jsx';
+import { Head } from '@inertiajs/react';
 
 function NotFound() {
     return(
@@ -22,6 +23,9 @@ function NotFound() {
 function IlustrasiLeft(props) {
     return(
         <>
+        <Head>
+                <title>Hasil Diagnosa</title>
+        </Head>
         <div className="col-span-1">
             <img src={props.ilustrasi} />
         </div>
