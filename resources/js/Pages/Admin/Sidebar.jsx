@@ -21,11 +21,11 @@ export default function SidebarAdmin(props) {
     switch(route().current()) {
       case 'admin.index':
         return 0;
-      case 'admin.manajemenpakar':
+      case 'admin.pakar.index':
         return 1;
-      case 'admin.manajemenuser':
+      case 'admin.user.index':
         return 2;
-      case 'admin.historidiagnosa':
+      case 'admin.histori.index':
         return 3;
     }
   })();
