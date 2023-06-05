@@ -11,7 +11,7 @@ import PasswordInput from "./Partials/PasswordInput";
 import { Head } from '@inertiajs/react';
 
 export default function TambahUser (props){
-    // console.log(props)
+    console.log(props)
     const [username,setUsername] = useState(props.user? props.user.username : '')
     const [email,setEmail] = useState(props.user? props.user.email : '')
     const [role,setRole] = useState(props.signature? props.signature : null);
@@ -19,7 +19,7 @@ export default function TambahUser (props){
     
 
     const { data, setData, post,put, processing, errors, reset } = useForm({
-        id:props.user.id,
+        id:(props.user ? props.user.id : null),
         username: username,
         email: email,
         password: password,
@@ -114,7 +114,7 @@ export default function TambahUser (props){
                     </form>
                 </div>
                 <div id="bg" className="w-3/5 p-4 bg-[#88CCE1] rounded-r-lg">
-                    <img src="img/ilustrasi_form.png" alt="" className="w-8/12 m-auto" />
+                    <img src="/img/ilustrasi_form.png" alt="" className="w-8/12 m-auto" />
                 </div>
             </div>
         </SidebarAdmin>

@@ -97,7 +97,7 @@ export default function TambahCiriCiri(props) {
                 </div>
                 <div id="bg" className="w-3/5 p-4 bg-[#88CCE1] rounded-r-lg">
                     <img
-                        src="img/ilustrasi_ciriciri.png"
+                        src="/img/ilustrasi_ciriciri.png"
                         alt=""
                         className="w-8/12 m-auto"
                     />

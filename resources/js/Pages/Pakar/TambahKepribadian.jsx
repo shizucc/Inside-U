@@ -7,11 +7,11 @@ import { Head } from '@inertiajs/react';
 import { Box } from "@mui/material";
 
 export default function TambahKepribadian(props){
-    console.log(props)
+    // console.log(props)
     const [kepribadian,setKepribadian] =  useState(props.id? props.kepribadian.jenis_kepribadian : '')
     const [deskripsi,setDeskripsi] = useState(props.id? props.kepribadian.deskripsi : '')
     // const [ilustrasi,setIlustrasi] = useState(props.id? props.ilustrasi : '')
-    const {data,setData,post,put,progress} = useForm({
+    const {data,setData,post,patch,progress} = useForm({
         jenis_kepribadian : kepribadian,
         deskripsi : deskripsi,
         ilustrasi : null,
@@ -40,10 +40,11 @@ export default function TambahKepribadian(props){
     //     setIlustrasi(event.target.files[0])
     // }
     const submit = (event) => {
+        
         event.preventDefault()
         if(props.id){
-            put(route('pakar.kepribadian.update',props.id))
-        } else post(route('pakar.kepribadian.store'))
+            patch(route('pakar.kepribadian.update',props.id))
+        } else {post(route('pakar.kepribadian.store'))}
     }
     
     return (
@@ -100,7 +101,7 @@ export default function TambahKepribadian(props){
                     </form>
                 </div>
                 <div id="bg" className="w-2/5 p-4 bg-[#88CCE1] rounded-r-lg">
-                    <img src="img/ilustrasi_kepribadian.png" alt="" className="w-1/1 m-auto" />
+                    <img src="/img/ilustrasi_kepribadian.png" alt="" className="w-1/1 m-auto" />
                 </div>
             </div>
         </SidebarPakar>

@@ -83,7 +83,7 @@ export default function TambahPertanyaan (props){
                     </form>
                 </div>
                 <div id="bg" className="w-1/2 p-4 bg-[#88CCE1] rounded-r-lg">
-                    <img src="img/ilustrasi_pertanyaan.png" alt="" className="w-8/12 m-auto z-10" />
+                    <img src="/img/ilustrasi_pertanyaan.png" alt="" className="w-8/12 m-auto z-10" />
                 </div>
             </div>
         </SidebarPakar>

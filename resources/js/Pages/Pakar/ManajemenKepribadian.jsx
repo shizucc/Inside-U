@@ -5,7 +5,7 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { Head } from '@inertiajs/react';
 
 export default function ManajemenKepribadian(props){
-    console.log(props)
+    // console.log(props)
     return(<>
         <SidebarPakar username={props.auth.user.username}>
             <Head>

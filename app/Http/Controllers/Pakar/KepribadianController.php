@@ -45,6 +45,7 @@ class KepribadianController extends Controller
      */
     public function store(Request $request)
     {   
+        dd($request);
         $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
         $this->authPakar();
         $kepribadian = new Kepribadian;
@@ -72,9 +73,18 @@ class KepribadianController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kepribadian $kepribadian)
+    public function update(Request $request,$id)
     {
-        //
+        dd($request);
+        $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
+        $this->authPakar();
+        $kepribadian = Kepribadian::find($id);
+        $kepribadian->jenis_kepribadian = $request->jenis_kepribadian;
+        $kepribadian->deskripsi = $request->deskripsi;
+        $kepribadian->ilustrasi = $path;
+        $kepribadian->save();
+
+        return redirect(route('pakar.kepribadian.index'));
     }
 
     /**
