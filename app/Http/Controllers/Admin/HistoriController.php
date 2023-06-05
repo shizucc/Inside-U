@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\UserKepribadian;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,7 @@ class HistoriController extends Controller
     {
         $this->authAdmin();
         $data = [
-
+            'historis'=> User::with('kepribadians')->orderBy('id', 'asc')->get()
         ];
         return Inertia::render('Admin/HistoriDiagnosa',$data);
     }
@@ -35,7 +36,7 @@ class HistoriController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
         //
     }
@@ -43,8 +44,11 @@ class HistoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $this->authAdmin();
+        $user_kepribadian = UserKepribadian::where('user_id', $request->user_id)->where('diagnosa_id', $request->diagnosa_id);
+        $user_kepribadian->delete();
+        return redirect(route('admin.histori.index'));
     }
 }

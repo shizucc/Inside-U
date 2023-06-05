@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/react';
 
 
 export default function HistoriDiagnosa(props){
-    console.log(props.historis)
+    // console.log(props.historis)
     let historis = props.historis;
     historis = historis.filter(histori => histori.kepribadians.length != 0);
     // console.log(historis)
@@ -22,6 +22,8 @@ export default function HistoriDiagnosa(props){
     }) : null
 
     const col = kepribadians.map((kepribadian)=> ({
+        user_id:kepribadian.pivot.user_id,
+        diagnosa_id:kepribadian.pivot.diagnosa_id,
         nama:kepribadian.nama,
         waktu_diagnosa:kepribadian.pivot.waktu_diagnosa,
         hasil:kepribadian.jenis_kepribadian
@@ -38,11 +40,7 @@ export default function HistoriDiagnosa(props){
             </Head>
             <TableHistori
                 datas={col}
-                route_for_show={'pakar.histori.show'}
-                route_for_edit={'pakar.kepribadian.edit'}
-                route_for_update={'pakar.kepribadian.update'}
-                route_for_delete={'pakar.kepribadian.destroy'}
-
+                route_for_show={"diagnosa.hasil"}
             />
         </SidebarPakar>
         </>
