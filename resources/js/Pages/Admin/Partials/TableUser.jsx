@@ -5,12 +5,12 @@ import Table from "./Table";
 function App(props) {
     let datas = []
     let i = 1
-    props.datas.forEach(pakar => {
+    props.datas.forEach(user => {
         datas.push({
-            'id' : pakar.id,
-            'username' : (pakar.username).charAt(0).toUpperCase() + pakar.username.slice(1),
-            'email' : pakar.email,
-            'waktu_dibuat' : pakar.created_at
+            'id' : user.id,
+            'username' : (user.username).charAt(0).toUpperCase() + user.username.slice(1),
+            'email' : user.email,
+            'waktu_dibuat' : user.created_at
         })
         i+=1
     });
@@ -39,7 +39,7 @@ function App(props) {
     <>
       <div>
         <Table 
-          signature={'pakar'}
+          signature={'user'}
           columns={columns} 
           data={data} 
           route_for_edit={props.route_for_edit} 
