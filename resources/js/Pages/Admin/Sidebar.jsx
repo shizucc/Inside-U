@@ -42,7 +42,7 @@ export default function SidebarAdmin(props) {
               <StyledTab><Link href={route('admin.index')}><MenuList icon={<IconDashboard/>} nama="Dashboard"/></Link></StyledTab>
               <StyledTab><Link  href={route('admin.pakar.index')}><MenuList icon={<IconManajemenPakar/>} nama="Manajemen Pakar"/></Link></StyledTab>
               <StyledTab><Link href={route('admin.user.index')}><MenuList icon={<IconManajemenUser/>} nama="Manajemen Akun"/></Link></StyledTab>
-              <StyledTab><Link href={route('admin.historidiagnosa')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></Link></StyledTab>
+              <StyledTab><Link href={route('admin.histori.index')}><MenuList icon={<IconHistoriDiagnosa/>} nama="Histori Diagnosa"/></Link></StyledTab>
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
               <StyledTab><Link href={route('logout')} method="post" as="button"><MenuList icon={<IconLogout/>} nama="Logout"/></Link></StyledTab>
               </div>
