@@ -329,7 +329,7 @@ export default function Table(props) {
                                                     );
                                                 })}
                                                 {
-                                                    props.signature!=("history")? (
+                                                    props.signature!=("history")&&props.signature!=("index")? (
                                                     <>
                                                         <td>
                                                             <div>
@@ -350,18 +350,7 @@ export default function Table(props) {
                                                         <td className="px-5">
                                                             
                                                             <BasicModal/>
-                                                            {/* <Link
-                                                                method="delete"
-                                                                className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
-                                                                href={route(
-                                                                    props.route_for_delete,
-                                                                        parseInt(
-                                                                            row.original.id
-                                                                        )
-                                                                )}
-                                                            >
-                                                                Hapus
-                                                            </Link> */}
+                                                            
                                                             
                                                         </td>
                                                     

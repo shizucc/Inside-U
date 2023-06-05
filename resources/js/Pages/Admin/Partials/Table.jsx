@@ -110,7 +110,7 @@ export function ModalDelete({id,openOption, handleClose}) {
         boxShadow: 24,
         p: 4,
       };
-    console.log("Hello")
+   
     return (
             <Modal
                 open={openOption}
@@ -329,7 +329,7 @@ export default function Table(props) {
                                                     );
                                                 })}
                                                 {
-                                                    props.signature!=("history")? (
+                                                    props.signature!=("history")&&props.signature!="index"? (
                                                     <>
                                                         <td>
                                                             <div>
