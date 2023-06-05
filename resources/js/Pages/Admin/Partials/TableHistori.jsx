@@ -50,6 +50,7 @@ function App(props) {
         columns={columns} 
         data={data} 
         route_for_show={props.route_for_show}
+        route_for_delete={props.route_for_delete}
         />
       </div>
     </>

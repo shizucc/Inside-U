@@ -78,7 +78,7 @@ function GlobalFilter({
 
     return (
         <label className="my-5 flex gap-x-2 items-baseline">
-            <span className="text-gray-700">Search: </span>
+            <span className="text-gray-700">Cari: </span>
             <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -87,7 +87,7 @@ function GlobalFilter({
                     setValue(e.target.value);
                     onChange(e.target.value);
                 }}
-                placeholder={`${count} records...`}
+                placeholder={`${count} item...`}
             />
         </label>
     );
@@ -138,14 +138,9 @@ export function ModalDelete({id,openOption, handleClose}) {
     );
 }
 
-export default function Table({
-    signature,
-    columns,
-    data,
-    route_for_show,
-    route_for_edit,
-    route_for_delete,
-}) {
+export default function Table(props) {
+    const columns = props.columns
+    const data = props.data
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -242,7 +237,7 @@ export default function Table({
                                                     </th>
                                                 )
                                             )}
-                                            {(signature!=("index")) ? (<>
+                                            {(props.signature!=("index")) ? (<>
                                             
                                                 <th
                                                     colSpan={2}
@@ -334,7 +329,7 @@ export default function Table({
                                                     );
                                                 })}
                                                 {
-                                                    signature!=("history")? (
+                                                    props.signature!=("history")? (
                                                     <>
                                                         <td>
                                                             <div>
@@ -342,7 +337,7 @@ export default function Table({
                                                                     
                                                                     className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg"
                                                                     href={route(
-                                                                        route_for_edit,
+                                                                        props.route_for_edit,
                                                                         parseInt(
                                                                             row.original.id
                                                                         ) 
@@ -359,7 +354,7 @@ export default function Table({
                                                                 method="delete"
                                                                 className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
                                                                 href={route(
-                                                                    route_for_delete,
+                                                                    props.route_for_delete,
                                                                         parseInt(
                                                                             row.original.id
                                                                         )
@@ -374,16 +369,17 @@ export default function Table({
                                                     </>):null
                                                 }
                                                 {
-                                                    (signature=="history" ? (
+                                                    (props.signature=="history" ? (
                                                     <>
                                                     <td className="px-5">
                                                         <Link
                                                             className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
-                                                            href=""
+                                                            href={route(props.route_for_show,{user_id:row.original.user_id,diagnosa_id:row.original.diagnosa_id})}
                                                         >
                                                             Selengkapnya
                                                         </Link>
                                                     </td>
+                                                    
                                                     </>):null)
                                                 }
                                             </tr>

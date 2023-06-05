@@ -89,11 +89,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'destroy' => 'admin.pakar.destroy',
     ]);
 
-    Route::resource('/admin/histori', AdminHistoriController::class)->only('index','show','destroy')->names([
+    Route::resource('/admin/histori', AdminHistoriController::class)->only('index','show')->names([
         'index' => 'admin.histori.index',
         'show' => 'admin.histori.show',
-        'destroy' => 'admin.histori.destroy',
     ]);
+    Route::delete('/admin/histori/delete-{user_id}-{diagnosa_id}', [AdminHistoriController::class, 'destroy'])->name(
+        'admin.histori.destroy'
+    );
 
     // Route::get('/pakar/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
     //Route::get('/pakar/manajemenciriciri', [PakarController::class,'ciri_ciri'])->name('pakar.manajemenciriciri');
