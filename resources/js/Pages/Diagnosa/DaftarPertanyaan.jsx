@@ -22,7 +22,6 @@ export default function DaftarPertanyaan(props) {
     });
 
     function prevPage() {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'}); {/* Go to top of page */}
         setPage({
             page_number: page.page_number - 1,
             nomor_pertanyaan: page.nomor_pertanyaan - max_pertanyaan_in_page
@@ -30,15 +29,16 @@ export default function DaftarPertanyaan(props) {
         {/* Pada fungsi setPageTerjawab di bawah, tidak mengoper variabel page.nomor_pertanyaan
             karena variabel tsb baru akan terupdate setelah keluar dari fungsi prevPage */}
         setPageTerjawab(isPageSemuaTerjawab(page.nomor_pertanyaan - max_pertanyaan_in_page));
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'}); {/* Go to top of page */}
     }
 
     function nextPage() {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
         setPage({
             page_number: page.page_number + 1,
             nomor_pertanyaan: page.nomor_pertanyaan + max_pertanyaan_in_page
         });
         setPageTerjawab(isPageSemuaTerjawab(page.nomor_pertanyaan + max_pertanyaan_in_page));
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }
 
 
@@ -83,7 +83,9 @@ export default function DaftarPertanyaan(props) {
         }
         +nomor--; {/* Ubah variabel nomor ke tipe number dan lakukan decrement */}
         let tmp_jawabans = jawabans;
-        if (tmp_jawabans[nomor] == 0) setProgress(progress + progress_increment); {/* Tingkatkan nilai progress bar hanya jika sebelumnya pertanyaan belum dijawab */}
+        let new_progress = progress + progress_increment;
+        new_progress = (new_progress >= 99) ? 100 : new_progress; // Mengatasi progress stuck di 99%
+        if (tmp_jawabans[nomor] == 0) setProgress(new_progress); {/* Tingkatkan nilai progress bar hanya jika sebelumnya pertanyaan belum dijawab */}
         tmp_jawabans[nomor] = jawaban;
         setJawabans(tmp_jawabans);
         setPageTerjawab(isPageSemuaTerjawab(page.nomor_pertanyaan));

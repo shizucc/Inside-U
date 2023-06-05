@@ -102,6 +102,7 @@ class DiagnosaController extends Controller
         // Mengubah jawaban dari fraksi menjadi persentase
         foreach($kepribadians as $kepribadian) {
             $id = $kepribadian->id;
+            if ($persentase[$id] == 0) continue;
             $persentase[$id] = $persentase[$id] / $total_gejala[$id] * 100;
         }
 
@@ -109,6 +110,7 @@ class DiagnosaController extends Controller
         $sum_persentase = array_sum($persentase);
         foreach($kepribadians as $kepribadian) {
             $id = $kepribadian->id;
+            if ($persentase[$id] == 0) continue;
             $persentase[$id] = $persentase[$id] / $sum_persentase * 100;
         }
 
@@ -123,6 +125,7 @@ class DiagnosaController extends Controller
             $diagnosa_id = ($diagnosa_id_latest == null) ? 1 : $diagnosa_id_latest->diagnosa_id + 1;
             $waktu = Carbon::now();
             foreach($persentase as $kepribadian_id => $nilai) {
+                if ($nilai == 0) continue;
                 UserKepribadian::insert([
                     'user_id' => $user_id,
                     'diagnosa_id' => $diagnosa_id,
@@ -136,10 +139,19 @@ class DiagnosaController extends Controller
         }
 
         $data_diagnosa = Kepribadian::all();
+        $zeros = Array(); // Array untuk menampung primary key kepribadian yang memiliki persentase 0
         foreach ($data_diagnosa as $data) {
             $id = $data->id;
-            $data['persentase'] = $persentase[$id];
+            $p = $persentase[$id];
+            if ($p == 0) {
+                array_push($zeros, $id);
+            } else {
+                $data['persentase'] = $persentase[$id];
+            }
         }
+
+        // Menghapus kepribadian yang memiliki persentase 0 supaya tidak ditampilkan
+        $data_diagnosa = $data_diagnosa->except($zeros);
 
         $data = [
             'data_diagnosa' => $data_diagnosa,
@@ -155,7 +167,7 @@ class DiagnosaController extends Controller
         if ($is_logged_in) {
             // Redirect apabila role user tidak sesuai
             $role = User::find(Auth::id())->role;
-            
+
 
             if (Auth::id() != $user_id && $role !='admin' && $role!='pakar') {
                 return redirect()->route("home");
