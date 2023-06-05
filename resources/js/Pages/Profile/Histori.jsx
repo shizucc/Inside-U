@@ -5,7 +5,6 @@
 import Navbar from '@/Components/Navbar';
 import { Head } from '@inertiajs/react';
 import { Link } from '@mui/material';
-import TabelHistori from "./Partials/TabelHistori"
 
 export default function Histori(props) {
     return (
@@ -24,10 +23,10 @@ export default function Histori(props) {
                         </span>
                     </Link>
                 <h1 className="text-center font-bold my-3 text-3xl">Histori Diagnosa</h1>
-                <TabelHistori
+                {/* <TabelHistori
                 datas={col}
                 route_for_show={'profile.histori'}
-            />
+            /> */}
                 
                 
             </div>

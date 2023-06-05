@@ -136,7 +136,7 @@ function AuthenticatedBar({ user, children, showingNavigationDropdown, setDropdo
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                <NavLink href={route('tentang_kami')}>
                                     Tentang Kami
                                 </NavLink>
                             </div>
@@ -204,7 +204,7 @@ function AuthenticatedBar({ user, children, showingNavigationDropdown, setDropdo
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        <ResponsiveNavLink href={route('tentang_kami')}>
                             Tentang Kami
                         </ResponsiveNavLink>
                     </div>

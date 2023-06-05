@@ -2,10 +2,10 @@ import Navbar from "@/Components/Navbar";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
-export default function Tentang_kami(){
+export default function Tentang_kami(props){
     return (
         <>
-            <Navbar>
+            <Navbar user={props.auth.user}>
                 <h1 className="font-poppins font-bold text-3xl text-center my-10">Anggota Tim</h1>
                 <div className="container h-[200px] mx-auto w-5/6">
                     <div className="grid grid-cols-3 gap-4 static">
