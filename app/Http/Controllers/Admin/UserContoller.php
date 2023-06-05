@@ -77,7 +77,7 @@ class UserContoller extends Controller
     {
         $this->authAdmin();
         $data = [
-            'signature' => 'pakar',
+            'signature' => 'user',
             'roles' => User::distinct()->get(['role']),
             'user' => User::find($id)
         ];

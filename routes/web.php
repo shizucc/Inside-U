@@ -16,6 +16,7 @@ use App\Http\Controllers\Pakar\HistoriController as PakarHistoriController;
 use App\Http\Controllers\Admin\AdminController as AdminController;
 use App\Http\Controllers\Admin\UserContoller as AdminUserContoller;
 use App\Http\Controllers\Admin\PakarContoller as AdminPakarContoller;
+use App\Http\Controllers\Admin\HistoriController as AdminHistoriController;
 
 Route::get('/', [DiagnosaController::class, 'index'])->name('home');
 Route::get('/tentang_kami', function (){return Inertia::render('Tentang_kami');})->name('tentang_kami');
@@ -29,11 +30,11 @@ Route::get('/diagnosa/hasil-{user_id}-{diagnosa_id}', [DiagnosaController::class
 Route::middleware(['auth', 'verified'])->group(function () {
     // Admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
-    Route::get('/manajemenuser', function (){return Inertia::render('Admin/ManajemenUser');})->name('admin.manajemenuser');
-    Route::get('/historidiagnosa', function (){return Inertia::render('Admin/HistoriDiagnosa');})->name('admin.historidiagnosa');
+    // Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
+    // Route::get('/manajemenuser', function (){return Inertia::render('Admin/ManajemenUser');})->name('admin.manajemenuser');
+    // Route::get('/historidiagnosa', function (){return Inertia::render('Admin/HistoriDiagnosa');})->name('admin.historidiagnosa');
     //-- Form
-    Route::get('/tambahuser', function (){return Inertia::render('Admin/TambahUser');})->name('admin.manajemenuser');
+    // Route::get('/tambahuser', function (){return Inertia::render('Admin/TambahUser');})->name('admin.manajemenuser');
     // Pakar
     Route::get('/pakar', [PakarController::class,'index'])->name('pakar.index');
 
@@ -86,6 +87,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'edit' => 'admin.pakar.edit',
         'update' => 'admin.pakar.update',
         'destroy' => 'admin.pakar.destroy',
+    ]);
+
+    Route::resource('/admin/histori', AdminHistoriController::class)->only('index','show','destroy')->names([
+        'index' => 'admin.histori.index',
+        'show' => 'admin.histori.show',
+        'destroy' => 'admin.histori.destroy',
     ]);
 
     // Route::get('/pakar/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
