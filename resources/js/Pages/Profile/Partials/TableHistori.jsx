@@ -1,5 +1,6 @@
 import React from "react";
-import Table from "@/Pakar/Partials/Table.jsx";
+import Table from "./Table";
+import { DataSaverOff } from "@mui/icons-material";
 
 function App(props) {
   // console.log(props.datas)
@@ -11,6 +12,7 @@ function App(props) {
   props.datas.forEach(col => {
     datas.push({
       'user_id' : col.user_id,
+      'diagnosa_id' : col.diagnosa_id,
       'username': (col.nama).charAt(0).toUpperCase() + col.nama.slice(1),
       'waktu_diagnosa': col.waktu_diagnosa,
       'hasil': (col.hasil).charAt(0).toUpperCase() + col.hasil.slice(1),
@@ -45,8 +47,9 @@ function App(props) {
       <div>
         <Table 
         signature={'history'}
-        columns={columns}
-        data={data}
+        columns={columns} 
+        data={data} 
+        route_for_show={props.route_for_show}
         />
       </div>
     </>

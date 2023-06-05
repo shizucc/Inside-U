@@ -20,10 +20,10 @@ class ProfileController extends Controller
     public function histori()
     {
         // User::find(Auth::id());
-        // $data = [
-        //     'users' => User::where('id',Auth::id())->get()
-        // ];
-        return Inertia::render('Profile/Histori');
+        $data = [
+            'historis'=> User::where('id', Auth::id())->with('kepribadians')->orderBy('id', 'asc')->get()
+        ];
+        return Inertia::render('Profile/Histori', $data);
     }
 
     /**

@@ -73,7 +73,7 @@ function Found(props) {
     return(
         <>
         <div className="my-20 mx-40 py-10 px-10 bg-[#FDFDFD] rounded-[24px] font-poppins">
-            { (props.role == 'pakar' || props.role == 'admin') ? (
+            { (props.role == 'pakar' || props.role == 'admin' || props.role == 'user') ? (
             <Link onClick={back} as="button">
                 <span className="inline-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#98A8F8" className="flex w-5 h-5 my-auto">
@@ -109,6 +109,7 @@ function Found(props) {
 
 
 export default function Hasil(props) {
+    const role = (props.auth.user == null) ? 'none' : props.auth.user.role;
     return(
         <>
         <Navbar user={props.auth.user}>
@@ -117,7 +118,7 @@ export default function Hasil(props) {
                 <NotFound />
                 ) : (
                 // Data ditemukan
-                <Found data_diagnosa={props.data_diagnosa} data_diagnosa_ordered={props.data_diagnosa_ordered} role={props.auth.user.role}/>
+                <Found data_diagnosa={props.data_diagnosa} data_diagnosa_ordered={props.data_diagnosa_ordered} role={role}/>
                 )
             }
         </Navbar>
