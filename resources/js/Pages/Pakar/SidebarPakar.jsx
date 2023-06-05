@@ -24,13 +24,13 @@ export default function SidebarPakar(props) {
     switch(route().current()) {
       case 'pakar.index':
         return 0;
-      case 'pakar.manajemenkepribadian':
+      case 'pakar.kepribadian.index':
         return 1;
-      case 'pakar.manajemenciriciri':
+      case 'pakar.ciri.index':
         return 2;
-      case 'pakar.manajemenpertanyaan':
+      case 'pakar.pertanyaan.index':
         return 3;
-      case 'pakar.historidiagnosa':
+      case 'pakar.histori.index':
         return 4;
     }
   })();

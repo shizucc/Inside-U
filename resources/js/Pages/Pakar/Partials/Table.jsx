@@ -22,6 +22,7 @@ import { router } from "@inertiajs/react";
 import { useState } from "react";
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/material";
+import BasicModal from "@/Components/BasicModal";
 
 // import Button from '@mui/material/Button';
 
@@ -202,7 +203,7 @@ export default function Table({
                 setGlobalFilter={setGlobalFilter}
                 className="my-5"
             />
-            <div className="mt-8 ml-2 mr-12 flex flex-col">
+            <div className="mt-8 ml-2 mr-4 flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -353,7 +354,8 @@ export default function Table({
                                                         </td>
                                                         <td className="px-5">
                                                             
-                                                            <Link
+                                                            <BasicModal/>
+                                                            {/* <Link
                                                                 method="delete"
                                                                 className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
                                                                 href={route(
@@ -364,7 +366,7 @@ export default function Table({
                                                                 )}
                                                             >
                                                                 Hapus
-                                                            </Link>
+                                                            </Link> */}
                                                             
                                                         </td>
                                                     
