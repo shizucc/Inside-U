@@ -3,6 +3,7 @@ import BasicSelect from "@/Components/BasicSelect";
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useForm } from "@inertiajs/react";
 import { useState, useEffect } from "react";
+import { Head } from '@inertiajs/react';
 
 export default function TambahKepribadian(props){
     console.log(props)
@@ -46,6 +47,9 @@ export default function TambahKepribadian(props){
     
     return (
         <SidebarPakar>
+            <Head>
+                <title>Tambah Kepribadian</title>
+            </Head>
             <h1 className="text-3xl font-medium mb-16">Formulir Kepribadian</h1>
             <div className="container w-full shadow-lg flex rounded-lg">
                 <div id="form" className="w-3/5 p-6 text-left">

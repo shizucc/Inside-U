@@ -2,12 +2,16 @@ import TableCiriCiri from "./Partials/TableCiriCiri";
 import SidebarPakar from "./SidebarPakar";
 import Button from '@mui/material/Button';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { Head } from '@inertiajs/react';
 
 export default function ManajemenCiriCiri(props){
     console.log(props)
     return(
     <>
     <SidebarPakar username={props.auth.user.username}>
+        <Head>
+            <title>Manajemen Ciri-Ciri</title>
+        </Head>
         <h1 className="mb-5 font-poppins font-medium text-4xl">Manajemen Ciri-Ciri</h1>
         <Button variant='contained' className="my-24 bg-[#98A8F8]" href={route('pakar.ciri.create')} ><AddRoundedIcon/><span className="font-poppins font-medium"> Tambah Ciri Ciri</span></Button>
         <TableCiriCiri 

@@ -2,10 +2,14 @@ import SidebarAdmin from "./Sidebar";
 import TablePakar from "./Partials/TablePakar"
 import {Button} from "@mui/material"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { Head } from '@inertiajs/react';
 export default function ManajemenPakar(props){
     return (
         <>
             <SidebarAdmin>
+                <Head>
+                    <title>Manajemen Pakar</title>
+                </Head>
                  <h1 className="mb-5 font-poppins font-medium text-4xl">Manajemen Pakar</h1>
                  <Button variant='contained' className="my-24 bg-[#98A8F8]" href={route('admin.pakar.create')} ><AddRoundedIcon/><span className="font-poppins font-medium"> Tambah Akun Pakar</span></Button>
                  <TablePakar

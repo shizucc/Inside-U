@@ -8,6 +8,7 @@ import { useForm } from "@inertiajs/react";
 import Box from '@mui/material/Box';
 import BasicSelect from "@/Components/BasicSelect";
 import PasswordInput from "./Partials/PasswordInput";
+import { Head } from '@inertiajs/react';
 
 export default function TambahUser (props){
     // console.log(props)
@@ -57,6 +58,9 @@ export default function TambahUser (props){
     }
     return (
         <SidebarAdmin>
+            <Head>
+                <title>Tambah User</title>
+            </Head>
             <h1 className="text-3xl font-medium mb-16">Masukkan Data Akun</h1>
             <div className="container w-full shadow-lg flex rounded-lg">
                 <div id="form" className="w-2/5 p-6 text-center">

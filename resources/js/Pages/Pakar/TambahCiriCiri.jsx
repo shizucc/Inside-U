@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useForm } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
 
 export default function TambahCiriCiri(props) {
@@ -44,6 +45,9 @@ export default function TambahCiriCiri(props) {
 
     return (
         <SidebarPakar>
+            <Head>
+                <title>Tambah Ciri-Ciri</title>
+            </Head>
             <h1 className="text-3xl font-medium mb-16">
                 Formulir Data Ciri-Ciri
             </h1>

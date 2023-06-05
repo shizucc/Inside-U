@@ -15,7 +15,6 @@ export default function AdminDashboard(props) {
         <SidebarAdmin username={props.auth.user.username}>
             <Head>
                 <title>Dashboard Admin</title>
-                <style>{'body { background-color: #FEF8F8; }'}</style>
             </Head>
 
             <Judul>Hai, selamat datang!</Judul>

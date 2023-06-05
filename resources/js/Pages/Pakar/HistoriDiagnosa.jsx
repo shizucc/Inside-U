@@ -1,6 +1,6 @@
 import SidebarPakar from "./SidebarPakar"
 import TableHistori from "./Partials/TableHistori"
-
+import { Head } from '@inertiajs/react';
 
 
 export default function HistoriDiagnosa(props){
@@ -33,6 +33,9 @@ export default function HistoriDiagnosa(props){
     return(
         <>
         <SidebarPakar username={props.auth.user.username}>
+            <Head>
+                <title>Histori Diagnosa</title>
+            </Head>
             <TableHistori
                 datas={col}
                 route_for_show={'pakar.histori.show'}

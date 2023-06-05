@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import { Autocomplete,TextField } from "@mui/material";
+import { Head } from '@inertiajs/react';
 
 export default function TambahPertanyaan (props){
     
@@ -44,6 +45,9 @@ export default function TambahPertanyaan (props){
 
     return (
         <SidebarPakar>
+            <Head>
+                <title>Tambah Pertanyaan</title>
+            </Head>
             <h1 className="text-3xl font-medium mb-16">Formulir Data Pertanyaan</h1>
             <div className="container w-full shadow-lg flex rounded-lg">
                 <div id="form" className="w-1/2 p-6 text-center">

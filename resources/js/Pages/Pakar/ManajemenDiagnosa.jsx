@@ -1,7 +1,12 @@
+import { Head } from '@inertiajs/react';
+
 export default function ManajemenKepribadian(props){
     console.log(props)
     return(
         <>
+        <Head>
+            <title>Manajemen Kepribadian</title>
+        </Head>
         <h1>Hello World</h1>
         {props.kepribadians ? props.kepribadians.map(kepribadian => {
             return(
