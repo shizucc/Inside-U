@@ -36,7 +36,7 @@ class KepribadianController extends Controller
     public function create()
     {
         $this->authPakar();
-        
+
         return Inertia::render('Pakar/TambahKepribadian');
     }
 
@@ -44,8 +44,7 @@ class KepribadianController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
-        dd($request);
+    {
         $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
         $this->authPakar();
         $kepribadian = new Kepribadian;
@@ -61,7 +60,7 @@ class KepribadianController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {   
+    {
         $this->authPakar();
         $data = [
             'id' => $id,
@@ -75,7 +74,6 @@ class KepribadianController extends Controller
      */
     public function update(Request $request,$id)
     {
-        dd($request);
         $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
         $this->authPakar();
         $kepribadian = Kepribadian::find($id);

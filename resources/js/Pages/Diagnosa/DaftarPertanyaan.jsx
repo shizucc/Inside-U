@@ -111,7 +111,6 @@ export default function DaftarPertanyaan(props) {
     const prev_disabled = (page.page_number == 1) ? true : false;
     const next_disabled = (!is_page_terjawab) ? true : false;
     const show_submit = (page.page_number == max_page_count) ? true : false;
-    const can_submit = (progress < 100) ? false : true;
 
     {/* Ambil 4 pertanyaan */}
     const pertanyaans_sliced = pertanyaans.slice(page.nomor_pertanyaan, page.nomor_pertanyaan+max_pertanyaan_in_page);
@@ -120,6 +119,8 @@ export default function DaftarPertanyaan(props) {
     const { data, setData, post, processing, errors } = useForm({
         jawaban: jawabans,
     })
+
+    const can_submit = (progress < 100 || processing) ? false : true;
 
     function submit(e) {
         e.preventDefault();
