@@ -39,12 +39,11 @@ function App(props) {
     <>
       <div>
         <Table 
-          signature={'ciri_ciri'}
+          signature={'pakar'}
           columns={columns} 
           data={data} 
           route_for_edit={props.route_for_edit} 
           route_for_delete={props.route_for_delete}
-          route_for_show = {props.route_for_show}
         />
       </div>
     </>

@@ -17,7 +17,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 // import { Link } from "@mui/material";
 import {Link} from "@inertiajs/react"
-import { useForm } from "@inertiajs/react";
+
 import { router } from "@inertiajs/react";
 import { useState } from "react";
 import Modal from '@mui/material/Modal';
@@ -137,14 +137,10 @@ export function ModalDelete({id,openOption, handleClose}) {
     );
 }
 
-export default function Table({
-    signature,
-    columns,
-    data,
-    route_for_show,
-    route_for_edit,
-    route_for_delete,
-}) {
+export default function Table(props) {
+    console.log(props.data)
+    let data = props.data
+    let columns = props.columns
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -241,7 +237,7 @@ export default function Table({
                                                     </th>
                                                 )
                                             )}
-                                            {(signature!=("index")) ? (<>
+                                            {(props.signature!=("index")) ? (<>
                                             
                                                 <th
                                                     colSpan={2}
@@ -333,7 +329,7 @@ export default function Table({
                                                     );
                                                 })}
                                                 {
-                                                    signature!=("history")? (
+                                                    props.signature!=("history")? (
                                                     <>
                                                         <td>
                                                             <div>
@@ -341,7 +337,7 @@ export default function Table({
                                                                     
                                                                     className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg"
                                                                     href={route(
-                                                                        route_for_edit,
+                                                                        props.route_for_edit,
                                                                         parseInt(
                                                                             row.original.id
                                                                         ) 
@@ -357,7 +353,7 @@ export default function Table({
                                                                 method="delete"
                                                                 className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
                                                                 href={route(
-                                                                    route_for_delete,
+                                                                    props.route_for_delete,
                                                                         parseInt(
                                                                             row.original.id
                                                                         )
@@ -372,7 +368,7 @@ export default function Table({
                                                     </>):null
                                                 }
                                                 {
-                                                    (signature=="history" ? (
+                                                    (props.signature=="history" ? (
                                                     <>
                                                     <td className="px-5">
                                                         <Link
