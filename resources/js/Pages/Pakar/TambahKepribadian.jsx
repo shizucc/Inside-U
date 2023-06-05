@@ -4,6 +4,7 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useForm } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import { Head } from '@inertiajs/react';
+import { Box } from "@mui/material";
 
 export default function TambahKepribadian(props){
     console.log(props)
@@ -70,6 +71,16 @@ export default function TambahKepribadian(props){
                             value={deskripsi}
                             onChange={handleDeskripsi}
                         />
+                        {props.id? (<>
+                            <Box
+                                sx={{
+                                    width: 300,
+                                    height: 300,
+                                }}
+                            >
+                                <img src={props.kepribadian.ilustrasi}  />
+                            </Box>
+                        </>) : null}
                         <input 
                             type="file" 
                             className="w-full file:border file:bg-white file:rounded-md  file:mb-4"
@@ -83,7 +94,9 @@ export default function TambahKepribadian(props){
                             )}
                             <br />
 
-                        <button type="submit" className="h-[40px] w-2/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out"><AddRoundedIcon/><span>Tambah Kepribadian</span></button>
+                        <button type="submit" className="h-[40px] w-2/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out"><AddRoundedIcon/>
+                        <span>{props.id? "Update Kepribadian" : "Tambah Kepribadian"}</span>
+                        </button>
                     </form>
                 </div>
                 <div id="bg" className="w-2/5 p-4 bg-[#88CCE1] rounded-r-lg">
