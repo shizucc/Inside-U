@@ -32,7 +32,7 @@ class HistoriController extends Controller
         return Inertia::render('Pakar/HistoriDiagnosa',$data);
     }
 
-    public function show(UserKepribadian $userKepribadian)
+    public function show($id_user,$id_diagnosa)
     {
         //
     }

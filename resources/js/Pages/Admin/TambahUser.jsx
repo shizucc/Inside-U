@@ -7,15 +7,18 @@ import { useState } from "react";
 import { useForm } from "@inertiajs/react";
 import Box from '@mui/material/Box';
 import BasicSelect from "@/Components/BasicSelect";
+import PasswordInput from "./Partials/PasswordInput";
 
 export default function TambahUser (props){
-    const [username,setUsername] = useState('')
-    const [email,setEmail] = useState('')
-    const [role,setRole] = useState('');
+    // console.log(props)
+    const [username,setUsername] = useState(props.user? props.user.username : '')
+    const [email,setEmail] = useState(props.user? props.user.email : '')
+    const [role,setRole] = useState(props.signature? props.signature : null);
     const [password,setPassword] = useState('')
     
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post,put, processing, errors, reset } = useForm({
+        id:props.user.id,
         username: username,
         email: email,
         password: password,
@@ -45,7 +48,12 @@ export default function TambahUser (props){
 
     const submit = (e) => {
         e.preventDefault();
-        post(route('admin.pakar.store'))
+        if(props.user){
+            put(route('admin.pakar.update',props.user))
+        } else{
+
+            post(route('admin.pakar.store'))
+        }
     }
     return (
         <SidebarAdmin>
@@ -74,11 +82,19 @@ export default function TambahUser (props){
                         <p class="mb-1 mt-0 invisible peer-invalid:visible text-pink-600 text-sm">
                             Tolong masukkan alamat email yang tepat
                         </p>
-                        <input 
+
+                        {/* Input password yang lama */}
+                        {/* <input 
                             required
                             type="password" 
                             className="w-4/5 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 rounded-lg  mb-6" 
                             placeholder="Password"
+                            value={password}
+                            onChange={handleChangePassword}
+                        /> */}
+
+                        <PasswordInput
+                            required
                             value={password}
                             onChange={handleChangePassword}
                         />
