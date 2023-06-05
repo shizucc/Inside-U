@@ -6,7 +6,7 @@ import { Head } from '@inertiajs/react';
 export default function ManajemenPakar(props){
     return (
         <>
-            <SidebarAdmin>
+            <SidebarAdmin username={props.auth.user.username}>
                 <Head>
                     <title>Manajemen Pakar</title>
                 </Head>

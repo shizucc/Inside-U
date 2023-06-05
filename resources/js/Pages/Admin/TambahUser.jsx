@@ -57,7 +57,7 @@ export default function TambahUser (props){
         }
     }
     return (
-        <SidebarAdmin>
+        <SidebarAdmin username={props.auth.user.username}>
             <Head>
                 <title>Tambah User</title>
             </Head>

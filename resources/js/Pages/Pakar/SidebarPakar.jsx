@@ -43,7 +43,7 @@ export default function SidebarPakar(props) {
             <div className='grid-rows-3'>
               <div className='my-10'><ApplicationLogo /></div>
               <div>
-                <h1 className='text-center font-bold text-black text-xl mb-8'>Username</h1>
+                <h1 className='text-center font-bold text-black text-xl mb-8'>{props.username}</h1>
               <StyledTab><Link href={route('pakar.index')}><MenuList icon={<IconDashboard/>} nama="Dashboard"/></Link></StyledTab>
               <StyledTab><Link  href={route('pakar.kepribadian.index')}><MenuList icon={<TheaterComedyOutlinedIcon/>} nama="Manajemen Kepribadian"/></Link></StyledTab>
               <StyledTab><Link href={route('pakar.ciri.index')}><MenuList icon={<BoyOutlinedIcon/>} nama="Manajemen Ciri-Ciri"/></Link></StyledTab>

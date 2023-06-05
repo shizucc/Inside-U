@@ -46,7 +46,7 @@ export default function TambahKepribadian(props){
     }
     
     return (
-        <SidebarPakar>
+        <SidebarPakar username={props.auth.user.username}>
             <Head>
                 <title>Tambah Kepribadian</title>
             </Head>

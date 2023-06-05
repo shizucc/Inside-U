@@ -44,7 +44,7 @@ export default function TambahCiriCiri(props) {
     }
 
     return (
-        <SidebarPakar>
+        <SidebarPakar username={props.auth.user.username}>
             <Head>
                 <title>Tambah Ciri-Ciri</title>
             </Head>
