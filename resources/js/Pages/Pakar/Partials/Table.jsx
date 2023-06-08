@@ -24,6 +24,7 @@ import Modal from '@mui/material/Modal';
 import { Box } from "@mui/material";
 import BasicModal from "@/Components/BasicModal";
 import { useNavigate } from 'react-router-dom';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
 // import Button from '@mui/material/Button';
 
@@ -286,7 +287,7 @@ export default function Table(props) {
                                                             <div>
                                                                 <Link
                                                                     
-                                                                    className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg"
+                                                                    className="text-lg font-bold bg-[#70B547] text-[#F9F9F9] py-[10px] px-[20px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#446A2D] hover:drop-shadow-lg"
                                                                     href={route(
                                                                         props.route_for_edit,
                                                                         parseInt(
@@ -294,7 +295,7 @@ export default function Table(props) {
                                                                         ) 
                                                                     )}
                                                                 >
-                                                                    Edit
+                                                                    <span className="inline-flex align-middle gap-2"><ModeEditOutlineOutlinedIcon fontSize="small" className="mt-1"/>Edit</span>
                                                                 </Link>
                                                             </div>
                                                         </td>
