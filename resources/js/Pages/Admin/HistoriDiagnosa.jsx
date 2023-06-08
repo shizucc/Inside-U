@@ -43,6 +43,7 @@ export default function HistoriDiagnosa(props){
                 datas={col}
                 route_for_show={"diagnosa.hasil"}
                 route_for_delete={"admin.histori.destroy"}
+                message_where_delete = {'Apakah anda yakin hasil diagnosa ini?'}
 
             />
         </Sidebar>

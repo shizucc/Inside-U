@@ -49,6 +49,7 @@ function App(props) {
         data={data} 
         route_for_edit={"pakar.index"}
         route_for_delete={"pakar.index"}
+        
         />
       </div>
     </>

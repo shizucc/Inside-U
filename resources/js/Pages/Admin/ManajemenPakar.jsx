@@ -17,6 +17,7 @@ export default function ManajemenPakar(props){
                     route_for_edit={'admin.pakar.edit'}
                     route_for_update={'admin.pakar.update'}
                     route_for_delete={'admin.pakar.destroy'}
+                    message_where_delete = {'Apakah anda yakin menghapus Pakar ini?'}
                  />
             </SidebarAdmin>
         </>

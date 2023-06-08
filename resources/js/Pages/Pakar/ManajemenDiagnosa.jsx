@@ -1,7 +1,6 @@
 import { Head } from '@inertiajs/react';
 
 export default function ManajemenKepribadian(props){
-    console.log(props)
     return(
         <>
         <Head>

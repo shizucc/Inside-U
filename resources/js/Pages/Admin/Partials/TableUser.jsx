@@ -44,6 +44,7 @@ function App(props) {
           data={data} 
           route_for_edit={props.route_for_edit} 
           route_for_delete={props.route_for_delete}
+          message_where_delete = {props.message_where_delete}
         />
       </div>
     </>

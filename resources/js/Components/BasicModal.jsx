@@ -20,17 +20,15 @@ export default function BasicModal(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleDelete = () => {
-    // Logika untuk menghapus data
-    // Misalnya, panggil fungsi props.onDelete() atau lakukan permintaan HTTP ke endpoint hapus data
-    // Setelah menghapus data, Anda dapat menutup modal dengan handleClose()
-    
-    handleClose();
-  };
+  const handleAction = () => {
+
+    props.onModalAction()
+    handleClose()
+  }
 
   return (
     <div>
-      <Button onClick={handleOpen}>Hapus</Button>
+      <Button onClick={handleOpen}>{props.title}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -39,29 +37,23 @@ export default function BasicModal(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Hapus Data
+            {props.title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ my: 2 }}>
-            Apakah anda yakin ingin menghapus data ini?
+            {props.desc}
           </Typography>
           <Button
-          variant="contained"
-          color="primary"
-          onClick={handleDelete}>
-            Hapus
+            variant="contained"
+            color="primary"
+            onClick={() => handleAction()}>
+              {props.title}
           </Button>
-          {/* <Link
-            method="delete"
-            className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
-            href={route(
-            route_for_delete,
-            parseInt(
-            row.original.id
-            )
-            )}
-            >
-                Hapus
-            </Link> */}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleClose}>
+              Batal
+          </Button>
         </Box>
       </Modal>
     </div>

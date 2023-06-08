@@ -19,6 +19,7 @@ export default function ManajemenKepribadian(props){
             route_for_edit={'pakar.kepribadian.edit'}
             route_for_update={'pakar.kepribadian.update'}
             route_for_delete={'pakar.kepribadian.destroy'}
+            message_where_delete={'Anda akan kehilangan seluruh hasil diagnosa, ciri-ciri, dan pertanyaan dengan kepribadian ini, Apakah anda yakin ?'}
             />
         </SidebarPakar>
     </>)

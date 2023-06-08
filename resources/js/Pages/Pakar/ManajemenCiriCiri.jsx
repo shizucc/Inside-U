@@ -5,7 +5,7 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { Head } from '@inertiajs/react';
 
 export default function ManajemenCiriCiri(props){
-    console.log(props)
+    
     return(
     <>
     <SidebarPakar username={props.auth.user.username}>
@@ -20,6 +20,7 @@ export default function ManajemenCiriCiri(props){
             route_for_edit={'pakar.ciri.edit'}
             route_for_update={'pakar.ciri.update'}
             route_for_delete={'pakar.ciri.destroy'}
+            message_where_delete={'Anda akan kehilangan seluruh pertanyaan dengan ciri-ciri ini, Apakah anda yakin ?'}
         />
     </SidebarPakar>
     </>

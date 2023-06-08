@@ -19,6 +19,7 @@ export default function ManajemenPertanyaan(props){
             route_for_edit={'pakar.pertanyaan.edit'}
             route_for_update={'pakar.pertanyaan.update'}
             route_for_delete={'pakar.pertanyaan.destroy'}
+            message_where_delete={'Apakah anda yakin ?'}
         />
     </SidebarPakar>
     </>)

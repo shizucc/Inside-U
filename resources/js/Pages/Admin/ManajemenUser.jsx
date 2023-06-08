@@ -17,6 +17,7 @@ export default function ManajemenPakar(props){
                     route_for_edit={'admin.user.edit'}
                     route_for_update={'admin.user.update'}
                     route_for_delete={'admin.user.destroy'}
+                    message_where_delete = {'Anda akan kehilangan semua riwayat diagnosa dari user ini, apakah anda yakin?'}
                  />
             </SidebarAdmin>
         </>
