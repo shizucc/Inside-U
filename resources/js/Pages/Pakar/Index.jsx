@@ -2,8 +2,6 @@ import TableIndex from "./Partials/TableIndex"
 import SidebarPakar from "./SidebarPakar"
 
 export default function Index(props){
-  // console.log(props.columns)
-  
   const data = JSON.stringify(props.columns)
   const columns = JSON.parse(data)
 

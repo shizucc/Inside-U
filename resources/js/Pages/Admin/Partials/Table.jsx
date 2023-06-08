@@ -6,7 +6,6 @@ import {
     useSortBy,
     usePagination,
 } from "react-table";
-import regeneratorRuntime from "regenerator-runtime";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { ArrowForwardIos, LastPage, Router } from "@mui/icons-material";
@@ -15,18 +14,11 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import { Link } from "@mui/material";
 import {Link} from "@inertiajs/react"
 import {useForm} from "@inertiajs/react"
-import { router } from "@inertiajs/react";
-import { useState } from "react";
-import Modal from '@mui/material/Modal';
-import { Box } from "@mui/material";
 import BasicModal from "@/Components/BasicModal";
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
-// import Button from '@mui/material/Button';
-
-//import { BeakerIcon } from '@heroicons/react/solid';
 // Define a default UI for filtering
 
 export function classNames(...classes) {
@@ -199,10 +191,6 @@ export default function Table(props) {
                                 >
                                     {page.map((row, i) => {
                                         
-                                        
-                                        
-                                        // new
-                                        // <div key={row.id}>
                                         prepareRow(row);
                                         return (
                                             <tr {...row.getRowProps()}>
@@ -279,7 +267,7 @@ export default function Table(props) {
                                                             <div>
                                                                 <Link
                                                                     
-                                                                    className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg"
+                                                                    className="text-lg font-bold bg-[#70B547] text-[#F9F9F9] py-[10px] px-[20px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#446A2D] hover:drop-shadow-lg"
                                                                     href={route(
                                                                         props.route_for_edit,
                                                                         parseInt(
@@ -287,7 +275,7 @@ export default function Table(props) {
                                                                         ) 
                                                                     )}
                                                                 >
-                                                                    Edit
+                                                                    <span className="inline-flex align-middle gap-2"><ModeEditOutlineOutlinedIcon fontSize="small" className="mt-1"/>Edit</span>
                                                                 </Link>
                                                             </div>
                                                         </td>
@@ -317,13 +305,7 @@ export default function Table(props) {
                                                         </Link>
                                                     </td>
                                                     <td className="px-5">
-                                                        {/* <Link
-                                                            method="delete"
-                                                            className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
-                                                            href={route(props.route_for_delete,{user_id:row.original.user_id,diagnosa_id:row.original.diagnosa_id})}
-                                                        >
-                                                            Hapus
-                                                        </Link> */}
+                                                        
                                                         <BasicModal
                                                                 title="Hapus"
                                                                 desc={props.message_where_delete}
@@ -369,7 +351,7 @@ export default function Table(props) {
                             </span>
                         </span>
                     </div>
-                    {/* Navigation */}
+                    
                     <div>
                         <nav
                             className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"

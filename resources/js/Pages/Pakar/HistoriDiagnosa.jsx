@@ -4,10 +4,8 @@ import { Head } from '@inertiajs/react';
 
 
 export default function HistoriDiagnosa(props){
-    // console.log(props.historis)
     let historis = props.historis;
     historis = historis.filter(histori => histori.kepribadians.length != 0);
-    // console.log(historis)
     let kepribadians = [];
 
     historis ? historis.map(histori => {
@@ -29,7 +27,6 @@ export default function HistoriDiagnosa(props){
         hasil:kepribadian.jenis_kepribadian
         
     }))
-    // console.log(kepribadians)
 
 
     return(

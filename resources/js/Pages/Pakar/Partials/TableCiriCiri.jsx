@@ -28,7 +28,6 @@ function App(props) {
   );
 
   const data = datas
-    console.log(data)
   return (
     <>
       <div>

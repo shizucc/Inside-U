@@ -1,8 +1,7 @@
 import TableCiriCiri from "./Partials/TableCiriCiri";
 import SidebarPakar from "./SidebarPakar";
-import Button from '@mui/material/Button';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 export default function ManajemenCiriCiri(props){
     
@@ -13,7 +12,7 @@ export default function ManajemenCiriCiri(props){
             <title>Manajemen Ciri-Ciri</title>
         </Head>
         <h1 className="mb-5 font-poppins font-medium text-4xl">Manajemen Ciri-Ciri</h1>
-        <button className="my-2 py-2 px-4 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out" href={route('pakar.ciri.create')} ><AddRoundedIcon/><span className="font-poppins font-medium"> Tambah Ciri Ciri</span></button>
+        <Link className="my-3 py-3 px-5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out" href={route('pakar.ciri.create')} ><AddRoundedIcon/><span className="font-poppins font-medium"> Tambah Ciri Ciri</span></Link>
         <TableCiriCiri 
             datas={props.ciri_ciris}
             route_for_show={''}

@@ -1,17 +1,11 @@
-// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-// import DeleteUserForm from './Partials/DeleteUserForm';
-// import UpdatePasswordForm from './Partials/UpdatePasswordForm';
-// import { Head } from '@inertiajs/react';
+
 import Navbar from '@/Components/Navbar';
 import { Head } from '@inertiajs/react';
-import { Link } from '@mui/material';
 import TableHistori from "./Partials/TableHistori"
 
 export default function Histori(props) {
-    // console.log(props.historis)
     let historis = props.historis;
     historis = historis.filter(histori => histori.kepribadians.length != 0);
-    // console.log(historis)
     let kepribadians = [];
 
     historis ? historis.map(histori => {
@@ -33,7 +27,6 @@ export default function Histori(props) {
         hasil:kepribadian.jenis_kepribadian
 
     }))
-    // console.log(kepribadians)
 
     return (
         <>

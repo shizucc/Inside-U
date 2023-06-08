@@ -6,7 +6,6 @@ import {
     useSortBy,
     usePagination,
 } from "react-table";
-import regeneratorRuntime from "regenerator-runtime";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { ArrowForwardIos, LastPage, Router } from "@mui/icons-material";
@@ -15,18 +14,11 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import { Link } from "@mui/material";
 import {Link} from "@inertiajs/react"
-import { useForm } from "@inertiajs/react";
-import { router } from "@inertiajs/react";
-import { useState } from "react";
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/material";
 import BasicModal from "@/Components/BasicModal";
 
-// import Button from '@mui/material/Button';
-
-//import { BeakerIcon } from '@heroicons/react/solid';
 // Define a default UI for filtering
 
 export function classNames(...classes) {
@@ -98,8 +90,6 @@ export function deletePertanyaan({ id }) {
 }
 
 export function ModalDelete({id,openOption, handleClose}) {
-    // const [closeModalDelete,setCloseModalDelete] = useState(false)
-    // const handleCloseModalDelete = () => setCloseModalDelete(true);
     const style = {
         position: 'absolute',
         top: '50%',
@@ -111,7 +101,6 @@ export function ModalDelete({id,openOption, handleClose}) {
         boxShadow: 24,
         p: 4,
       };
-    console.log("Hello")
     return (
             <Modal
                 open={openOption}

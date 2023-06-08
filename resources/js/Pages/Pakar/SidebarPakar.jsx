@@ -11,8 +11,6 @@ import IconLogout from '@/Components/IconLogout';
 import MenuList from '@/Components/MenuList';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
-import IconManajemenCiriCiri from '@/Components/IconManajemenCiriCiri';
-import IconManajemenPertanyaan from '@/Components/IconManajemenPertanyaan';
 import TheaterComedyOutlinedIcon from '@mui/icons-material/TheaterComedyOutlined';
 import BoyOutlinedIcon from '@mui/icons-material/BoyOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';

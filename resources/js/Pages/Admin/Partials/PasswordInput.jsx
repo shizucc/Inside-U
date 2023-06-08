@@ -39,6 +39,7 @@ export default function PasswordInput(props){
         label="Password"
         value={props.value}
         onChange={handleChange}
+        className='mb-6'
         />
     </>)
 }

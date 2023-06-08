@@ -7,9 +7,8 @@ export default function HistoriDiagnosa(props){
     
     let historis = props.historis;
     historis = historis.filter(histori => histori.kepribadians.length != 0);
-    // console.log(historis)
     let kepribadians = [];
-    // console.log(kepribadians)
+
     historis ? historis.map(histori => {
         let n = histori.kepribadians.length/4;
         for (let i = 0; i < n; i++) {

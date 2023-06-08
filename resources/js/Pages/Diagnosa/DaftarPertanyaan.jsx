@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { useForm, Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Progressbar from '@/Pages/Diagnosa/Partials/Progressbar';
-import InputLabel from '@/Components/InputLabel';
-import TextInput from '@/Components/TextInput';
 import Pertanyaan from '@/Pages/Diagnosa/Partials/Pertanyaan';
 import ControlButtons from '@/Pages/Diagnosa/Partials/ControlButtons';
 import { Head } from '@inertiajs/react';

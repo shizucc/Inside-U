@@ -1,17 +1,12 @@
 import SidebarAdmin from "./Sidebar"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import { useState } from "react";
 import { useForm } from "@inertiajs/react";
-import Box from '@mui/material/Box';
 import BasicSelect from "@/Components/BasicSelect";
 import PasswordInput from "./Partials/PasswordInput";
 import { Head } from '@inertiajs/react';
 
 export default function TambahUser (props){
-    console.log(props)
     const [username,setUsername] = useState(props.user? props.user.username : '')
     const [email,setEmail] = useState(props.user? props.user.email : '')
     const [role,setRole] = useState(props.signature? props.signature : null);
@@ -77,31 +72,20 @@ export default function TambahUser (props){
                         <input 
                             required
                             type="email" 
-                            className=" peer w-4/5 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 rounded-lg  mb-1" 
+                            className=" peer w-4/5 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 rounded-lg  mb-6" 
                             placeholder="Email"
                             value={email}
                             onChange={handleChangeEmail}
                         
                         />
-                        <p class="mb-1 mt-0 invisible peer-invalid:visible text-pink-600 text-sm">
-                            Tolong masukkan alamat email yang tepat
-                        </p>
-
-                        {/* Input password yang lama */}
-                        {/* <input 
-                            required
-                            type="password" 
-                            className="w-4/5 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 rounded-lg  mb-6" 
-                            placeholder="Password"
-                            value={password}
-                            onChange={handleChangePassword}
-                        /> */}
 
                         <PasswordInput
                             required
                             value={password}
+                            placeholder="Password"
                             onChange={handleChangePassword}
                         />
+                        
                         <BasicSelect 
                             required
                             nama="Jenis Akun"

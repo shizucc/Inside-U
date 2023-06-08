@@ -7,10 +7,8 @@ import { Head } from '@inertiajs/react';
 import { Box } from "@mui/material";
 
 export default function TambahKepribadian(props){
-    // console.log(props)
     const [kepribadian,setKepribadian] =  useState(props.id? props.kepribadian.jenis_kepribadian : '')
     const [deskripsi,setDeskripsi] = useState(props.id? props.kepribadian.deskripsi : '')
-    // const [ilustrasi,setIlustrasi] = useState(props.id? props.ilustrasi : '')
     const {data,setData,post,patch,progress} = useForm({
         jenis_kepribadian : kepribadian,
         deskripsi : deskripsi,
@@ -25,9 +23,6 @@ export default function TambahKepribadian(props){
         setData('deskripsi',deskripsi)
     },[deskripsi])
 
-    // useEffect(()=>{
-    //     setData('ilustrasi',ilustrasi)
-    // },[ilustrasi])
 
     const handleKepribadian = (event) =>{
         setKepribadian(event.target.value)
@@ -36,9 +31,6 @@ export default function TambahKepribadian(props){
         setDeskripsi(event.target.value)
     }
 
-    // const handleIlustrasi = (event) => {
-    //     setIlustrasi(event.target.files[0])
-    // }
     const submit = (event) => {
         
         event.preventDefault()

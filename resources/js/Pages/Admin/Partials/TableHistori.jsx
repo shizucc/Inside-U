@@ -1,9 +1,7 @@
 import React from "react";
 import Table from "./Table";
-import { DataSaverOff } from "@mui/icons-material";
 
 function App(props) {
-  // console.log(props.datas)
   let datas = []
   let i = 1
   
