@@ -29,7 +29,6 @@ export default function HistoriDiagnosa(props){
         hasil:kepribadian.jenis_kepribadian
         
     }))
-    console.log(col)
 
 
     return(

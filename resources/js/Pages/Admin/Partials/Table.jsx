@@ -96,7 +96,6 @@ function GlobalFilter({
 
 
 export default function Table(props) {
-    console.log(props.data)
     let data = props.data
     let columns = props.columns
     // Use the state and functions returned from useTable to build your UI
@@ -134,7 +133,6 @@ export default function Table(props) {
     const handleDeleteClick = (id) => {
         handleDelete(route(props.route_for_delete, id))
     }
-
 
     return (
         <>
@@ -319,13 +317,18 @@ export default function Table(props) {
                                                         </Link>
                                                     </td>
                                                     <td className="px-5">
-                                                        <Link
+                                                        {/* <Link
                                                             method="delete"
                                                             className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
                                                             href={route(props.route_for_delete,{user_id:row.original.user_id,diagnosa_id:row.original.diagnosa_id})}
                                                         >
                                                             Hapus
-                                                        </Link>
+                                                        </Link> */}
+                                                        <BasicModal
+                                                                title="Hapus"
+                                                                desc={props.message_where_delete}
+                                                                onModalAction={() => handleDeleteClick({user_id : row.original.user_id, diagnosa_id : row.original.diagnosa_id})}
+                                                        />
                                                     </td>
                                                     </>):null)
                                                 }

@@ -22,8 +22,7 @@ function App(props) {
 
 
 
-  const columns = React.useMemo(
-    () => [
+  const columns =  [
       {
         Header: "Username",
         accessor: "username",
@@ -36,12 +35,10 @@ function App(props) {
         Header: "hasil",
         accessor: "hasil",
       },
-    ],
-    []
-  );
+    ]
+
 
   const data = datas
-  console.log(data)
   return (
     <>
       <div>
