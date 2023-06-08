@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 const style = {
   position: 'absolute',
@@ -11,8 +12,8 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
+  borderRadius: '8px' ,
   p: 4,
 };
 
@@ -28,7 +29,7 @@ export default function BasicModal(props) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>{props.title}</Button>
+      <button className="text-md font-bold bg-[#DD4A1C] text-[#F9F9F9] py-[8px] px-[20px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#8B3A20] hover:drop-shadow-lg" onClick={handleOpen} ><span className='inline-flex align-middle gap-2'><DeleteOutlineOutlinedIcon/>{props.title}</span></button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -42,18 +43,25 @@ export default function BasicModal(props) {
           <Typography id="modal-modal-description" sx={{ my: 2 }}>
             {props.desc}
           </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => handleAction()}>
+          <div className='grid grid-cols-2 gap-4 m-auto'>
+            <div className='m-auto'>
+              <button
+              // variant="contained"
+              // color="error"
+              className="font-bold bg-[#DD4A1C] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#8B3A20] hover:drop-shadow-lg"
+              onClick={() => handleAction()}>
               {props.title}
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleClose}>
+              </button>
+            </div>
+            <div className='m-auto'>
+              <button
+              // variant="contained"
+              // color="primary"
+              className='font-bold bg-[#70B547] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#446A2D] hover:drop-shadow-lg'
+              onClick={handleClose}>
               Batal
-          </Button>
+              </button></div>
+            </div>
         </Box>
       </Modal>
     </div>
