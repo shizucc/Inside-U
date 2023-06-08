@@ -5,38 +5,33 @@ import { useForm } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import { Head } from '@inertiajs/react';
 import { Box } from "@mui/material";
+import { PostAddSharp } from "@mui/icons-material";
 
 export default function TambahKepribadian(props){
     const [kepribadian,setKepribadian] =  useState(props.id? props.kepribadian.jenis_kepribadian : '')
     const [deskripsi,setDeskripsi] = useState(props.id? props.kepribadian.deskripsi : '')
-    const {data,setData,post,patch,progress} = useForm({
+
+    const {data,setData,post,put,progress} = useForm({
+        id : props.id? props.id : null,
         jenis_kepribadian : kepribadian,
         deskripsi : deskripsi,
         ilustrasi : null,
     })
 
-    useEffect(()=>{
-        setData('jenis_kepribadian', kepribadian)
-    },[kepribadian])
-
-    useEffect(()=>{
-        setData('deskripsi',deskripsi)
-    },[deskripsi])
-
 
     const handleKepribadian = (event) =>{
+        setData('jenis_kepribadian', event.target.value)
         setKepribadian(event.target.value)
     }
     const handleDeskripsi = (event) => {
+        setData('deskripsi',event.target.value)
         setDeskripsi(event.target.value)
     }
 
     const submit = (event) => {
         
         event.preventDefault()
-        if(props.id){
-            patch(route('pakar.kepribadian.update',props.id))
-        } else {post(route('pakar.kepribadian.store'))}
+        post(route('pakar.kepribadian.store'))
     }
     
     return (
@@ -78,7 +73,7 @@ export default function TambahKepribadian(props){
                             type="file" 
                             className="w-full file:border file:bg-white file:rounded-md  file:mb-4"
                             onChange={(e)=>{setData('ilustrasi',e.target.files[0])}}
-                           
+                            required
                         />
                         {progress && (
                             <progress value={progress.percentage} max="100">

@@ -25,7 +25,7 @@ class KepribadianController extends Controller
         $this->authPakar();
 
         $data = [
-            'kepribadians' => Kepribadian::all()
+            'kepribadians' => Kepribadian::orderBy('id')->get()
         ];
         return Inertia::render('Pakar/ManajemenKepribadian', $data);
     }
@@ -44,13 +44,21 @@ class KepribadianController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
+    {   
+        // dd($request->ilustrasi);
         $this->authPakar();
-        $kepribadian = new Kepribadian;
+        $kepribadian = new Kepribadian();
+        if($request->id!=null){
+            $kepribadian = Kepribadian::find($request->id);
+        }
+        if($request->ilustrasi!=null){
+            $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
+            $kepribadian->ilustrasi = $path;
+        } else {
+            $kepribadian->ilustrasi = "";
+        }
         $kepribadian->jenis_kepribadian = $request->jenis_kepribadian;
         $kepribadian->deskripsi = $request->deskripsi;
-        $kepribadian->ilustrasi = $path;
         $kepribadian->save();
 
         return redirect(route('pakar.kepribadian.index'));
@@ -72,18 +80,6 @@ class KepribadianController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
-    {
-        $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
-        $this->authPakar();
-        $kepribadian = Kepribadian::find($id);
-        $kepribadian->jenis_kepribadian = $request->jenis_kepribadian;
-        $kepribadian->deskripsi = $request->deskripsi;
-        $kepribadian->ilustrasi = $path;
-        $kepribadian->save();
-
-        return redirect(route('pakar.kepribadian.index'));
-    }
 
     /**
      * Remove the specified resource from storage.

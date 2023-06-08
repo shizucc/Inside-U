@@ -41,15 +41,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Pakar
     Route::get('/pakar', [PakarController::class,'index'])->name('pakar.index');
 
-    Route::resource('pakar/kepribadian', PakarKepribadianController::class)->names([
+    Route::resource('pakar/kepribadian', PakarKepribadianController::class)->except('update')->names([
         'index' => 'pakar.kepribadian.index',
         'create' => 'pakar.kepribadian.create',
         'store' => 'pakar.kepribadian.store',
         'show' => 'pakar.kepribadian.show',
         'edit' => 'pakar.kepribadian.edit',
-        'update' => 'pakar.kepribadian.update',
         'destroy' => 'pakar.kepribadian.destroy',
     ]);
+
+    // Route::post('/pakar/kepribadian', [PakarKepribadianController::class, 'update'])->name('pakar.kepribadian.update');
 
     Route::resource('pakar/ciri', PakarCiriController::class)->names([
         'index' => 'pakar.ciri.index',
