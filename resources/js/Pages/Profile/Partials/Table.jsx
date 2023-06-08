@@ -6,6 +6,7 @@ import {
     useSortBy,
     usePagination,
 } from "react-table";
+import regeneratorRuntime from "regenerator-runtime";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { ArrowForwardIos, LastPage, Router } from "@mui/icons-material";
@@ -15,6 +16,9 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {Link} from "@inertiajs/react"
+import { useForm } from "@inertiajs/react";
+import { router } from "@inertiajs/react";
+import { useState } from "react";
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/material";
 import BasicModal from "@/Components/BasicModal";
