@@ -15,10 +15,15 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Link } from "@mui/material";
+// import { Link } from "@mui/material";
+import {Link} from "@inertiajs/react"
 import { useForm } from "@inertiajs/react";
-import { router } from '@inertiajs/react'
-//import Button from '@mui/material/Button';
+import { router } from "@inertiajs/react";
+import BasicModal from "@/Components/BasicModal";
+import { useNavigate } from 'react-router-dom';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+
+// import Button from '@mui/material/Button';
 
 //import { BeakerIcon } from '@heroicons/react/solid';
 // Define a default UI for filtering
@@ -68,9 +73,11 @@ function GlobalFilter({
         setGlobalFilter(value || undefined);
     }, 200);
 
+
+
     return (
-        <label className="flex gap-x-2 items-baseline">
-            <span className="text-gray-700">Search: </span>
+        <label className="my-5 flex gap-x-2 items-baseline">
+            <span className="text-gray-700">Cari: </span>
             <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -79,13 +86,19 @@ function GlobalFilter({
                     setValue(e.target.value);
                     onChange(e.target.value);
                 }}
-                placeholder={`${count} records...`}
+                placeholder={`${count} item...`}
             />
         </label>
     );
 }
 
-export default function Table({ columns, data, route_for_edit, route_for_delete}) {
+
+
+
+
+export default function Table(props) {
+    const columns = props.columns
+    const data = props.data
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -117,18 +130,24 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
         useSortBy,
         usePagination
     );
-    // Render the UI for your table
-    const handleDelete = (id) => {
-        router.delete(route(route_for_delete,id))
+    // const navigate = useNavigate();
+    
+    const {delete : handleDelete, put:handleUpdate} = useForm()
+    const handleDeleteClick = (id) => {
+        handleDelete(route(props.route_for_delete,id))
     }
+
+
+
     return (
         <>
             <GlobalFilter
                 preGlobalFilteredRows={preGlobalFilteredRows}
                 globalFilter={state.globalFilter}
                 setGlobalFilter={setGlobalFilter}
+                className="my-5"
             />
-            <div className="mt-8 ml-2 mr-12 flex flex-col">
+            <div className="mt-8 ml-2 mr-4 flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -167,11 +186,15 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                                     </th>
                                                 )
                                             )}
-                                            <th
-                                                colSpan={2}
-                                                scope="col"
-                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                            ></th>
+                                            {(props.signature!=("index")) ? (<>
+                                            
+                                                <th
+                                                    colSpan={2}
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >Aksi</th>
+                                            
+                                            </>) : null}
                                         </tr>
                                     ))}
                                 </thead>
@@ -180,10 +203,16 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                     className="bg-white divide-y divide-gray-200"
                                 >
                                     {page.map((row, i) => {
+                                        
+                                        
+                                        
                                         // new
+                                        // <div key={row.id}>
                                         prepareRow(row);
                                         return (
                                             <tr {...row.getRowProps()}>
+                                                
+                                                
                                                 {row.cells.map((cell) => {
                                                     if (
                                                         typeof cell.value ===
@@ -201,6 +230,7 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                                             data += "...";
                                                             return (
                                                                 <>
+                                                                    
                                                                     <td
                                                                         {...cell.getCellProps()}
                                                                         className="px-6 py-4 "
@@ -232,6 +262,7 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                                             );
                                                         }
                                                     }
+                                                    
                                                     return (
                                                         <>
                                                             <td
@@ -242,31 +273,59 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                                                     "Cell"
                                                                 )}
                                                             </td>
+
                                                         </>
                                                     );
                                                 })}
-                                                <td>
-                                                    <div>
-                                                    <Link
-                                                        className = "px-4 py-2 text-sm text-white rounded"
-                                                        href = {route(route_for_edit, parseInt(row.id) + 1 )}
-                                                    >
-                                                        Edit
-                                                    </Link>
+                                                {
+                                                    props.signature!=("history")&&props.signature!=("index")? (
+                                                    <>
+                                                        <td>
+                                                            <div>
+                                                                <Link
+                                                                    
+                                                                    className="text-lg font-bold bg-[#70B547] text-[#F9F9F9] py-[10px] px-[20px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#446A2D] hover:drop-shadow-lg"
+                                                                    href={route(
+                                                                        props.route_for_edit,
+                                                                        parseInt(
+                                                                            row.original.id
+                                                                        ) 
+                                                                    )}
+                                                                >
+                                                                    <span className="inline-flex align-middle gap-2"><ModeEditOutlineOutlinedIcon fontSize="small" className="mt-1"/>Edit</span>
+                                                                </Link>
+                                                            </div>
+                                                        </td>
+                                                        <td className="px-5">        
+                                                            <BasicModal
+                                                                title="Hapus"
+                                                                desc={props.message_where_delete}
+                                                                onModalAction={() => handleDeleteClick(row.original.id)}
+                                                            />
+                                                        </td>
                                                     
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <Link
-                                                        className = "px-4 py-2 text-sm text-white rounded"
-                                                        //onClick={handleDelete(parseInt(row.id))}
-                                                    >
-                                                        Hapus
-                                                    </Link>
-                                                </td>
+                                                    
+                                                    </>):null
+                                                }
+                                                {
+                                                    (props.signature=="history" ? (
+                                                    <>
+                                                    <td className="px-5">
+                                                        <Link
+                                                            className="font-bold bg-[#98A8F8] text-[#F9F9F9] py-[10px] px-[24px] rounded-[8px] transition ease-in-out duration-300 hover:bg-[#737EDE] hover:drop-shadow-lg" 
+                                                            href={route(props.route_for_show,{user_id:row.original.user_id,diagnosa_id:row.original.diagnosa_id})}
+                                                        >
+                                                            Selengkapnya
+                                                        </Link>
+                                                    </td>
+                                                    
+                                                    </>):null)
+                                                }
                                             </tr>
                                         );
-                                    })}
+                                        
+                                    })
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -323,6 +382,7 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                 <span className="sr-only">Previous</span>
                                 <ArrowBackIosIcon
                                     className="h-5 w-5"
+                                    fontSize="small"
                                     aria-hidden="true"
                                 />
                             </PageButton>
@@ -333,6 +393,7 @@ export default function Table({ columns, data, route_for_edit, route_for_delete}
                                 <span className="sr-only">Next</span>
                                 <ArrowForwardIos
                                     className="h-5 w-5"
+                                    fontSize="small"
                                     aria-hidden="true"
                                 />
                             </PageButton>

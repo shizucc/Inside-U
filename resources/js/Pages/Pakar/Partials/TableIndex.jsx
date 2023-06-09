@@ -1,47 +1,25 @@
 import React from "react";
 import Table from "./Table";
-import { DataSaverOff } from "@mui/icons-material";
 
 function App(props) {
-    // console.log(props.datas)
-    let datas = []
-    let i = 1
-    let col = []
+  let datas = []
+  let i = 1
+  
 
-    Object.values(props.datas).forEach(value => {
-        col.push(value)
-    })
-    const [col1, col2, col3] = col
 
-    const pertanyaans = col1
-    const ciri_ciris = col2
-    const kepribadians = col3
+  props.datas.forEach(col => {
+    datas.push({
+      'pertanyaan': (col.pertanyaan).charAt(0).toUpperCase() + col.pertanyaan.slice(1),
+      'ciriciri': (col.ciri_ciri).charAt(0).toUpperCase() + col.ciri_ciri.slice(1),
+      'kepribadian': (col.kepribadian).charAt(0).toUpperCase() + col.kepribadian.slice(1),
+    })
+  });
 
-     // props.datas.forEach(column => {
-    //     datas.push({
-    //         'pertanyaan' : (column.pertanyaans).charAt(0).toUpperCase() + column.pertanyaan.slice(1),
-    //     })
-    //     i+=1
-    // });
-    pertanyaans.forEach(pertanyaan =>{
-        datas.push({
-            'pertanyaan' : pertanyaan
-        })
-    })
-    ciri_ciris.forEach(ciriciri => {
-        datas.push({
-            'ciriciri' : ciriciri
-        })
-    })
-    console.log(datas)
-    
+
+
 
   const columns = React.useMemo(
     () => [
-      {
-        Header: "No",
-        accessor: "no",
-      },
       {
         Header: "Pertanyaan",
         accessor: "pertanyaan",
@@ -58,12 +36,18 @@ function App(props) {
     []
   );
 
-  const data = React.useMemo(() => datas, []);
-
+  const data = datas
   return (
     <>
       <div>
-        <Table columns={columns} data={data} />
+        <Table 
+        signature={'index'}
+        columns={columns} 
+        data={data} 
+        route_for_edit={"pakar.index"}
+        route_for_delete={"pakar.index"}
+        
+        />
       </div>
     </>
   );

@@ -3,13 +3,14 @@ import SidebarPakar from "./SidebarPakar";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import BasicSelect from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useForm } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
 
 export default function TambahCiriCiri(props) {
+    console.log(props)
     const [kepribadian,setKepribadian] = React.useState(props.id ? props.ciri_ciri.kepribadian_id : 1)
     const [ciri_ciri,setCiri] = React.useState(props.id? props.ciri_ciri.ciri : '')
     const {data, setData,post,put} = useForm({
@@ -42,7 +43,10 @@ export default function TambahCiriCiri(props) {
     }
 
     return (
-        <SidebarPakar>
+        <SidebarPakar username={props.auth.user.username}>
+            <Head>
+                <title>Tambah Ciri-Ciri</title>
+            </Head>
             <h1 className="text-3xl font-medium mb-16">
                 Formulir Data Ciri-Ciri
             </h1>
@@ -55,7 +59,7 @@ export default function TambahCiriCiri(props) {
                         <Box className="w-4/5 text-left m-auto h-[160px] mb-8">
                         <TextField 
                             required
-                            className="mb-8" 
+                            className="w-full" 
                             id="outlined-basic" 
                             label="Ciri-Ciri" 
                             variant="outlined" 
@@ -65,10 +69,10 @@ export default function TambahCiriCiri(props) {
                         
                         <BasicSelect
                             required
+                            className="my-5 w-full"
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={kepribadian}
-                            label="kepribadian"
                             onChange={handleKepribadian}
                         >
                             {(props.kepribadians).map(kepribadian => {
@@ -80,7 +84,7 @@ export default function TambahCiriCiri(props) {
                         <br />
                         <button
                             type="submit"
-                            className="h-[40px] w-4/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#5D6AAD] focus:bg-[#5D6AAD]"
+                            className="h-[40px] w-full bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out"
                             >
                             <AddRoundedIcon />
                             <span>
@@ -92,7 +96,7 @@ export default function TambahCiriCiri(props) {
                 </div>
                 <div id="bg" className="w-3/5 p-4 bg-[#88CCE1] rounded-r-lg">
                     <img
-                        src="img/ilustrasi_ciriciri.png"
+                        src="/img/ilustrasi_ciriciri.png"
                         alt=""
                         className="w-8/12 m-auto"
                     />

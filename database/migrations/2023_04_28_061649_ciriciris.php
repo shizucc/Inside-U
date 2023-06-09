@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ciri_ciris', function (Blueprint $table) {
             $table->id();
             $table->string('ciri');
-            $table->foreignId('kepribadian_id')->constrained();
+            $table->foreignId('kepribadian_id')->nullable()->constrained()->cascadeOnDelete();
         });
     }
 

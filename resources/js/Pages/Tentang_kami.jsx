@@ -2,16 +2,16 @@ import Navbar from "@/Components/Navbar";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
-export default function Tentang_kami(){
+export default function Tentang_kami(props){
     return (
         <>
-            <Navbar>
+            <Navbar user={props.auth.user}>
                 <h1 className="font-poppins font-bold text-3xl text-center my-10">Anggota Tim</h1>
                 <div className="container h-[200px] mx-auto w-5/6">
                     <div className="grid grid-cols-3 gap-4 static">
-                        <div className="ml-[50px] absolute"><img src="img/ilustrasi_notice_diagnosa.png" alt="" /></div>
-                        <div className="ml-[420px] absolute"><img src="img/ilustrasi_notice_diagnosa.png" alt="" /></div>
-                        <div className="ml-[770px] absolute"><img src="img/ilustrasi_notice_diagnosa.png" alt="" /></div>
+                        <div className="ml-[60px] absolute"><img src="img/yudith.png" className="w-[229px] h-auto" alt="yudith" /></div>
+                        <div className="ml-[420px] absolute"><img src="img/alfi.png" className="w-[247px] h-auto" alt="alfi" /></div>
+                        <div className="ml-[779px] absolute"><img src="img/alvin.png" className="w-[235px] h-auto" alt="alvin" /></div>
                     </div>
                     <div className="mt-16 mx-auto h-[150px] w-full bg-[#98A8F8] rounded-lg">
                     </div>

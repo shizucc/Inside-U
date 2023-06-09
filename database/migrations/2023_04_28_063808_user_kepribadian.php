@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('user_kepribadian', function (Blueprint $table) {
             $table->primary(['user_id','diagnosa_id','kepribadian_id']);
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->bigInteger('diagnosa_id')->unsigned();
-            $table->bigInteger('kepribadian_id')->unsigned();
+            $table->bigInteger('kepribadian_id')->unsigned()->nullable();
             $table->float('persentase');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('kepribadian_id')->references('id')->on('kepribadians');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('kepribadian_id')->references('id')->on('kepribadians')->cascadeOnDelete();
             $table->timestamp('waktu_diagnosa', $precision=0);
             
         });

@@ -10,18 +10,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): Response
+    public function histori()
     {
-        return Inertia::render('Profile/Edit', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
+        // User::find(Auth::id());
+        $data = [
+            'historis'=> User::where('id', Auth::id())->with('kepribadians')->orderBy('id', 'asc')->get()
+        ];
+        return Inertia::render('Profile/Histori', $data);
     }
 
     /**

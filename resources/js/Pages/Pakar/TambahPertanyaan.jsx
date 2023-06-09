@@ -1,15 +1,17 @@
 import SidebarPakar from "./SidebarPakar"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import BasicSelect from '@mui/material/Select';
 import { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "@inertiajs/react";
-import { MenuItem } from "@mui/material";
+import { Autocomplete,TextField } from "@mui/material";
+import { Head } from '@inertiajs/react';
 
 export default function TambahPertanyaan (props){
-    console.log(props)
+    
     const [pertanyaan,setPertanyaan] = useState(props.id ? props.pertanyaan.pertanyaan : '')
-    const [ciri,setCiri] = useState(props.id ? props.pertanyaan.ciri_id: 1)
+    const [ciri,setCiri] = useState(
+        (props.id? props.ciri_ciris.find((ciri)=> ciri.id==props.pertanyaan.ciri_id) : null)
+    )
     const {data,setData,post,put} = useForm({
         pertanyaan : pertanyaan,
         ciri_id : ciri
@@ -26,8 +28,8 @@ export default function TambahPertanyaan (props){
     const handlePertanyaan = (event) => {
         setPertanyaan(event.target.value)
     }
-    const handleCiri = (event) => {
-        setCiri(event.target.value)
+    const handleCiri = (event,value) => {
+        setCiri(value)
     }
 
     const submit = (event) => {
@@ -37,8 +39,14 @@ export default function TambahPertanyaan (props){
         }else 
             post(route('pakar.pertanyaan.store'))
     }
+
+    
+
     return (
-        <SidebarPakar>
+        <SidebarPakar username={props.auth.user.username}>
+            <Head>
+                <title>Tambah Pertanyaan</title>
+            </Head>
             <h1 className="text-3xl font-medium mb-16">Formulir Data Pertanyaan</h1>
             <div className="container w-full shadow-lg flex rounded-lg">
                 <div id="form" className="w-1/2 p-6 text-center">
@@ -47,26 +55,26 @@ export default function TambahPertanyaan (props){
                         <textarea 
                             required 
                             type="text" 
-                            className="w-4/5 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 rounded-lg mb-4" 
+                            className="w-full border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500 rounded-lg" 
                             placeholder="Pertanyaan"
                             value={pertanyaan}
                             onChange={handlePertanyaan}
                         />
-                        <BasicSelect 
-                            required 
-                            nama="Ciri-Ciri"
+
+                        <Autocomplete
+                            required
+                            className="w-full my-5"
+                            disablePortal
+                            id='combo-box-demo'
+                            options={props.ciri_ciris}
+                            getOptionLabel={(option)=>(option.ciri.charAt(0).toUpperCase()+(option.ciri).slice(1))}
                             value={ciri}
                             onChange={handleCiri}
-                            >
-                            {(props.ciri_ciris).map(ciri=>{
-                                return(
-                                    <MenuItem value={ciri.id}>{(ciri.ciri).charAt(0).toUpperCase()+(ciri.ciri).slice(1)}</MenuItem>
-                                    // <MenuItem value={ciri.id}>{ciri.ciri}</MenuItem>
-                                )
-                            })}
-                        </BasicSelect>
+                            renderInput={(params)=> <TextField {...params} label='Ciri' />}
+                        >
+                        </Autocomplete>
 
-                        <button type="submit" className="h-[40px] w-4/5 bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#5D6AAD] focus:bg-[#5D6AAD]"><AddRoundedIcon/>
+                        <button type="submit" className="h-[50px] w-full bg-[#98A8F8] text-white rounded-lg font-medium hover:bg-[#7286E8] duration-500 ease-in-out"><AddRoundedIcon/>
                         <span>
                             {props.id? 'Update Pertanyaan' : 'Tambah Pertanyaan'}
                         </span>
@@ -74,7 +82,7 @@ export default function TambahPertanyaan (props){
                     </form>
                 </div>
                 <div id="bg" className="w-1/2 p-4 bg-[#88CCE1] rounded-r-lg">
-                    <img src="img/ilustrasi_pertanyaan.png" alt="" className="w-8/12 m-auto" />
+                    <img src="/img/ilustrasi_pertanyaan.png" alt="" className="w-8/12 m-auto z-10" />
                 </div>
             </div>
         </SidebarPakar>

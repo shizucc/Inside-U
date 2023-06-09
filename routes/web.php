@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\DiagnosaController;
 use App\Http\Controllers\Pakar\KepribadianController;
 use App\Http\Controllers\ProfileController;
@@ -13,6 +13,11 @@ use App\Http\Controllers\Pakar\KepribadianController as PakarKepribadianControll
 use App\Http\Controllers\Pakar\PertanyaanController as PakarPertanyaanController;
 use App\Http\Controllers\Pakar\HistoriController as PakarHistoriController;
 
+use App\Http\Controllers\Admin\AdminController as AdminController;
+use App\Http\Controllers\Admin\UserContoller as AdminUserContoller;
+use App\Http\Controllers\Admin\PakarContoller as AdminPakarContoller;
+use App\Http\Controllers\Admin\HistoriController as AdminHistoriController;
+
 Route::get('/', [DiagnosaController::class, 'index'])->name('home');
 Route::get('/tentang_kami', function (){return Inertia::render('Tentang_kami');})->name('tentang_kami');
 
@@ -23,25 +28,29 @@ Route::post('/diagnosa/hasil', [DiagnosaController::class, 'perhitungan'])->name
 Route::get('/diagnosa/hasil-{user_id}-{diagnosa_id}', [DiagnosaController::class, 'hasil'])->name('diagnosa.hasil');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    // User
+    Route::get('/histori', [ProfileController::class, 'histori'])->name('profile.histori');
+
     // Admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
-    Route::get('/manajemenuser', function (){return Inertia::render('Admin/ManajemenUser');})->name('admin.manajemenuser');
-    Route::get('/historidiagnosa', function (){return Inertia::render('Admin/HistoriDiagnosa');})->name('admin.historidiagnosa');
+    // Route::get('/manajemenpakar', function (){return Inertia::render('Admin/ManajemenPakar');})->name('admin.manajemenpakar');
+    // Route::get('/manajemenuser', function (){return Inertia::render('Admin/ManajemenUser');})->name('admin.manajemenuser');
+    // Route::get('/historidiagnosa', function (){return Inertia::render('Admin/HistoriDiagnosa');})->name('admin.historidiagnosa');
     //-- Form
-    Route::get('/tambahuser', function (){return Inertia::render('Admin/TambahUser');})->name('admin.manajemenuser');
+    // Route::get('/tambahuser', function (){return Inertia::render('Admin/TambahUser');})->name('admin.manajemenuser');
     // Pakar
-    Route::get('/pakar', [PakarController::class, 'index'])->name('pakar.index');
+    Route::get('/pakar', [PakarController::class,'index'])->name('pakar.index');
 
-    Route::resource('pakar/kepribadian', PakarKepribadianController::class)->names([
+    Route::resource('pakar/kepribadian', PakarKepribadianController::class)->except('update')->names([
         'index' => 'pakar.kepribadian.index',
         'create' => 'pakar.kepribadian.create',
         'store' => 'pakar.kepribadian.store',
         'show' => 'pakar.kepribadian.show',
         'edit' => 'pakar.kepribadian.edit',
-        'update' => 'pakar.kepribadian.update',
         'destroy' => 'pakar.kepribadian.destroy',
     ]);
+
+    // Route::post('/pakar/kepribadian', [PakarKepribadianController::class, 'update'])->name('pakar.kepribadian.update');
 
     Route::resource('pakar/ciri', PakarCiriController::class)->names([
         'index' => 'pakar.ciri.index',
@@ -60,22 +69,43 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'update' => 'pakar.pertanyaan.update',
         'destroy' => 'pakar.pertanyaan.destroy',
     ])->except('show');
-    
+
 
     Route::resource('/pakar/histori', PakarHistoriController::class)->only('index', 'show')->names([
         'index' => 'pakar.histori.index',
         'show' => 'pakar.histori.show',
     ]);
-    Route::get('/pakar/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
+
+    Route::resource('/admin/user', AdminUserContoller::class)->except('show')->names([
+        'index' => 'admin.user.index',
+        'create' => 'admin.user.create',
+        'store' => 'admin.user.store',
+        'edit' => 'admin.user.edit',
+        'update' => 'admin.user.update',
+        'destroy' => 'admin.user.destroy',
+    ]);
+    Route::resource('/admin/pakar', AdminPakarContoller::class)->except('show')->names([
+        'index' => 'admin.pakar.index',
+        'create' => 'admin.pakar.create',
+        'store' => 'admin.pakar.store',
+        'edit' => 'admin.pakar.edit',
+        'update' => 'admin.pakar.update',
+        'destroy' => 'admin.pakar.destroy',
+    ]);
+
+    Route::resource('/admin/histori', AdminHistoriController::class)->only('index','show')->names([
+        'index' => 'admin.histori.index',
+        'show' => 'admin.histori.show',
+    ]);
+    Route::delete('/admin/histori/delete-{user_id}-{diagnosa_id}', [AdminHistoriController::class, 'destroy'])->name(
+        'admin.histori.destroy'
+    );
+
+    // Route::get('/pakar/manajemenkepribadian', function (){return Inertia::render('Pakar/ManajemenKepribadian');})->name('pakar.manajemenkepribadian');
     //Route::get('/pakar/manajemenciriciri', [PakarController::class,'ciri_ciri'])->name('pakar.manajemenciriciri');
-    Route::get('/manajemenpertanyaan', function (){return Inertia::render('Pakar/ManajemenPertanyaan');})->name('pakar.manajemenpertanyaan');
-    Route::get('/historidiagnosapkr', function (){return Inertia::render('Pakar/HistoriDiagnosa');})->name('pakar.historidiagnosa');
-    //-- Form
-    // Route::get('/tambahkepribadian', function (){return Inertia::render('Pakar/TambahKepribadian');})->name('pakar.manajemenkepribadian');
-    // Route::get('/tambahciriciri', function(){return Inertia::render('Pakar/TambahCiriCiri');})->name('pakar.manajemenciriciri');
-    // Route::get('/tambahpertanyaan', function(){return Inertia::render('Pakar/TambahPertanyaan');})->name('pakar.manajemenpertanyaan');
-    //Tentang Kami
-    
+    // Route::get('/manajemenpertanyaan', function (){return Inertia::render('Pakar/ManajemenPertanyaan');})->name('pakar.manajemenpertanyaan');
+    // Route::get('/historidiagnosapkr', function (){return Inertia::render('Pakar/HistoriDiagnosa');})->name('pakar.historidiagnosa');
+
 });
 
 
@@ -88,10 +118,5 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';

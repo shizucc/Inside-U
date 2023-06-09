@@ -4,38 +4,35 @@ namespace App\Http\Controllers\Pakar;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserKepribadian;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class HistoriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function authPakar(){
+        $role = User::find(Auth::id())->role;
+
+        if ($role == "user") {
+            return redirect()->route("home");
+        } elseif ($role == "admin") {
+            return redirect()->route("admin.index");
+        }
+    }
+
     public function index()
     {
-        //
+        $this->authPakar();
+
+        $data = [
+            'historis'=> User::with('kepribadians')->orderBy('id', 'asc')->get()
+        ];
+
+        return Inertia::render('Pakar/HistoriDiagnosa',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(UserKepribadian $userKepribadian)
+    public function show($id_user,$id_diagnosa)
     {
         //
     }
@@ -43,24 +40,5 @@ class HistoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserKepribadian $userKepribadian)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, UserKepribadian $userKepribadian)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(UserKepribadian $userKepribadian)
-    {
-        //
-    }
 }

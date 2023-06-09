@@ -33,7 +33,6 @@ export default function Register() {
             <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
-
                     <TextInput
                         id="name"
                         name="name"
@@ -82,13 +81,13 @@ export default function Register() {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="flex items-center justify-end mt-8">
+                <div className="flex items-center justify-end my-4 font-medium font-poppins text-lg">
                     <PrimaryButton disabled={processing}>
                         Sign Up
                     </PrimaryButton>
                 </div>
 
-                <div className="mt-8 text-center">
+                <div className="text-center">
                     <span>
                         Sudah punya akun? <Link className="text-blue-500 hover:underline" href={route('login')}>Login</Link>
                     </span>

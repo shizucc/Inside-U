@@ -6,6 +6,7 @@ function App(props) {
     let i = 1
     props.datas.forEach(kepribadian => {
         datas.push({
+            'id' : kepribadian.id,
             'kepribadian' : (kepribadian.jenis_kepribadian).charAt(0).toUpperCase() + kepribadian.jenis_kepribadian.slice(1),
             'deskripsi' : kepribadian.deskripsi.charAt(0).toUpperCase() + kepribadian.deskripsi.slice(1),
         })
@@ -14,10 +15,6 @@ function App(props) {
 
   const columns = React.useMemo(
     () => [
-      {
-        Header: "No",
-        accessor: "no",
-      },
       {
         Header: "Kepribadian",
         accessor: "kepribadian",
@@ -30,12 +27,19 @@ function App(props) {
     []
   );
 
-  const data = React.useMemo(() => datas, []);
+  const data = datas
 
   return (
     <>
       <div>
-        <Table columns={columns} data={data} route_for_edit={props.route_for_edit} route_for_delete={props.route_for_delete}/>
+        <Table 
+          signature = {'kepribadian'}
+          columns={columns} 
+          data={data} 
+          route_for_edit={props.route_for_edit} 
+          route_for_delete={props.route_for_delete}
+          message_where_delete={props.message_where_delete}
+        />
       </div>
     </>
   );

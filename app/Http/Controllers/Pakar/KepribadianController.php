@@ -7,6 +7,7 @@ use App\Models\Kepribadian;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 class KepribadianController extends Controller
 {
@@ -24,7 +25,7 @@ class KepribadianController extends Controller
         $this->authPakar();
 
         $data = [
-            'kepribadians' => Kepribadian::all()
+            'kepribadians' => Kepribadian::orderBy('id')->get()
         ];
         return Inertia::render('Pakar/ManajemenKepribadian', $data);
     }
@@ -35,7 +36,7 @@ class KepribadianController extends Controller
     public function create()
     {
         $this->authPakar();
-        
+
         return Inertia::render('Pakar/TambahKepribadian');
     }
 
@@ -43,39 +44,51 @@ class KepribadianController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+    {   
+        // dd($request->ilustrasi);
+        $this->authPakar();
+        $kepribadian = new Kepribadian();
+        if($request->id!=null){
+            $kepribadian = Kepribadian::find($request->id);
+        }
+        if($request->ilustrasi!=null){
+            $path = Storage::url( ($request->ilustrasi)->store('','ilustrasi_disk'));
+            $kepribadian->ilustrasi = $path;
+        } else {
+            $kepribadian->ilustrasi = "";
+        }
+        $kepribadian->jenis_kepribadian = $request->jenis_kepribadian;
+        $kepribadian->deskripsi = $request->deskripsi;
+        $kepribadian->save();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Kepribadian $kepribadian)
-    {
-        //
+        return redirect(route('pakar.kepribadian.index'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kepribadian $kepribadian)
+    public function edit($id)
     {
-        //
+        $this->authPakar();
+        $data = [
+            'id' => $id,
+            'kepribadian' => Kepribadian::find($id)
+        ];
+        return Inertia::render('Pakar/TambahKepribadian', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kepribadian $kepribadian)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kepribadian $kepribadian)
+    public function destroy($id)
     {
-        //
+        $this->authPakar();
+        $kepribadian = Kepribadian::find($id);
+        $kepribadian->delete();
+        return redirect(route('pakar.kepribadian.index', $kepribadian));
     }
 }
