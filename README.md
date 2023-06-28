@@ -7,11 +7,13 @@ Inside-U is an expert system application designed to diagnose someone's personal
 
 ## Features in Inside-U
 
-- [Diagnose] : A user can perform a diagnosis directly without going through the login process first and will receive their diagnostic results at the end after answering all the questions in the diagnosis process. Logged-in users will have an additional feature that allows them to save their diagnostic results and view them again at a later time.
-- [Admin Panel] : Admins have the capability to manage user accounts and oversee the diagnostic results obtained from users.
-- [Expert  Panel] : Experts have the ability to manage the knowledge base that is utilized in the diagnostic process performed by users.
-- [Explanation Feature] : After completing the diagnosis, users will be presented with their diagnostic results along with an explanation feature.
+- **Diagnose** : A user can perform a diagnosis directly without going through the login process first and will receive their diagnostic results at the end after answering all the questions in the diagnosis process. Logged-in users will have an additional feature that allows them to save their diagnostic results and view them again at a later time.
+- **Admin Panel** : Admins have the capability to manage user accounts and oversee the diagnostic results obtained from users.
+- **Expert  Panel** : Experts have the ability to manage the knowledge base that is utilized in the diagnostic process performed by users.
+- **Explanation Feature** : After completing the diagnosis, users will be presented with their diagnostic results along with an explanation feature.
 
-## License
+## Preview
+You can visit : https://insideu.visit-indonesia.id/
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Copyright
+© 2021 Endour Studio. All rights reserved.
